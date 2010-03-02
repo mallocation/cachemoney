@@ -1,0 +1,49 @@
+Curtis Johnson
+CSE361
+Individual Programming Assignment
+February 16, 2010
+
+README
+
+**** Included directories ****
+	\WorkingWithBCEL
+	
+**** Included files ****
+	ChangeOp.java
+	cInstructionHelper.java
+	bcel-5.2.jar
+	
+	
+**** Assignment Instructions ****	
+For the first part of the assignment (Working with BCEL), all files necessary can be found
+in the 'WorkingWithBCEL' directory.
+
+
+For the second part of the assignment (A Dynamic Operator Mutator Program), the necessary
+files can be found in the "Included files" section above.
+The 'ChangeOp' program is located in ChangeOp.java and meets the specifications as described
+in the assignment handout.  The '.cInstructionHelper.java' file contains a helper class to 
+the ChangeOp program.
+Finally, the bcel library is included in the bcel-5.2.jar file.
+
+To run the 'ChangeOp' program, you must first set the CLASSPATH to include the bcel-5.2.jar 
+library.
+
+	setenv CLASSPATH .:bcel-5.2.jar
+	
+Then, compile the ChangeOp program by:
+	
+	javac ChangeOp.java
+	
+Finally, you may run the ChangeOp program using the format below:
+
+	java ChangeOp classname old_operator new_operator
+	
+Any specifics to the operation of this program are listed in the handout for this programming
+assignment, (including the need to insert single quotes to allow the * operator to be changed).
+For example,
+
+	java ChangeOp ClassToMutate '*' /
+	
+Javadoc html documentation can be found here:
+http://cse.unl.edu/~cjohnson/javadoc_cse361_indivassign/	
