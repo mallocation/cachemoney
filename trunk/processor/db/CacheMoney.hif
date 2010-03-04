@@ -1,4 +1,4 @@
-Version 9.0 Build 235 06/17/2009 Service Pack 2 SJ Web Edition
+Version 9.0 Build 132 02/25/2009 SJ Full Version
 11
 1000
 OFF
@@ -19,18 +19,35 @@ VHSM_ON
 -- Start VHDL Libraries --
 -- End VHDL Libraries --
 # entity
-Register32bit
+TestBench
 # storage
 db|CacheMoney.(0).cnf
 db|CacheMoney.(0).cnf
+# case_insensitive
+# source_file
+TestBench|TestBench.bdf
+4f5b408e9b4c5e93be6725dcc485395
+26
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# macro_sequence
+
+# end
+# entity
+Register32bit
+# storage
+db|CacheMoney.(1).cnf
+db|CacheMoney.(1).cnf
 # logic_option {
 AUTO_RAM_RECOGNITION
 ON
 }
 # case_insensitive
 # source_file
-Register32bit.vhd
-4d87d5c15c6f7875ef3c5bf6b4fd6f2
+Register32bit|Register32bit.vhd
+853052f3c2ad326e46e0b27dd77c6897
 5
 # internal_option {
 HDL_INITIAL_FANOUT_LIMIT
@@ -43,31 +60,11 @@ AUTO_ROM_RECOGNITION
 ON
 }
 # hierarchies {
-Register32bit:inst
-}
-# lmf
-..|..|..|..|..|..|..|..|..|..|altera|90sp2|quartus|lmf|maxplus2.lmf
-9a59d39b0706640b4b2718e8a1ff1f
-# macro_sequence
-
-# end
-# entity
-TestBench
-# storage
-db|CacheMoney.(1).cnf
-db|CacheMoney.(1).cnf
-# case_insensitive
-# source_file
-TestBench.bdf
-5d82df47a2e76b652f57798827b496b
-26
-# internal_option {
-BLOCK_DESIGN_NAMING
-AUTO
-}
-# hierarchies {
 |
 }
+# lmf
+c:|altera|90|quartus|lmf|maxplus2.lmf
+9a59d39b0706640b4b2718e8a1ff1f
 # macro_sequence
 
 # end

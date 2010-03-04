@@ -1,7 +1,7 @@
-Analysis & Synthesis Status : Successful - Wed Mar 03 18:47:49 2010
-Quartus II Version : 9.0 Build 235 06/17/2009 SP 2 SJ Web Edition
+Analysis & Synthesis Status : Successful - Wed Mar 03 21:14:46 2010
+Quartus II Version : 9.0 Build 132 02/25/2009 SJ Full Version
 Revision Name : CacheMoney
-Top-level Entity Name : TestBench
+Top-level Entity Name : Register32bit
 Family : Cyclone II
 Total logic elements : 32
     Total combinational functions : 0

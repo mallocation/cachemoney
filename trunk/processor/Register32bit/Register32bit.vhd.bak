@@ -8,7 +8,7 @@ ENTITY Register32bit IS
 			Enable	:		IN	STD_LOGIC;
 			Reset	:		IN	STD_LOGIC;
 			Q		:		OUT	STD_LOGIC_VECTOR(31 DOWNTO 0));
-END Register32bit;		
+END Register32bit;
 
 ARCHITECTURE Behavior OF Register32bit IS
 BEGIN
