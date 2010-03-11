@@ -57,8 +57,6 @@ set_location_assignment PIN_N2 -to clk_50mhz
 set_location_assignment PIN_AE22 -to clk_custom
 set_global_assignment -name MISC_FILE "C:/Users/cjohnson/Desktop/cachemoney/trunk/processor/CacheMoney.dpf"
 set_location_assignment PIN_W26 -to reset
-set_global_assignment -name VECTOR_WAVEFORM_FILE source/Register32bit_WaveForm.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE source/SignExtend32bit_WaveForm.vwf
-set_global_assignment -name VHDL_FILE source/CustomClock.vhd
-set_global_assignment -name VHDL_FILE source/Register32bit.vhd
-set_global_assignment -name VHDL_FILE source/SignExtend32bit.vhd
+set_global_assignment -name VHDL_FILE CustomClock.vhd
+set_global_assignment -name VHDL_FILE Register32bit.vhd
+set_global_assignment -name VHDL_FILE SignExtend32bit.vhd
