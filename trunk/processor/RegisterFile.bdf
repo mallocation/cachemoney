@@ -117,6 +117,22 @@ applicable agreement for further details.
 	)
 	(text "VCC" (rect 152 7 172 17)(font "Arial" (font_size 6)))
 )
+(pin
+	(output)
+	(rect 2616 -144 2792 -128)
+	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
+	(text "DataOut[31..0]" (rect 90 0 163 12)(font "Arial" ))
+	(pt 0 8)
+	(drawing
+		(line (pt 0 8)(pt 52 8)(line_width 1))
+		(line (pt 52 4)(pt 78 4)(line_width 1))
+		(line (pt 52 12)(pt 78 12)(line_width 1))
+		(line (pt 52 12)(pt 52 4)(line_width 1))
+		(line (pt 78 4)(pt 82 8)(line_width 1))
+		(line (pt 82 8)(pt 78 12)(line_width 1))
+		(line (pt 78 12)(pt 82 8)(line_width 1))
+	)
+)
 (symbol
 	(rect 232 -24 264 8)
 	(text "GND" (rect 6 3 16 24)(font "Arial" (font_size 6))(vertical))
@@ -4417,5 +4433,10 @@ applicable agreement for further details.
 	(text "RegSelect[4..0]" (rect 2274 360 2350 372)(font "Arial" ))
 	(pt 2344 376)
 	(pt 2264 376)
+	(bus)
+)
+(connector
+	(pt 2616 -136)
+	(pt 2528 -136)
 	(bus)
 )
