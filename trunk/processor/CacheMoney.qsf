@@ -72,3 +72,4 @@ set_global_assignment -name VHDL_FILE CustomClock.vhd
 set_global_assignment -name VHDL_FILE Register32bit.vhd
 set_global_assignment -name VHDL_FILE SignExtend32bit.vhd
 set_global_assignment -name VECTOR_WAVEFORM_FILE RegisterFile_WaveForm.vwf
+set_global_assignment -name VHDL_FILE LCD_Display.vhd
