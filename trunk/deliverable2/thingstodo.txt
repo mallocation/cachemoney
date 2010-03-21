@@ -1,0 +1,10 @@
+Things to do for deliverable 2...
+
+SRAM - Brett
+SDRAM - Curtis
+FLASH - Jake
+LCD	- Curtis
+BRANCH PREDICTOR - up for grabs...
+COMPARATOR - up for grabs...
+
+FORWARDING UNIT?
