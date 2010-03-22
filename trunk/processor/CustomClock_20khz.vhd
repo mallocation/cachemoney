@@ -1,7 +1,7 @@
-ENTITY CustomClock IS
+ENTITY CustomClock_20khz IS
 	GENERIC
 	(
-		count_value :	natural := 625000
+		count_value :	natural := 625000	--50mhz / 20khz = 2500000 / 4 = 625000
 	);
 	PORT
 	(
@@ -9,9 +9,9 @@ ENTITY CustomClock IS
 		reset				:	IN		BIT;
 		clk_custom	:	OUT	BIT
 	);
-END CustomClock;
+END CustomClock_20khz;
 
-ARCHITECTURE Behavior OF CustomClock IS
+ARCHITECTURE Behavior OF CustomClock_20khz IS
 	SIGNAL clk_custom_hz : BIT;
 BEGIN
 	PROCESS (reset, clk_50mhz)
