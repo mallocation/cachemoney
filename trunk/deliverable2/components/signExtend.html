@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Cache Money - Sign Extend 32 bit</title>
+<link rel="stylesheet" type="text/css" href="css/cache_money.css">
+</head>
+
+<body>
+
+<div id="description">
+	<h2>Sign Extend 32 Bit</h2>
+	The sign extender just takes a 16 bit number and extends it to a 32 bit number. The most significant bit is just appended to 16 times to the most significant bit side of the number.
+</div>
+<br />
+<div id="code">
+	<h4>VHDL Code</h4>
+	<pre>
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY SignExtend32bit IS
+	PORT (		data_in		:	IN	STD_LOGIC_VECTOR(15 DOWNTO 0);
+					data_out	:	OUT	STD_LOGIC_VECTOR(31 DOWNTO 0));
+END SignExtend32bit;
+
+ARCHITECTURE Behavior OF SignExtend32bit IS
+BEGIN	
+	data_out(15 downto 0) <= data_in;
+	data_out(31 downto 16) <= (31 downto 16 => data_in(15));
+END Behavior;
+	</pre>
+</div>
+<br />
+<div id="verfication">
+	<h4>Verification</h4>
+	<!-- Verification image here -->
+	<img alt="Sign Extend 32 Bit Verification" src="images/signExtend32bit.png">
+</div>
+
+</body>
+
+</html>
