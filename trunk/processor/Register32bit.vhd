@@ -1,3 +1,13 @@
+--------------------------------------------------------------------------------------------
+--	Authors: Cache Money	
+--
+-- 	This component describes the behavior of a 32 bit register.
+--  The register's value can be changed to the value on the 'D' port
+--  on the rising edge of the clock if the write enable is set to high.
+--	
+--	Reset is asynchronous on high.
+--------------------------------------------------------------------------------------------
+
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
 
