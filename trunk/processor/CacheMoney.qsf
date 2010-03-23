@@ -78,6 +78,15 @@ set_location_assignment PIN_AE14 -to data[3]
 set_location_assignment PIN_P25 -to data[2]
 set_location_assignment PIN_N26 -to data[1]
 set_location_assignment PIN_N25 -to data[0]
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -entity ForwardingUnit -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -entity ForwardingUnit -section_id Top
+set_global_assignment -name LL_ROOT_REGION ON -entity ForwardingUnit -section_id "Root Region"
+set_global_assignment -name LL_MEMBER_STATE LOCKED -entity ForwardingUnit -section_id "Root Region"
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity ForwardingUnit -section_id Top
+set_global_assignment -name INCREMENTAL_VECTOR_INPUT_SOURCE ForwardingUnit_WaveForm.vwf
+set_global_assignment -name END_TIME "80 ns"
+set_global_assignment -name VECTOR_WAVEFORM_FILE Cache_8kb_WaveForm.vwf
+set_global_assignment -name VHDL_FILE Cache_8kb.vhd
 set_global_assignment -name VHDL_FILE Mux32to1.vhd
 set_global_assignment -name VECTOR_WAVEFORM_FILE ALU32bit_WaveForm.vwf
 set_global_assignment -name VECTOR_WAVEFORM_FILE signed_multiply_WaveForm.vwf
@@ -97,11 +106,5 @@ set_global_assignment -name VHDL_FILE LCD_Display.vhd
 set_global_assignment -name VECTOR_WAVEFORM_FILE CustomClock.vwf
 set_global_assignment -name VHDL_FILE CustomClock_20khz.vhd
 set_global_assignment -name VHDL_FILE ForwardingUnit.vhd
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -entity ForwardingUnit -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -entity ForwardingUnit -section_id Top
-set_global_assignment -name LL_ROOT_REGION ON -entity ForwardingUnit -section_id "Root Region"
-set_global_assignment -name LL_MEMBER_STATE LOCKED -entity ForwardingUnit -section_id "Root Region"
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity ForwardingUnit -section_id Top
 set_global_assignment -name VECTOR_WAVEFORM_FILE ForwardingUnit_WaveForm.vwf
-set_global_assignment -name INCREMENTAL_VECTOR_INPUT_SOURCE ForwardingUnit_WaveForm.vwf
-set_global_assignment -name END_TIME "80 ns"
+set_global_assignment -name VHDL_FILE BranchPredictor.vhd
