@@ -1,3 +1,28 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Cache Money - Branch Predictor</title>
+<link rel="stylesheet" type="text/css" href="css/cache_money.css">
+</head>
+
+<body>
+
+<div id="description">
+	<h2>Branch Predictor</h2>
+	<!-- Describe unit here -->
+	The branch predictor unit will allow for a noticable speedup within the 5 stage pipeline by predicting branches taken or not taken.  The predictor will contain 
+	a cache of the last 16 branch instructions, their target branch addresses, and whether they were previously taken or not taken.  If the predictor predicts a branch instruction
+	incorrectly, only a one cycle delay is incurred, making this a very powerful way to speedup instructions in the pipeline.
+	
+	The branch predictor unit will reside within the IF (Instruction Fetch) stage.  It will predict branches taken/not taken, and will be modified<br />
+	from the ID (Instruction Decode) stage.	
+</div>
+
+<div id="code">
+	<h4>VHDL Code</h4>
+	<pre>
 ---------------------------------------------------------------------------------------------------
 --	Authors: Cache Money
 --
@@ -73,3 +98,20 @@ begin
 		end if;
 	end process;
 end Behavior;
+	</pre>
+</div>
+
+<div id="verfication">
+	<h4>Verification</h4>
+	<!-- Verification image here -->
+	<img alt="ALU Verification" src="images/branchpredictor_waveform.png"><br />
+	In the above picture, the lookup_pc corresponds to the value of the program counter.<br />
+	Correct operation can be observed from the waveform, when lookup_pc is set to '1' again at 35 ns.<br />
+	Since the cache was "written" from the ID stage at 15 ns, <br />
+	(write_addr = 1, write_en is high, correct_branch = '1' => branch was taken), a cache hit is encountered at 35 ns
+	when lookup_pc is 1 again.  Therefore, the take_branch is set to high,<br /> implying that the branch is predicted to be taken.
+</div>
+
+</body>
+
+</html>

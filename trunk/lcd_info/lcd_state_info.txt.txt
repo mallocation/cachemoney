@@ -1,0 +1,16 @@
+1. function_set
+	lcd_e = 1, lcd_rs = 0, lcd_rw = 0, databus = 0x38
+2. display_off
+	lcd_e = 1, lcd_rs = 0, lcd_rw = 0, databus = 0x08
+3. display_clear
+	lcd_e = 1, lcd_rs = 0, lcd_rw = 0, databus = 0x01
+4. display_on
+	lcd_e = 1, lcd_rs = 0, lcd_rw = 0, databus = 0x0c
+5. mode_set
+	lcd_e = 1, lcd_rs = 0, lcd_rw = 0, databus = 0x06
+6. write characters
+
+everything is done on falling edge of clock.
+to write a character, 
+	lcd_e = 1, lcd_rs = 1, lcd_rw = 0, databus = 8bit ascii code...
+	
