@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Cache Money - Comparator</title>
+<link rel="stylesheet" type="text/css" href="css/cache_money.css">
+</head>
+
+<body>
+
+<div id="description">
+	<h2>Comparator</h2>
+	The comparator contains 3 inputs - 2 32-bit signed numbers and a CheckEqual input; the output is a one bit result of the comparison.
+	 The comparator returns 1 if the 2 32-bit numbers are equal and the CheckEqual bit is 1, it also returns 1 if the 2 32-bit numbers are
+	 not equal and the CheckEqual input is set to 0. In all other cases, the comparator returns 0. 
+</div>
+
+<div id="code">
+	<h4>VHDL Code</h4>
+	<pre>
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity Comparator is
+	port
+	(a			:	in	std_logic_vector(31 downto 0);
+	 b			:	in 	std_logic_vector(31 downto 0);
+	CheckEqual	:	in	std_logic;
+	output 		:	out	std_logic);
+end Comparator;
+
+architecture STRUCTURE of Comparator is
+begin
+	process (a, b, CheckEqual)
+	begin
+		if CheckEqual = '1' then
+			if a = b then
+				output <= '1';
+			else
+				output <= '0';
+			end if;
+		else
+			if a /= b then
+				output <= '1';
+			else
+				output <= '0';
+			end if;
+		end if;
+	end process;
+end structure;
+	</pre>
+</div>
+
+<div id="verfication">
+	<h4>Verification</h4>
+	<img alt="ALU Verification" src="images/comparator_waveform.png">
+</div>
+
+</body>
+
+</html>
