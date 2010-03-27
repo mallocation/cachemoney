@@ -1,6 +1,8 @@
 package Instructions;
 
-public class cAdd implements Interfaces.IInstruction {
+import Interfaces.IInstruction;
+
+public class cAdd implements IInstruction {
 
 	@Override
 	public String getEncodedInstruction() {

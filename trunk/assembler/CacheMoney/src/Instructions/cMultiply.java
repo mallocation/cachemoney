@@ -1,6 +1,8 @@
 package Instructions;
 
-public class cMultiply implements Interfaces.IInstruction {
+import Interfaces.IInstruction;
+
+public class cMultiply implements IInstruction {
 
 	@Override
 	public String getEncodedInstruction() {
