@@ -1,8 +1,11 @@
 package Instructions;
 
 import Interfaces.IInstruction;
+import Interfaces.IJumpInstruction;
 
-public class cJump implements IInstruction {
+public class cJump implements IInstruction, IJumpInstruction {
+	
+	private int _jmpAddress;
 
 	@Override
 	public String getEncodedInstruction() {
@@ -18,6 +21,11 @@ public class cJump implements IInstruction {
 	@Override
 	public int getOpCode() {
 		return 7;
+	}
+
+	@Override
+	public int getAddress() {
+		return _jmpAddress;
 	}
 
 }

@@ -1,14 +1,6 @@
 package Instructions;
 
-import Interfaces.IInstruction;
-
-public class cMultiply implements IInstruction {
-
-	@Override
-	public String getEncodedInstruction() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+public class cMultiply extends cArithmeticInstruction {
 
 	@Override
 	public String getInstructionName() {
@@ -18,5 +10,6 @@ public class cMultiply implements IInstruction {
 	@Override
 	public int getOpCode() {
 		return 2;
-	}	
+	}
+	
 }

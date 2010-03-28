@@ -1,13 +1,6 @@
 package Instructions;
 
-import Interfaces.IInstruction;
-
-public class cAdd implements IInstruction {
-
-	@Override
-	public String getEncodedInstruction() {
-		return null;
-	}
+public class cAdd extends cArithmeticInstruction {
 
 	@Override
 	public String getInstructionName() {
