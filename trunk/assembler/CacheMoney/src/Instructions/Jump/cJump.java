@@ -1,8 +1,11 @@
-package Instructions;
+package Instructions.Jump;
 
 import Interfaces.IInstruction;
+import Interfaces.IJumpInstruction;
 
-public class cAddImmediate implements IInstruction {
+public class cJump implements IInstruction, IJumpInstruction {
+	
+	private int _jmpAddress;
 
 	@Override
 	public String getEncodedInstruction() {
@@ -12,12 +15,17 @@ public class cAddImmediate implements IInstruction {
 
 	@Override
 	public String getInstructionName() {
-		return "addi";
+		return "jmp";
 	}
 
 	@Override
 	public int getOpCode() {
-		return 1;
+		return 7;
+	}
+
+	@Override
+	public int getAddress() {
+		return _jmpAddress;
 	}
 
 }

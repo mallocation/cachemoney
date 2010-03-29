@@ -15,6 +15,4 @@ public abstract class cImmediateInstruction implements IInstruction {
 	@Override
 	public abstract int getOpCode();
 	
-	
-
 }

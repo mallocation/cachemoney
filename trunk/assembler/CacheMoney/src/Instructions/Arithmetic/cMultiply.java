@@ -1,4 +1,6 @@
-package Instructions;
+package Instructions.Arithmetic;
+
+import Instructions.cArithmeticInstruction;
 
 public class cMultiply extends cArithmeticInstruction {
 

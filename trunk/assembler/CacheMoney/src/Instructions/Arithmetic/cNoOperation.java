@@ -1,4 +1,5 @@
-package Instructions;
+package Instructions.Arithmetic;
+
 
 public class cNoOperation extends cAdd {
 	
