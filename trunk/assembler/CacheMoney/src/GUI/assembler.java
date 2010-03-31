@@ -9,6 +9,10 @@ import java.lang.*;
 
 public class assembler extends JFrame implements ActionListener {
 
+	final int	ITEM_PLAIN	=	0;	// Item types
+	final int	ITEM_CHECK	=	1;
+	final int	ITEM_RADIO	=	2;
+	
 	File inputFile;		//input file (.asm)
 	File outputFile;	//output file (.mif)
 	
@@ -25,6 +29,15 @@ public class assembler extends JFrame implements ActionListener {
 	//--- Text Areas ---
 	JTextArea assemblyTextArea;
 	JTextArea mifTextArea;
+	
+	JMenuBar menuBar;
+	
+	JMenu menuFile;
+	
+	JMenuItem menuFileOpen;
+	JMenuItem menuFileCreate;
+	JMenuItem menuFileSaveAs;
+	JMenuItem menuFileExit;
 	
 	public void assembler()
 	{
@@ -75,7 +88,7 @@ public class assembler extends JFrame implements ActionListener {
 		menuFile.setMnemonic( 'F' );
 		menuBar.add(menuFile);
 		
-		menuFileOpen = CreatMenuItem( menuFile, ITEM_PLAIN, "Open .asm File", null, 'O', "Open an assembly file");
+		menuFileOpen = CreateMenuItem( menuFile, ITEM_PLAIN, "Open .asm File", null, 'O', "Open an assembly file");
 		menuFileCreate = CreateMenuItem( menuFile, ITEM_PLAIN, "Create mif File", null, 'C', "Create a mif file from opened assembly file");
 		menuFileSaveAs = CreateMenuItem( menuFile, ITEM_PLAIN, "Save mif as...", null, 'S', "Save the generated mif file");
 		menuFileExit = CreateMenuItem( menuFile, ITEM_PLAIN, "Exit", null, 'E', "Exit the program");
@@ -130,10 +143,15 @@ public class assembler extends JFrame implements ActionListener {
 		return menuItem;
 	}
 	
+	public void actionPerformed( ActionEvent event )
+	{
+		
+	}
+	
 	public static void main( String args[] )
 	{
 		// Create an instance of the test application
-		assembler mainFrame	= new Employee();
+		assembler mainFrame	= new assembler();
 		mainFrame.setVisible( true );
 	}
 	
