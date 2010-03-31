@@ -26,7 +26,7 @@ public class assembler extends JFrame implements ActionListener {
 	JTextArea assemblyTextArea;
 	JTextArea mifTextArea;
 	
-	public void assemblerGUI()
+	public void assembler()
 	{
 		Container contentPane;
 		
@@ -79,13 +79,62 @@ public class assembler extends JFrame implements ActionListener {
 		menuFileCreate = CreateMenuItem( menuFile, ITEM_PLAIN, "Create mif File", null, 'C', "Create a mif file from opened assembly file");
 		menuFileSaveAs = CreateMenuItem( menuFile, ITEM_PLAIN, "Save mif as...", null, 'S', "Save the generated mif file");
 		menuFileExit = CreateMenuItem( menuFile, ITEM_PLAIN, "Exit", null, 'E', "Exit the program");
+	}	
 		
+	public JMenuItem CreateMenuItem( JMenu menu, int iType, String sText,
+			ImageIcon image, int acceleratorKey,
+			String sToolTip )
+	{
+		// Create the item
+		JMenuItem menuItem;
 		
+		switch( iType )
+		{
+			case ITEM_RADIO:
+				menuItem = new JRadioButtonMenuItem();
+				break;
+			
+			case ITEM_CHECK:
+				menuItem = new JCheckBoxMenuItem();
+				break;
+			
+			default:
+				menuItem = new JMenuItem();
+				break;
+		}
 		
+		// Add the item test
+		menuItem.setText( sText );
 		
+		// Add the optional icon
+		if( image != null )
+		{
+		menuItem.setIcon( image );
+		}
 		
+		// Add the accelerator key
+		if( acceleratorKey > 0 )
+		{
+			menuItem.setMnemonic( acceleratorKey );
+		}
 		
-		assemblyPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		// Add the optional tool tip text
+		if( sToolTip != null )
+		{
+			menuItem.setToolTipText( sToolTip );
+		}
+		
+		// Add an action handler to this menu item
+		menuItem.addActionListener( this );
+		menu.add( menuItem );
+		return menuItem;
+	}
+	
+	public static void main( String args[] )
+	{
+		// Create an instance of the test application
+		assembler mainFrame	= new Employee();
+		mainFrame.setVisible( true );
 	}
 	
 }
