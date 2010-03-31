@@ -28,4 +28,8 @@ public class cJump implements IInstruction, IJumpInstruction {
 		return _jmpAddress;
 	}
 
+	@Override
+	public void setAddress(int nAddress) {
+		_jmpAddress = nAddress;		
+	}
 }

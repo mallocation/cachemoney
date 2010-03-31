@@ -2,6 +2,12 @@ package Interfaces;
 
 public interface IArithmeticInstruction {
 	
+	public void setSourceRegister1(int nRegister);
+	
+	public void setSourceRegister2(int nRegister);
+	
+	public void setDestRegister(int nRegister);
+	
 	/**
 	 * Get the register containing the first operand.
 	 * @return The first source register.

@@ -2,6 +2,12 @@ package Interfaces;
 
 public interface IImmediateInstruction {
 	
+	public void setSourceRegister(int nRegister);
+	
+	public void setDestRegister(int nRegister);
+	
+	public void setImmediateValue(int nValue);
+	
 	/**
 	 * Get the source register involved in the immediate instruction
 	 * @return The source register.

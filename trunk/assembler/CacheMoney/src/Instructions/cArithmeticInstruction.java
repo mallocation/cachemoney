@@ -21,7 +21,22 @@ public abstract class cArithmeticInstruction implements IInstruction, IArithmeti
 	public abstract int getOpCode();	
 /** End IInstruction Methods **/
 	
-/** IArithmeticInstruction Methods **/	
+/** IArithmeticInstruction Methods **/
+	@Override
+	public void setDestRegister(int nRegister) {
+		_destReg = nRegister;
+	}
+
+	@Override
+	public void setSourceRegister1(int nRegister) {
+		_srcReg1 = nRegister;
+	}
+
+	@Override
+	public void setSourceRegister2(int nRegister) {
+		_srcReg2 = nRegister;
+	}
+	
 	@Override
 	public int getDestRegister() {
 		return _destReg;

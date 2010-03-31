@@ -34,5 +34,20 @@ public abstract class cImmediateInstruction implements IInstruction, IImmediateI
 	public int getSourceRegister() {
 		return _srcReg;
 	}
+
+	@Override
+	public void setDestRegister(int nRegister) {
+		_destReg = nRegister;
+	}
+
+	@Override
+	public void setImmediateValue(int nValue) {
+		_immediateValue = nValue;
+	}
+
+	@Override
+	public void setSourceRegister(int nRegister) {
+		_srcReg = nRegister;
+	}
 	
 }
