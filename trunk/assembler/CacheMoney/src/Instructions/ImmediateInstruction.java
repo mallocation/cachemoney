@@ -2,7 +2,7 @@ package Instructions;
 import Interfaces.IImmediateInstruction;
 import Interfaces.IInstruction;
 
-public abstract class cImmediateInstruction implements IInstruction, IImmediateInstruction {
+public abstract class ImmediateInstruction implements IInstruction, IImmediateInstruction {
 	
 	protected int _srcReg;
 	protected int _destReg;

@@ -2,7 +2,7 @@ package Instructions;
 import Interfaces.IInstruction;
 import Interfaces.IArithmeticInstruction;
 
-public abstract class cArithmeticInstruction implements IInstruction, IArithmeticInstruction {
+public abstract class ArithmeticInstruction implements IInstruction, IArithmeticInstruction {
 	
 	protected int _srcReg1;
 	protected int _srcReg2;

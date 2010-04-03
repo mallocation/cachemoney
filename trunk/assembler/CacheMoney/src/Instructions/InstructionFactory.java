@@ -12,7 +12,7 @@ import Interfaces.IJumpInstruction;
  * @author cjohnson
  *
  */
-public class cInstructionFactory implements IInstructionConstants {
+public class InstructionFactory implements IInstructionConstants {
 
 	public IInstruction createInstruction(String sInstruction, String sInstructionContents) {
 		ArrayList<Integer> alInstructionContents;
