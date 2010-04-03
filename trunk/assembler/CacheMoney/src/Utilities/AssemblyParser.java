@@ -1,6 +1,6 @@
 package Utilities;
 
-public class cAssemblyParser {
+public class AssemblyParser {
 	
 	/**
 	 * Use this method to strip a line of any comments.
@@ -23,17 +23,31 @@ public class cAssemblyParser {
 	}
 	
 	/**
-	 * Use this method to retrieve a symoblic address from a line.
-	 * i.e. <code>symbAdd: $1, $2, $3</code> => <code>symbAdd</code> 
+	 * Use this method to retrieve a symbolic Reference from a line.
+	 * i.e. <code>symbAdd: add $1, $2, $3</code> => <code>symbAdd</code> 
 	 * @param <code>sLine</code> The line to obtain a symbolic address from. 
 	 * @return The symbolic address, if a line contains one.  If not, an empty string is returned.
 	 */
-	public static String getSymbolicAddress(String sLine) {
+	public static String getSymbolicReference(String sLine) {
 		String[] arSplit = sLine.split(":");		
 		if (arSplit.length > 0) {
 			return arSplit[0].trim();
 		}		
 		return "";
+	}
+	
+	/**
+	 * Use this method to retrieve the assembly from a line.
+	 * i.e. symbAdd: add $1, $2, $3 => add $1, $2, $3
+	 * @param sLine The line to obtain the assembly from.
+	 * @return The assembly contents.
+	 */
+	public static String getAssembly(String sLine) {
+		String[] arSplit = sLine.split(":");
+		if (sLine.contains(":")) {
+			return arSplit[1].trim();
+		}
+		return sLine;
 	}
 
 }
