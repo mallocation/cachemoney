@@ -7,12 +7,12 @@ import Instructions.Jump.*;
 public interface IInstructionConstants {
 	
 	/** Arithmetic Instructions **/
-	public static final IInstruction ADD = new cAdd();
-	public static final IInstruction MULT = new cMultiply();
-	public static final IInstruction NOP = new cNoOperation();
+	public static final IInstruction ADD = new Add();
+	public static final IInstruction MULT = new Multiply();
+	public static final IInstruction NOP = new NoOperation();
 	
 	/** Immediate Instructions **/
-	public static final IInstruction ADDI = new cAddImmediate();
+	public static final IInstruction ADDI = new AddImmediate();
 	public static final IInstruction BEQ = new cBranchEqual();
 	public static final IInstruction BNEQ = new cBranchNotEqual();
 	public static final IInstruction LW = new cLoadWord();
