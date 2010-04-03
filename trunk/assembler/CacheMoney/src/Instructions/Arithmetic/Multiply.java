@@ -1,16 +1,17 @@
 package Instructions.Arithmetic;
 
-import Instructions.cArithmeticInstruction;
+import Instructions.ArithmeticInstruction;
 
-public class cAdd extends cArithmeticInstruction {
+public class Multiply extends ArithmeticInstruction {
 
 	@Override
 	public String getInstructionName() {
-		return "add";
+		return "mult";
 	}
 
 	@Override
 	public int getOpCode() {
-		return 0;
+		return 2;
 	}
+	
 }

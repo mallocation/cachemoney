@@ -1,7 +1,7 @@
 package Instructions.Arithmetic;
 
 
-public class cNoOperation extends cAdd {
+public class NoOperation extends Add {
 	
 	@Override
 	public String getInstructionName() {
