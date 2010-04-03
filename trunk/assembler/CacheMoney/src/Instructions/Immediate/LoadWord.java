@@ -1,17 +1,18 @@
 package Instructions.Immediate;
 
-import Instructions.cImmediateInstruction;
+import Instructions.ImmediateInstruction;
 
-public class cStoreWord extends cImmediateInstruction {
+public class LoadWord extends ImmediateInstruction {
 
 	@Override
 	public String getInstructionName() {
-		return "sw";
+		return "lw";
 	}
 
 	@Override
 	public int getOpCode() {
-		return 4;
+		return 3;
 	}
 
+	
 }

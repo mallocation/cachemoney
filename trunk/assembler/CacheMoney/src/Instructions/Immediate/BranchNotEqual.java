@@ -2,7 +2,7 @@ package Instructions.Immediate;
 
 import Instructions.ImmediateInstruction;
 
-public class cBranchNotEqual extends ImmediateInstruction {
+public class BranchNotEqual extends ImmediateInstruction {
 
 	@Override
 	public String getInstructionName() {
