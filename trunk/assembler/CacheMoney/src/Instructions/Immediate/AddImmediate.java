@@ -2,16 +2,15 @@ package Instructions.Immediate;
 
 import Instructions.ImmediateInstruction;
 
-public class cBranchEqual extends ImmediateInstruction {
+public class AddImmediate extends ImmediateInstruction {
 
 	@Override
 	public String getInstructionName() {
-		return "beq";
+		return "addi";
 	}
 
 	@Override
 	public int getOpCode() {
-		return 5;
+		return 1;
 	}
-
 }

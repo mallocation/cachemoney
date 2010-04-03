@@ -1,8 +1,8 @@
 package Instructions.Immediate;
 
-import Instructions.cImmediateInstruction;
+import Instructions.ImmediateInstruction;
 
-public class cBranchNotEqual extends cImmediateInstruction {
+public class cBranchNotEqual extends ImmediateInstruction {
 
 	@Override
 	public String getInstructionName() {

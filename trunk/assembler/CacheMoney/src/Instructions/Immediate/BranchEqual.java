@@ -1,16 +1,17 @@
 package Instructions.Immediate;
 
-import Instructions.cImmediateInstruction;
+import Instructions.ImmediateInstruction;
 
-public class cAddImmediate extends cImmediateInstruction {
+public class BranchEqual extends ImmediateInstruction {
 
 	@Override
 	public String getInstructionName() {
-		return "addi";
+		return "beq";
 	}
 
 	@Override
 	public int getOpCode() {
-		return 1;
+		return 5;
 	}
+
 }
