@@ -1,30 +1,27 @@
-import Instructions.InstructionFactory;
-import Utilities.AssemblyParser;
+import java.io.File;
+
+//import Instructions.InstructionFactory;
+import Utilities.Assembler;
+//import Utilities.AssemblyParser;
 
 public class TestBench {
 	
-	private InstructionFactory oInstFactory;
+	private final String sFilePath = "C:\\TEMP\\test.asm";
 	
 	public TestBench() {
-		oInstFactory = new InstructionFactory();	
 	}
 	
 	public void test() {
-		oInstFactory.createInstruction("add", "$1, $2, $3");
+		//oInstFactory.createInstruction("add", "$1, $2, $3");
 		
-		String sLine = "add $1, $2, $3#Test stripping comments.";
-		String sLine2 = "#Test This line is only comments.";
-		String sLine3 = "Main: Testthis!";
-		String sLine4 = "symbAdd	:	add $1, $2, $3";
-		String sLine5 = "add $1, $2, $3";
+		//String sLine = "add $1, $2, $3#Test stripping comments.";
+		//String sLine2 = "#Test This line is only comments.";
+		//String sLine3 = "Main: Test this!";
+		//String sLine4 = "symbAdd	:	add $1, $2, $3";
+		//String sLine5 = "add $1, $2, $3";
 			
-		sLine = AssemblyParser.stripComments(sLine);
-		sLine2 = AssemblyParser.stripComments(sLine2);
-		sLine3 = AssemblyParser.getSymbolicReference(sLine3);
-		sLine4 = AssemblyParser.getAssembly(sLine4);
-		sLine5 = AssemblyParser.getAssembly(sLine5);
-		
-		
+		Assembler oAssembler = new Assembler(new File(sFilePath));
+		oAssembler.calculateSymbolicAddresses();		
 	}
 
 	/**
