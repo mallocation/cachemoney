@@ -2,63 +2,68 @@ package Utilities;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
 import java.util.ArrayList;
 
 public class Assembler {
+	
+	/**
+	 * The keyword that identifies the beginning of the data section.
+	 */
+	private static final String sDataSectionHeader = ".data";
+	
 	
 	private ArrayList<SymbolicReference> alSymbolicReferences;
 	private ArrayList<String> alFileLines;
 	private File assemblyFile;
 	
-	Assembler(File assemblyFile) {
+	public Assembler(File assemblyFile) {
 		alSymbolicReferences = new ArrayList<SymbolicReference>();
 		this.assemblyFile = assemblyFile;
-		
-		 
-		try {
-			readAssemblyFileLines();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		readAssemblyFile();
 	}
 	
-	
-	
-	private void calculateSymbolicAddresses() {
+	public void calculateSymbolicAddresses() {
 		int nAddress = 0;
-		String sAssemblyLine, sReference;
+		boolean bDataSectionHit = false;
+		SymbolicReference oReference;
+		
+		String sAssemblyLine;
 		
 		for (int i=0; i<alFileLines.size(); i++) {
 			sAssemblyLine = alFileLines.get(i);
 			
-			sReference = AssemblyParser.getSymbolicReference(sAssemblyLine);
-			
-			if (sReference != "") {
-				//There is a symbolic reference here!
-				alSymbolicReferences.add(new SymbolicReference(sReference, nAddress));
+			if (sAssemblyLine.equalsIgnoreCase(sDataSectionHeader)) {
+				bDataSectionHit = true;
+				nAddress--;
 			}
-			nAddress += 1;
+			
+			if (AssemblyParser.isSymbolicReference(sAssemblyLine)) {
+				oReference = AssemblyParser.getSymbolicReference(sAssemblyLine, bDataSectionHit);
+				oReference.setAddress(nAddress);
+				alSymbolicReferences.add(oReference);
+			}
+			
+			nAddress++;
 		}		
 	}
 	
 	
-	private void readAssemblyFileLines() throws IOException, FileNotFoundException {
+	private void readAssemblyFile() {
 		alFileLines = new ArrayList<String>();
-		BufferedReader brFile = new BufferedReader(new FileReader(assemblyFile));
-		String sFileLine;
-						
-		while ((sFileLine = brFile.readLine()) != null) {
-			sFileLine = sFileLine.trim();			
-			sFileLine = AssemblyParser.stripComments(sFileLine);
-			
-			if (sFileLine != "")
-				alFileLines.add(sFileLine);			
+		try {
+			BufferedReader brFile = new BufferedReader(new FileReader(assemblyFile));
+			String sFileLine;
+							
+			while ((sFileLine = brFile.readLine()) != null) {
+				sFileLine = sFileLine.trim();			
+				sFileLine = AssemblyParser.stripComments(sFileLine);
+				
+				if (sFileLine != "")
+					alFileLines.add(sFileLine);			
+			}			
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
