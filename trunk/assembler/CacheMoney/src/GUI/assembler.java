@@ -12,18 +12,21 @@ package GUI;
 import java.io.*;
 import java.util.*;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.lang.*;
 
 public class assembler implements ActionListener {
 
-	// Set up integer contants used throughout the frame
+	// Set up integer constants used throughout the frame
 	private static final int     FRAME_WIDTH  		 = 800;
 	private static final int     FRAME_HEIGHT 		 = 600	;
 	private static final int     FRAME_X      		 = 100;
 	private static final int     FRAME_Y	   		 = 100;
-	private static final int     PANEL_WIDTH  		 = 798;
+	private static final int     PANEL_WIDTH  		 = 790;
 	private static final int     PANEL_HEIGHT       = 500;
 	private static final int     TITLE_PANEL_HEIGHT = 25;
 	private static final int     ONE				 = 1;
@@ -52,11 +55,6 @@ public class assembler implements ActionListener {
 	JPanel assemblyPanel;
 	JPanel mifPanel;
 	
-	//--- Labels ---
-	JLabel titleLabel;
-	JLabel assemblyLabel;
-	JLabel mifLabel;
-	
 	//--- Text Areas ---
 	JTextArea assemblyTextArea;
 	JTextArea mifTextArea;
@@ -81,18 +79,27 @@ public class assembler implements ActionListener {
 		mainPanel.setSize(PANEL_WIDTH, PANEL_HEIGHT);
 		mainFrame.getContentPane().add(mainPanel);
 		
-		// Set up title label
-		titleLabel = new JLabel(TITLE, JLabel.CENTER);
-		titleLabel.setBounds(ONE, ONE, PANEL_WIDTH, TITLE_PANEL_HEIGHT);
-		mainPanel.add(titleLabel);
+		Border border = LineBorder.createGrayLineBorder();
+		GridLayout mainLayout = new GridLayout(0,2);
+		GridLayout panelLayout = new GridLayout(2,0);
 		
 		// Create the menu
 		createMenu();
 		
 		// create other panels
+		assemblyPanel = new JPanel();
+		assemblyPanel.setSize((PANEL_WIDTH/2)-10, PANEL_HEIGHT-30);
+		assemblyPanel.setBorder(border);
+		assemblyPanel.add(new JLabel(".asm File"));
 		
-		
-		
+		mifPanel = new JPanel();
+		mifPanel.setSize((PANEL_WIDTH/2)-10, PANEL_HEIGHT-30);
+		mifPanel.setBorder(border);
+		mifPanel.add(new JLabel(".mif File"));
+
+		mainPanel.setLayout(mainLayout);
+		mainPanel.add(assemblyPanel);
+		mainPanel.add(mifPanel);
 		
 		mainFrame.setVisible(true);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -121,6 +128,8 @@ public class assembler implements ActionListener {
 		menuFile.add(menuFileCreate);
 		menuFile.add(menuFileSaveAs);
 		menuFile.add(menuFileExit);
+		
+		menuBar.add(menuFile);
 		
 		mainFrame.setJMenuBar(menuBar);
 	} // end create menu
