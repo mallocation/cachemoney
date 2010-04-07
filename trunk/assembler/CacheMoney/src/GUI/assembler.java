@@ -1,3 +1,12 @@
+/**
+ * Assembler.java
+ * 
+ * @author cache_money
+ * @version 1.0
+ */
+
+
+
 package GUI;
 
 import java.io.*;
@@ -7,16 +16,38 @@ import java.awt.*;
 import java.awt.event.*;
 import java.lang.*;
 
-public class assembler extends JFrame implements ActionListener {
+public class assembler implements ActionListener {
 
-	final int	ITEM_PLAIN	=	0;	// Item types
-	final int	ITEM_CHECK	=	1;
-	final int	ITEM_RADIO	=	2;
+	// Set up integer contants used throughout the frame
+	private static final int     FRAME_WIDTH  		 = 800;
+	private static final int     FRAME_HEIGHT 		 = 600	;
+	private static final int     FRAME_X      		 = 100;
+	private static final int     FRAME_Y	   		 = 100;
+	private static final int     PANEL_WIDTH  		 = 798;
+	private static final int     PANEL_HEIGHT       = 500;
+	private static final int     TITLE_PANEL_HEIGHT = 25;
+	private static final int     ONE				 = 1;
+	private static final int[][] LIST_DIMENSIONS	 = { { 6, 26, 362, 237 },
+	 												 { 6, 15, 350, 15 },
+	 												 { 6, 31, 350, 200 }
+														};
+	private static final int[]   STAT_DIMENSIONS    = { 371, 26, 150, 200 };
 	
-	File inputFile;		//input file (.asm)
-	File outputFile;	//output file (.mif)
+	// Title constant string
+	private static final String TITLE = "Assembler";
+	
+	// Set up string constants for the file menu
+	private static final String FILE	 = "File";
+	private static final String OPEN 	 = "Open .asm File";
+	private static final String CREATEMIF = "Create .mif File";
+	private static final String SAVE_AS	 = "Save .mif as...";
+	private static final String EXIT	 = "Exit";
+	
+	// set up frame variable
+	JFrame mainFrame;
 	
 	//--- Panels ---
+	JPanel mainPanel;
 	JPanel titlePanel;
 	JPanel assemblyPanel;
 	JPanel mifPanel;
@@ -39,109 +70,60 @@ public class assembler extends JFrame implements ActionListener {
 	JMenuItem menuFileSaveAs;
 	JMenuItem menuFileExit;
 	
-	public void assembler()
+	public assembler()
 	{
-		Container contentPane;
+		mainFrame = new JFrame(TITLE);
+		mainFrame.setBounds(FRAME_X, FRAME_Y, FRAME_WIDTH, FRAME_HEIGHT);
 		
-		setTitle( "Assembler" );
-		setSize( 515, 375 );
+		// Set up panel
+		mainPanel = new JPanel();
+		mainPanel.setLayout(null);
+		mainPanel.setSize(PANEL_WIDTH, PANEL_HEIGHT);
+		mainFrame.getContentPane().add(mainPanel);
 		
-		contentPane = getContentPane();
-		contentPane.setLayout(new BorderLayout());
+		// Set up title label
+		titleLabel = new JLabel(TITLE, JLabel.CENTER);
+		titleLabel.setBounds(ONE, ONE, PANEL_WIDTH, TITLE_PANEL_HEIGHT);
+		mainPanel.add(titleLabel);
 		
-		titlePanel = new JPanel(new BorderLayout());
-		titlePanel.add(titleLabel = new JLabel("Assembler"));
-		contentPane.add(titlePanel, BorderLayout.NORTH);
+		// Create the menu
+		createMenu();
 		
-		assemblyPanel = new JPanel(new BorderLayout());
-		assemblyPanel.add(assemblyLabel = new JLabel("Assembly C0d3"));
-		contentPane.add(assemblyPanel, BorderLayout.WEST);
-		mifPanel = new JPanel(new BorderLayout());
-		mifPanel.add(mifLabel = new JLabel("MIF C0d3"));
-		contentPane.add(mifPanel, BorderLayout.EAST);
+		// create other panels
 		
-		assemblyTextArea = new JTextArea();
-		assemblyTextArea.setSize(250, 180);
-		assemblyTextArea.setEditable(false);
-		JScrollPane assemblyScrollText = new JScrollPane(assemblyTextArea);
-		assemblyScrollText.setSize(250,180);
-		assemblyScrollText.setBorder(BorderFactory.createLineBorder(Color.black));
-		assemblyPanel.add(assemblyScrollText);
 		
-		getContentPane().add(assemblyScrollText, BorderLayout.WEST);
 		
-		mifTextArea = new JTextArea();
-		mifTextArea.setSize(250, 180);
-		mifTextArea.setEditable(false);
-		JScrollPane mifScrollText = new JScrollPane(mifTextArea);
-		mifScrollText.setSize(250,180);
-		mifScrollText.setBorder(BorderFactory.createLineBorder(Color.black));
-		mifPanel.add(mifScrollText);
 		
-		getContentPane().add(mifScrollText, BorderLayout.EAST);
-		
+		mainFrame.setVisible(true);
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	} //end constructor
+	
+	private void createMenu()
+	{
+		// create the main menu bar
 		menuBar = new JMenuBar();
 		
-		setJMenuBar( menuBar );
+		// create the individual menu
+		menuFile = new JMenu(FILE);
 		
-		menuFile = new JMenu( "File" );
-		menuFile.setMnemonic( 'F' );
-		menuBar.add(menuFile);
+		// Create the menu items
+		menuFileOpen = new JMenuItem(OPEN);
+		menuFileCreate = new JMenuItem(CREATEMIF);
+		menuFileSaveAs = new JMenuItem(SAVE_AS);
+		menuFileExit = new JMenuItem(EXIT);
 		
-		menuFileOpen = CreateMenuItem( menuFile, ITEM_PLAIN, "Open .asm File", null, 'O', "Open an assembly file");
-		menuFileCreate = CreateMenuItem( menuFile, ITEM_PLAIN, "Create mif File", null, 'C', "Create a mif file from opened assembly file");
-		menuFileSaveAs = CreateMenuItem( menuFile, ITEM_PLAIN, "Save mif as...", null, 'S', "Save the generated mif file");
-		menuFileExit = CreateMenuItem( menuFile, ITEM_PLAIN, "Exit", null, 'E', "Exit the program");
-	}	
+		menuFileOpen.addActionListener(this);
+		menuFileCreate.addActionListener(this);
+		menuFileSaveAs.addActionListener(this);
+		menuFileExit.addActionListener(this);
 		
-	public JMenuItem CreateMenuItem( JMenu menu, int iType, String sText,
-			ImageIcon image, int acceleratorKey,
-			String sToolTip )
-	{
-		// Create the item
-		JMenuItem menuItem;
+		menuFile.add(menuFileOpen);
+		menuFile.add(menuFileCreate);
+		menuFile.add(menuFileSaveAs);
+		menuFile.add(menuFileExit);
 		
-		switch( iType )
-		{
-			case ITEM_RADIO:
-				menuItem = new JRadioButtonMenuItem();
-				break;
-			
-			case ITEM_CHECK:
-				menuItem = new JCheckBoxMenuItem();
-				break;
-			
-			default:
-				menuItem = new JMenuItem();
-				break;
-		}
-		
-		// Add the item test
-		menuItem.setText( sText );
-		
-		// Add the optional icon
-		if( image != null )
-		{
-		menuItem.setIcon( image );
-		}
-		
-		// Add the accelerator key
-		if( acceleratorKey > 0 )
-		{
-			menuItem.setMnemonic( acceleratorKey );
-		}
-		
-		// Add the optional tool tip text
-		if( sToolTip != null )
-		{
-			menuItem.setToolTipText( sToolTip );
-		}
-		
-		// Add an action handler to this menu item
-		menuItem.addActionListener( this );
-		menu.add( menuItem );
-		return menuItem;
-	}
+		mainFrame.setJMenuBar(menuBar);
+	} // end create menu
 	
 	public void actionPerformed( ActionEvent event )
 	{
@@ -151,8 +133,7 @@ public class assembler extends JFrame implements ActionListener {
 	public static void main( String args[] )
 	{
 		// Create an instance of the test application
-		assembler mainFrame	= new assembler();
-		mainFrame.setVisible( true );
+		new assembler();
 	}
 	
 }
