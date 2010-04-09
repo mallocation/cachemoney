@@ -5,9 +5,8 @@
  * @version 1.0
  */
 
-
-
 package GUI;
+
 
 import java.io.*;
 import java.util.*;
@@ -19,7 +18,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.lang.*;
 
-public class assembler implements ActionListener {
+public class assembler extends JFrame implements ActionListener {
 
 	// Set up integer constants used throughout the frame
 	private static final int     FRAME_WIDTH  		 = 1000;
@@ -35,6 +34,10 @@ public class assembler implements ActionListener {
 	 												 { 6, 31, 350, 200 }
 														};
 	private static final int[]   STAT_DIMENSIONS    = { 371, 26, 150, 200 };
+	
+    private static final int FRAME_X_ORIGIN = 10;
+
+    private static final int FRAME_Y_ORIGIN = 10;
 	
 	// Title constant string
 	private static final String TITLE = "Assembler";
@@ -56,6 +59,7 @@ public class assembler implements ActionListener {
 	JPanel mifPanel;
 	
 	// Labels
+	JLabel titleLabel;
 	JLabel assemblyLabel;
 	JLabel mifLabel;
 	
@@ -78,56 +82,61 @@ public class assembler implements ActionListener {
 	//Input File
 	File inputFile;
 	
+	
+	
 	public assembler()
 	{
-		mainFrame = new JFrame(TITLE);
-		mainFrame.setBounds(FRAME_X, FRAME_Y, FRAME_WIDTH, FRAME_HEIGHT);
-		mainFrame.setResizable(false);
-		
-		// Set up main panel
-		mainPanel = new JPanel();
-		mainPanel.setLayout(new BorderLayout());
-		mainPanel.setSize(PANEL_WIDTH, PANEL_HEIGHT);
-		mainFrame.getContentPane().add(mainPanel);
-		
-		Border border = LineBorder.createGrayLineBorder();
-		GridLayout mainLayout = new GridLayout(0,2);
-		
-		// Create the menu
-		createMenu();
-		
-		// create other panels
-		assemblyPanel = new JPanel(new BorderLayout());
-		assemblyPanel.setSize((PANEL_WIDTH/2)-10, PANEL_HEIGHT-30);
-		assemblyPanel.setBorder(border);
-		//assemblyPanel.add(new JLabel(".asm File", JLabel.CENTER));
-		
-		assemblyLabel = new JLabel(".asm File", JLabel.CENTER);
-		assemblyTextArea = new JTextArea();
-		
-		assemblyTextArea.setSize(280, 180);
-		assemblyTextArea.setColumns(22);
-		assemblyTextArea.setRows(8);
-		assemblyTextArea.setEditable(false);		
-		
-		
-		
-		assemblyPanel.add(assemblyLabel, BorderLayout.PAGE_START);
-		assemblyPanel.add(assemblyTextArea, BorderLayout.CENTER);
-		
-		mifPanel = new JPanel();
-		mifPanel.setSize((PANEL_WIDTH/2)-10, PANEL_HEIGHT-30);
-		mifPanel.setBorder(border);
-		mifPanel.setBounds(1, 1, (PANEL_WIDTH/2)-10, 25);
-		
-		mifPanel.add(new JLabel(".mif File", JLabel.CENTER));
+		Container contentPane;
 
-		mainPanel.setLayout(mainLayout);
-		mainPanel.add(assemblyPanel);
-		mainPanel.add(mifPanel);
+        //set the frame properties
+        setSize      (FRAME_WIDTH, FRAME_HEIGHT);
+        setResizable (false);
+        setTitle     ("Assembler");
+        setLocation  (FRAME_X_ORIGIN, FRAME_Y_ORIGIN);
+        
+        this.createMenu();
+        
+        contentPane = getContentPane( );
+        contentPane.setLayout(new BorderLayout());
+        
+        titlePanel = new JPanel();
+        titlePanel.setBounds(ONE, ONE, PANEL_WIDTH, TITLE_PANEL_HEIGHT);
+        titlePanel.setLayout(new BorderLayout());
+        
+        assemblyLabel = new JLabel("------------- .asm File -------------");
+        titlePanel.add(assemblyLabel, BorderLayout.WEST);
+        mifLabel = new JLabel("------------- .mif File -------------");
+        titlePanel.add(mifLabel, BorderLayout.EAST);
+        
+        
+        contentPane.add(titlePanel, BorderLayout.NORTH);
+        
+//      titleLabel = new JLabel();
+//      titleLabel = new JLabel(TITLE, JLabel.CENTER);
+//		titleLabel.setBounds(ONE, ONE, PANEL_WIDTH, TITLE_PANEL_HEIGHT);
 		
-		mainFrame.setVisible(true);
-		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		contentPane.add(titleLabel, BorderLayout.NORTH);
+        
+        assemblyTextArea = new JTextArea();
+        assemblyTextArea.setColumns(42);
+        assemblyTextArea.setEditable(false);
+        
+        JScrollPane asmScrollText= new JScrollPane(assemblyTextArea);
+        asmScrollText.setSize(200, 135);
+        asmScrollText.setBorder(BorderFactory.createLineBorder(Color.black));
+        contentPane.add(asmScrollText, BorderLayout.WEST);
+        
+        mifTextArea = new JTextArea();
+        mifTextArea.setColumns(42);
+        mifTextArea.setEditable(false);
+        
+        JScrollPane mifScrollText = new JScrollPane(mifTextArea);
+        mifScrollText.setSize(200,135);
+        mifScrollText.setBorder(BorderFactory.createLineBorder(Color.black));
+        contentPane.add(mifScrollText, BorderLayout.EAST);
+        
+        setDefaultCloseOperation( EXIT_ON_CLOSE );
+        
 	} //end constructor
 	
 	
@@ -158,7 +167,7 @@ public class assembler implements ActionListener {
 		
 		menuBar.add(menuFile);
 		
-		mainFrame.setJMenuBar(menuBar);
+		this.setJMenuBar(menuBar);
 	} // end create menu
 	
 	
@@ -217,7 +226,8 @@ public class assembler implements ActionListener {
 	public static void main( String args[] )
 	{
 		// Create an instance of the test application
-		new assembler();
+		assembler frame = new assembler();
+        frame.setVisible(true);
 	}
 	
 }
