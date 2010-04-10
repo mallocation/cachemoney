@@ -65,6 +65,24 @@ public class SymbolicReference {
 		this.Address = Address;
 	}
 	
+	public String getEncodedReference() {
+		if (!this.isDataType()) {
+			return "";
+		} else {
+			if (this.oRefType == eRefType.INTEGER) {
+				return this.Address + " : " + Conversion.IntegerTo32BitString(arValues[0]) + "\n";
+			} else {
+				String sEncodedReference = "";
+				int nAddress = this.Address;
+				for (int i=0; i<this.arValues.length; i++) {
+					sEncodedReference += nAddress + " : " + Conversion.IntegerTo32BitString(arValues[i]) + "\n";
+					nAddress++;
+				}
+				return sEncodedReference;
+			}
+		}
+	}
+	
 	private enum eRefType {
 		ADDRESS,
 		INTEGER,

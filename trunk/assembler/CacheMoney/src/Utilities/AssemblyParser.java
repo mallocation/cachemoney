@@ -9,17 +9,7 @@ public class AssemblyParser {
 	 * @return A line without comments.  If a line is strictly a comment, then an empty string is returned.
 	 */
 	public static String stripComments(String sLine) {
-		int nCommentIndex;		
-		// '#' signifies the beginning of a comment 
-		if (sLine.contains("#")) {
-			nCommentIndex = sLine.indexOf("#");			
-			if (nCommentIndex == 0)
-				return "";	
-			sLine = sLine.substring(0, nCommentIndex);			
-			return sLine.trim();			
-		} else {
-			return sLine;
-		}
+		return sLine.replaceAll("[#]+.*", "").trim();
 	}
 	
 	/**
