@@ -2,16 +2,21 @@ package Utilities;
 
 public class Conversion {
 	
+	/**
+	 * Convert an integer to a 32 bit binary string.
+	 * @param value The integer to convert.
+	 * @return Integer representation as 32 bit binary string.
+	 */
 	public static String IntegerTo32BitString(int value) {
-		String sEncodedValue = Integer.toString(value, 2);
-		return SignExtendBinaryString(sEncodedValue);		
-	}
-	
-	private static String SignExtendBinaryString(String sString) {
-		while (sString.length() != 32) {
-			sString = sString.substring(0,1) + sString;
-		}
-		return sString;
+		if (value < 0)
+			return Integer.toBinaryString(value);
+		else {
+			String sInteger = Integer.toBinaryString(value);
+			while (sInteger.length() != 32) {
+				sInteger = "0" + sInteger;
+			}
+			return sInteger;
+		}		
 	}
 
 }
