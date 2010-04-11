@@ -16,13 +16,18 @@ public abstract class ImmediateInstruction implements IInstruction, IImmediateIn
 	}
 	
 	@Override
+	public int getInstructionAddress() {
+		return this._address;
+	}
+	
+	@Override
 	public String getEncodedInstruction() {
 		String sOpCode, sDestReg, sSrcReg1, sImmValue;
 		sOpCode = Conversion.IntegerToBinaryString(this.getOpCode(), 3);
 		sDestReg = Conversion.IntegerToBinaryString(this.getDestRegister(), 5);
 		sSrcReg1 = Conversion.IntegerToBinaryString(this.getSourceRegister(), 5);
 		sImmValue = Conversion.IntegerToBinaryString(this.getImmediateValue(), 19);
-		return this._address + " : " + sOpCode + sDestReg + sSrcReg1 + sImmValue;
+		return sOpCode + sDestReg + sSrcReg1 + sImmValue;
 	}
 
 	@Override
@@ -35,27 +40,22 @@ public abstract class ImmediateInstruction implements IInstruction, IImmediateIn
 	public int getDestRegister() {	
 		return _destReg;
 	}
-
 	@Override
 	public int getImmediateValue() {
 		return _immediateValue;
 	}
-
 	@Override
 	public int getSourceRegister() {
 		return _srcReg;
 	}
-
 	@Override
 	public void setDestRegister(int nRegister) {
 		_destReg = nRegister;
 	}
-
 	@Override
 	public void setImmediateValue(int nValue) {
 		_immediateValue = nValue;
 	}
-
 	@Override
 	public void setSourceRegister(int nRegister) {
 		_srcReg = nRegister;

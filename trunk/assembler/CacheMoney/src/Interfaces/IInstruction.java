@@ -9,6 +9,12 @@ public interface IInstruction {
 	public void setInstructionAddress(int address);
 	
 	/**
+	 * Get the instruction of the address in memory.
+	 * @return Address of instruction in memory
+	 */
+	public int getInstructionAddress();
+	
+	/**
 	 * Get the operation-code of the instruction.
 	 * @return Instruction op code.
 	 */

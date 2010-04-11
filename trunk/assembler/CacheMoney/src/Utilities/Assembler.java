@@ -68,11 +68,18 @@ public class Assembler {
 		}
 	}
 	
+	public void parseAssemblyFile() {
+		alSymbolicReferences = new ArrayList<SymbolicReference>();
+		alInstructions = new ArrayList<IInstruction>();
+		this.calculateSymbolicAddresses();
+		this.parseInstructions();
+	}
+	
 	/**
 	 * This method does one pass through an assembly file, parsing any and all symbolic address,
 	 * including those contained within the '.data' section, representing integers and arrays.
 	 */
-	public void calculateSymbolicAddresses() {
+	private void calculateSymbolicAddresses() {
 		int nAddress = 0;
 		boolean bDataSectionHit = false;
 		SymbolicReference oReference;
@@ -100,7 +107,7 @@ public class Assembler {
 		}		
 	}
 	
-	public void parseInstructions() {
+	private void parseInstructions() {
 		int i = 0;
 		int nAddress = 0;		
 		while (i < alFileLines.size()) {
@@ -180,15 +187,16 @@ public class Assembler {
 		
 	}
 	
-	public String getInstructionSection() {
+	private String getInstructionSection() {
 		String sInstructionSection = "";
 		for (int i=0; i<this.alInstructions.size(); i++) {
-			sInstructionSection += alInstructions.get(i).getEncodedInstruction() + "\n";
+			IInstruction oInstruction = alInstructions.get(i);
+			sInstructionSection += Integer.toHexString(oInstruction.getInstructionAddress()) + " : " + oInstruction.getEncodedInstruction() + "\n";
 		}
 		return sInstructionSection;		
 	}
 	
-	public String getDataSection() {
+	private String getDataSection() {
 		String sDataSection = "";
 		for (int i=0; i<this.alSymbolicReferences.size(); i++) {
 			if (!alSymbolicReferences.get(i).getEncodedReference().equalsIgnoreCase("")) {
@@ -196,6 +204,26 @@ public class Assembler {
 			}
 		}
 		return sDataSection;
+	}
+	
+	public String[] getMemoryFileContents() {
+		ArrayList<String> alMemoryContents = new ArrayList<String>();
+		String[] arContents = null;
+		for (int i=0; i<alInstructions.size(); i++) {
+			IInstruction oInstruction = alInstructions.get(i);
+			alMemoryContents.add(Integer.toHexString(oInstruction.getInstructionAddress()) + " : " + oInstruction.getEncodedInstruction());
+		}
+//		for (int i=0; i<this.alSymbolicReferences.size(); i++) {
+//		
+//		if (!alSymbolicReferences.get(i).getEncodedReference().equalsIgnoreCase("")) {
+//			oWriter.write(alSymbolicReferences.get(i).getEncodedReference());
+//			oWriter.newLine();
+//		}
+//	}
+		arContents = new String[alMemoryContents.size()];
+		alMemoryContents.toArray(arContents);
+		
+		return arContents;
 	}
 	
 	private SymbolicReference getSymbolicReference(String RefName) {

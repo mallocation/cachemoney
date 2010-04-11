@@ -21,10 +21,15 @@ public class TestBench {
 		String sLine5 = "add $1, $2, $3#commentcommentcomment";
 			
 		Assembler oAssembler = new Assembler(new File(sFilePath));
-		oAssembler.calculateSymbolicAddresses();
-		oAssembler.parseInstructions();
-		System.out.println(oAssembler.getInstructionSection());
-		System.out.println(oAssembler.getDataSection());
+		//oAssembler.calculateSymbolicAddresses();
+		//oAssembler.parseInstructions();
+		oAssembler.parseAssemblyFile();
+		String[] mifContents = oAssembler.getMemoryFileContents();
+		for (int i=0; i<mifContents.length; i++) {
+			System.out.println(mifContents[i]);
+		}
+//		System.out.println(oAssembler.getInstructionSection());
+//		System.out.println(oAssembler.getDataSection());
 		
 	}
 
