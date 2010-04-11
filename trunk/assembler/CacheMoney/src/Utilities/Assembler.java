@@ -187,25 +187,6 @@ public class Assembler {
 		
 	}
 	
-	private String getInstructionSection() {
-		String sInstructionSection = "";
-		for (int i=0; i<this.alInstructions.size(); i++) {
-			IInstruction oInstruction = alInstructions.get(i);
-			sInstructionSection += Integer.toHexString(oInstruction.getInstructionAddress()) + " : " + oInstruction.getEncodedInstruction() + "\n";
-		}
-		return sInstructionSection;		
-	}
-	
-	private String getDataSection() {
-		String sDataSection = "";
-		for (int i=0; i<this.alSymbolicReferences.size(); i++) {
-			if (!alSymbolicReferences.get(i).getEncodedReference().equalsIgnoreCase("")) {
-				sDataSection += alSymbolicReferences.get(i).getEncodedReference();
-			}
-		}
-		return sDataSection;
-	}
-	
 	public String[] getMemoryFileContents() {
 		ArrayList<String> alMemoryContents = new ArrayList<String>();
 		String[] arContents = null;
@@ -213,13 +194,16 @@ public class Assembler {
 			IInstruction oInstruction = alInstructions.get(i);
 			alMemoryContents.add(Integer.toHexString(oInstruction.getInstructionAddress()) + " : " + oInstruction.getEncodedInstruction());
 		}
-//		for (int i=0; i<this.alSymbolicReferences.size(); i++) {
-//		
-//		if (!alSymbolicReferences.get(i).getEncodedReference().equalsIgnoreCase("")) {
-//			oWriter.write(alSymbolicReferences.get(i).getEncodedReference());
-//			oWriter.newLine();
-//		}
-//	}
+		for (int i=0; i<alSymbolicReferences.size(); i++) {
+			SymbolicReference oReference = alSymbolicReferences.get(i);
+			int address = oReference.getAddress();
+			String[] arEncodings = oReference.getEncodedReference();
+			if (arEncodings != null) {
+				for (int j=0; j<arEncodings.length; j++) {					
+					alMemoryContents.add(Integer.toHexString(address + j) + " : " + arEncodings[j]);
+				}
+			}
+		}
 		arContents = new String[alMemoryContents.size()];
 		alMemoryContents.toArray(arContents);
 		

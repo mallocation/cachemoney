@@ -82,21 +82,19 @@ public class SymbolicReference {
 	 * Format - address : value
 	 * @return
 	 */
-	public String getEncodedReference() {
+	public String[] getEncodedReference() {
 		if (!this.isDataType()) {
-			return "";
+			return null;
 		} else {
+			String[] arEncodedValues = new String[this.arValues.length];
 			if (this.oRefType == eRefType.INTEGER) {
-				return this.Address + " : " + Conversion.IntegerTo32BitString(arValues[0]) + "\n";
-			} else {
-				String sEncodedReference = "";
-				int nAddress = this.Address;
+				arEncodedValues[1] = Conversion.IntegerTo32BitString(this.arValues[0]);
+			} else {				
 				for (int i=0; i<this.arValues.length; i++) {
-					sEncodedReference += nAddress + " : " + Conversion.IntegerTo32BitString(arValues[i]) + "\n";
-					nAddress++;
+					arEncodedValues[i] = Conversion.IntegerTo32BitString(this.arValues[i]);
 				}
-				return sEncodedReference;
 			}
+			return arEncodedValues;
 		}
 	}
 	
