@@ -65,6 +65,10 @@ public class SymbolicReference {
 		this.Address = Address;
 	}
 	
+	public int getAddress() {
+		return this.Address;
+	}
+	
 	/**
 	 * Get the name of the reference.
 	 * @return Reference Name

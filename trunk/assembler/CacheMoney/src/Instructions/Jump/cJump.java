@@ -2,15 +2,24 @@ package Instructions.Jump;
 
 import Interfaces.IInstruction;
 import Interfaces.IJumpInstruction;
+import Utilities.Conversion;
 
 public class cJump implements IInstruction, IJumpInstruction {
 	
+	private int _address;
 	private int _jmpAddress;
+	
+	@Override
+	public void setInstructionAddress(int address) {
+		this._address = address;		
+	}
 
 	@Override
 	public String getEncodedInstruction() {
-		// TODO Auto-generated method stub
-		return null;
+		String sOpCode, sAddress;
+		sOpCode = Conversion.IntegerToBinaryString(this.getOpCode(), 3);
+		sAddress = Conversion.IntegerToBinaryString(this.getAddress(), 29);		
+		return this._address + " : " + sOpCode + sAddress;
 	}
 
 	@Override

@@ -8,15 +8,19 @@ public class Conversion {
 	 * @return Integer representation as 32 bit binary string.
 	 */
 	public static String IntegerTo32BitString(int value) {
+		return IntegerToBinaryString(value, 32);
+	}
+	
+	public static String IntegerToBinaryString(int value, int length) {
 		if (value < 0)
-			return Integer.toBinaryString(value);
+			return Integer.toBinaryString(value).substring(32-length);
 		else {
 			String sInteger = Integer.toBinaryString(value);
-			while (sInteger.length() != 32) {
+			while (sInteger.length() != length) {
 				sInteger = "0" + sInteger;
 			}
 			return sInteger;
-		}		
+		}
 	}
 
 }

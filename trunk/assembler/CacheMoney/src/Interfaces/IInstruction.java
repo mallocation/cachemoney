@@ -3,6 +3,12 @@ package Interfaces;
 public interface IInstruction {
 	
 	/**
+	 * Set the address of the instruction in memory.	
+	 * @param address
+	 */
+	public void setInstructionAddress(int address);
+	
+	/**
 	 * Get the operation-code of the instruction.
 	 * @return Instruction op code.
 	 */

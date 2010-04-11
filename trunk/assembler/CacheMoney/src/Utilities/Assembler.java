@@ -5,6 +5,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 
+import Interfaces.IArithmeticInstruction;
+import Interfaces.IImmediateInstruction;
+import Interfaces.IInstruction;
+import Interfaces.IJumpInstruction;
+
 public class Assembler {
 	
 	/**
@@ -16,6 +21,11 @@ public class Assembler {
 	 * The list of symbolic references contained within the assembly file.
 	 */
 	private ArrayList<SymbolicReference> alSymbolicReferences;
+	
+	/**
+	 * The list of instructions contained within the assembly file.
+	 */
+	private ArrayList<IInstruction> alInstructions;
 	
 	/**
 	 * An array of assembly lines, all trimmed of their comments.
@@ -34,6 +44,7 @@ public class Assembler {
 	 */
 	public Assembler(File assemblyFile) {
 		alSymbolicReferences = new ArrayList<SymbolicReference>();
+		alInstructions = new ArrayList<IInstruction>();
 		this.assemblyFile = assemblyFile;
 		readAssemblyFile();
 	}
@@ -89,13 +100,111 @@ public class Assembler {
 		}		
 	}
 	
+	public void parseInstructions() {
+		int i = 0;
+		int nAddress = 0;		
+		while (i < alFileLines.size()) {
+			String sLine = alFileLines.get(i);			
+			if (!(sLine == sDataSectionHeader)) {
+				IInstruction oLineInstruction = getInstructionFromLine(sLine, nAddress);
+				if (oLineInstruction != null) {
+					oLineInstruction.setInstructionAddress(nAddress);
+					alInstructions.add(oLineInstruction);					
+					nAddress++;
+				}
+			} else {
+				i = alFileLines.size();
+			}			
+			i++;
+		}		
+	}
+	
+	private IInstruction getInstructionFromLine(String sLine, int nLineAddress) {
+		String sInstruction = AssemblyParser.getAssembly(sLine);
+		IInstruction oReturnInstruction = InstructionFactory.createInstruction(AssemblyParser.getInstructionNameFromLine(sInstruction));
+		
+		if (oReturnInstruction != null) {
+			setInstructionProperties(sInstruction, oReturnInstruction, nLineAddress);			
+		}		
+		return oReturnInstruction;
+	}
+	
+	private void setInstructionProperties(String sInstruction, IInstruction oInstruction, int nCurrentInstructionAddress) {
+		String[] arInstructionProps = AssemblyParser.getInstructionPropertiesFromLine(sInstruction);
+		if (arInstructionProps == null)
+			return;
+		if (oInstruction instanceof IArithmeticInstruction) {
+			int regSource1, regSource2, regDest;
+			regSource1 = Integer.parseInt(arInstructionProps[1].replaceAll("\\$", "").trim());
+			regSource2 = Integer.parseInt(arInstructionProps[2].replaceAll("\\$", "").trim());
+			regDest = Integer.parseInt(arInstructionProps[0].replaceAll("\\$", "").trim());
+			
+			((IArithmeticInstruction) oInstruction).setSourceRegister1(regSource1);
+			((IArithmeticInstruction) oInstruction).setSourceRegister2(regSource2);
+			((IArithmeticInstruction) oInstruction).setDestRegister(regDest);
+		} else if (oInstruction instanceof IImmediateInstruction) {
+			int regSource, regDest, immValue;
+			regDest = Integer.parseInt(arInstructionProps[0].replaceAll("\\$", "").trim());
+			
+			if (InstructionFactory.InstructionAccessesMemory(oInstruction)) {
+				String addressReference = arInstructionProps[1].replaceAll(".*[(]+", "").replaceAll("[)]+.*", "").trim();
+				
+				if (getSymbolicReference(addressReference) != null) {
+					//we are dealing with reference to an address
+					regSource = 0;
+					immValue = getSymbolicReference(addressReference).getAddress();
+				} else {
+					addressReference = addressReference.replaceAll("\\$", "").trim();
+					regSource = Integer.parseInt(addressReference);
+					immValue = 0;
+				}				
+				
+			} else if (InstructionFactory.IsBranchInstruction(oInstruction)) {
+				regSource = Integer.parseInt(arInstructionProps[1].replaceAll("\\$", "").trim());
+				immValue = getSymbolicReference(arInstructionProps[2]).getAddress() - nCurrentInstructionAddress;				
+				
+				((IImmediateInstruction) oInstruction).setSourceRegister(regSource);
+				((IImmediateInstruction) oInstruction).setDestRegister(regDest);
+				((IImmediateInstruction) oInstruction).setImmediateValue(immValue);				
+			} else {
+				//immediate arithmetic instruction....
+				regSource = Integer.parseInt(arInstructionProps[1].replaceAll("\\$", "").trim());
+				immValue = Integer.parseInt(arInstructionProps[2]);
+			}
+			((IImmediateInstruction) oInstruction).setSourceRegister(regSource);
+			((IImmediateInstruction) oInstruction).setImmediateValue(immValue);
+			((IImmediateInstruction) oInstruction).setDestRegister(regDest);			
+		} else if (oInstruction instanceof IJumpInstruction) {
+			((IJumpInstruction) oInstruction).setAddress(getSymbolicReference(arInstructionProps[0]).getAddress());
+		}
+		
+	}
+	
+	public String getInstructionSection() {
+		String sInstructionSection = "";
+		for (int i=0; i<this.alInstructions.size(); i++) {
+			sInstructionSection += alInstructions.get(i).getEncodedInstruction() + "\n";
+		}
+		return sInstructionSection;		
+	}
+	
 	public String getDataSection() {
 		String sDataSection = "";
 		for (int i=0; i<this.alSymbolicReferences.size(); i++) {
-			if (alSymbolicReferences.get(i).getEncodedReference() != "") {
+			if (!alSymbolicReferences.get(i).getEncodedReference().equalsIgnoreCase("")) {
 				sDataSection += alSymbolicReferences.get(i).getEncodedReference();
 			}
 		}
 		return sDataSection;
 	}
+	
+	private SymbolicReference getSymbolicReference(String RefName) {
+		for (int i=0; i<alSymbolicReferences.size(); i++) {
+			if (alSymbolicReferences.get(i).getReferenceName().equalsIgnoreCase(RefName)) {
+				return alSymbolicReferences.get(i);
+			}
+		}
+		return null;
+	}
+	
 }

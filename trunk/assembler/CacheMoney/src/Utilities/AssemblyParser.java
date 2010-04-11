@@ -1,8 +1,5 @@
 package Utilities;
 
-import Instructions.InstructionFactory;
-import Interfaces.IInstruction;
-
 public class AssemblyParser {
 	
 	/**
@@ -23,8 +20,16 @@ public class AssemblyParser {
 		return stripReference(sLine).replaceAll("[\\W]+.*", "").trim();
 	}
 	
-	public static String getInstructionContentsFromLine(String sLine) {
-		return stripReference(sLine).replaceFirst("[\\w\\s\\t]*", "").trim();
+	public static String[] getInstructionPropertiesFromLine(String sLine) {
+		//String sProps = stripReference(sLine).replaceFirst("[\\w\\s\\t]*", "").trim();
+		String sProps = stripReference(sLine).replaceFirst("[\\w]+[\\s\\t]*", "").trim();
+		if (sProps.equalsIgnoreCase(""))
+			return null;
+		String[] arProps = sProps.split(",");
+		for (int i=0; i<arProps.length; i++) {
+			arProps[i] = arProps[i].trim();
+		}
+		return arProps;
 	}
 	
 	/**
@@ -66,18 +71,6 @@ public class AssemblyParser {
 			oReference = new SymbolicReference(arSplit[0], 0);
 		}		
 		return oReference;		
-	}
-	
-	public static IInstruction getInstructionFromLine(String sLine) {
-		String sInstruction = getInstructionNameFromLine(sLine);
-		String sInstructionContents = getInstructionContentsFromLine(sLine);
-		
-		InstructionFactory.createInstruction(sInstruction, sInstructionContents);
-		
-		
-		
-		
-		return null;
 	}
 	
 	/**

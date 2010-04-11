@@ -22,6 +22,8 @@ public class TestBench {
 			
 		Assembler oAssembler = new Assembler(new File(sFilePath));
 		oAssembler.calculateSymbolicAddresses();
+		oAssembler.parseInstructions();
+		System.out.println(oAssembler.getInstructionSection());
 		System.out.println(oAssembler.getDataSection());
 		
 	}
