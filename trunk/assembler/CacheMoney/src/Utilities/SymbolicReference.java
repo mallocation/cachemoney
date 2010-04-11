@@ -2,8 +2,8 @@ package Utilities;
 
 public class SymbolicReference {
 	
-	public String SymbolicReference;
-	public int Address;
+	private String SymbolicReference;
+	private int Address;
 	private eRefType oRefType;
 	private int[] arValues;
 	
@@ -65,6 +65,19 @@ public class SymbolicReference {
 		this.Address = Address;
 	}
 	
+	/**
+	 * Get the name of the reference.
+	 * @return Reference Name
+	 */
+	public String getReferenceName() {
+		return this.SymbolicReference;
+	}
+	
+	/**
+	 * This method returns the symbolic reference encoded for the .mif file.
+	 * Format - address : value
+	 * @return
+	 */
 	public String getEncodedReference() {
 		if (!this.isDataType()) {
 			return "";
@@ -80,6 +93,22 @@ public class SymbolicReference {
 				}
 				return sEncodedReference;
 			}
+		}
+	}
+	
+	/**
+	 * This method returns the number of elements that the symbolic reference contains.
+	 * i.e. Address = 0, Integer = 1, Array = # of elements in array
+	 * @return
+	 */
+	public int getElementCount() {
+		if (!this.isDataType())
+			return 0;
+		else {
+			if (this.oRefType == eRefType.INTEGER)
+				return 1;
+			else
+				return this.arValues.length;
 		}
 	}
 	

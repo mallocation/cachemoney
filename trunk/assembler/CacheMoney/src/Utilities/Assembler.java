@@ -79,6 +79,9 @@ public class Assembler {
 			if (AssemblyParser.isSymbolicReference(sAssemblyLine)) {
 				oReference = AssemblyParser.getSymbolicReference(sAssemblyLine, bDataSectionHit);
 				oReference.setAddress(nAddress);
+				if (oReference.getElementCount() > 1) {
+					nAddress += oReference.getElementCount() - 1;
+				}
 				alSymbolicReferences.add(oReference);
 			}
 			

@@ -14,27 +14,35 @@ import Interfaces.IJumpInstruction;
  */
 public class InstructionFactory implements IInstructionConstants {
 
-	public IInstruction createInstruction(String sInstruction, String sInstructionContents) {
-		ArrayList<Integer> alInstructionContents;
-		
+	public static IInstruction createInstruction(String sInstruction, String sInstructionContents) {
 		IInstruction oInstruction = getInstructionByName(sInstruction);
+		String[] arInstructionContents = parseInstructionContents(sInstructionContents);
+		int regSource1, regSource2, regDest, immValue;
 		
 		if (oInstruction instanceof IArithmeticInstruction) {
-			//Create an arithmetic instruction
-			alInstructionContents = parseInstructionContents(sInstructionContents, eInstructionType.ARITHMETIC);
-			
-			((IArithmeticInstruction) oInstruction).setDestRegister(alInstructionContents.get(0));
-			((IArithmeticInstruction) oInstruction).setSourceRegister1(alInstructionContents.get(1));
-			((IArithmeticInstruction) oInstruction).setSourceRegister2(alInstructionContents.get(2));
+			try {
+				regSource1 = Integer.parseInt(arInstructionContents[1]);
+				regSource2 = Integer.parseInt(arInstructionContents[2]);
+				regDest = Integer.parseInt(arInstructionContents[0]);
+				((IArithmeticInstruction) oInstruction).setDestRegister(regDest);
+				((IArithmeticInstruction) oInstruction).setSourceRegister1(regSource1);
+				((IArithmeticInstruction) oInstruction).setSourceRegister2(regSource2);				
+			} catch (Exception e) {
+				System.out.println("There was a problem creating instruction for " + sInstruction + " " + sInstructionContents);
+			}
 			
 		} else if (oInstruction instanceof IImmediateInstruction) {
 			//Create an immediate instruction
-			alInstructionContents = parseInstructionContents(sInstructionContents, eInstructionType.IMMEDIATE);
-			
-			((IImmediateInstruction) oInstruction).setDestRegister(alInstructionContents.get(0));
-			((IImmediateInstruction) oInstruction).setSourceRegister(alInstructionContents.get(1));
-			((IImmediateInstruction) oInstruction).setImmediateValue(alInstructionContents.get(2));
-			
+			try {
+				regSource1 = Integer.parseInt(arInstructionContents[1]);
+				immValue = Integer.parseInt(arInstructionContents[2]);
+				regDest = Integer.parseInt(arInstructionContents[0]);
+				((IImmediateInstruction) oInstruction).setDestRegister(regDest);
+				((IImmediateInstruction) oInstruction).setSourceRegister(regSource1);
+				((IImmediateInstruction) oInstruction).setImmediateValue(immValue);				
+			} catch (Exception e) {
+				System.out.println("There was a problem creating instruction for " + sInstruction + " " + sInstructionContents);
+			}			
 		} else if (oInstruction instanceof IJumpInstruction) {
 			//Create a jump instruction
 			alInstructionContents = parseInstructionContents(sInstructionContents, eInstructionType.JUMP);
@@ -44,7 +52,7 @@ public class InstructionFactory implements IInstructionConstants {
 		return oInstruction;
 	}
 	
-	private IInstruction getInstructionByName(String sAsmName) {
+	private static IInstruction getInstructionByName(String sAsmName) {
 		for (int i=0; i<arInstructions.length; i++) {
 			if (arInstructions[i].getInstructionName().equalsIgnoreCase(sAsmName)) {
 				return arInstructions[i];
@@ -53,10 +61,12 @@ public class InstructionFactory implements IInstructionConstants {
 		return null;
 	}
 	
-	private ArrayList<Integer> parseInstructionContents(String sInstructionContents, eInstructionType oType) {
-		ArrayList<Integer> alContents = new ArrayList<Integer>();
-		
-		return alContents;		
+	private static String[] parseInstructionContents(String sInstructionContents) {
+		String[] arContents = sInstructionContents.split(",");		
+		for (int i=0; i<arContents.length; i++) {
+			arContents[i] = arContents[i].trim().replace("$", "");
+		}
+		return arContents;	
 	}
 	
 	
