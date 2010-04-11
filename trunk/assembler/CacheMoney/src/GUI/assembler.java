@@ -14,6 +14,8 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
+import Utilities.Assembler;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.lang.*;
@@ -46,7 +48,6 @@ public class assembler extends JFrame implements ActionListener {
 	private static final String FILE	 = "File";
 	private static final String OPEN 	 = "Open .asm File";
 	private static final String CREATEMIF = "Create .mif File";
-	private static final String SAVE_MIF_AS	 = "Save .mif as...";
 	private static final String EXIT	 = "Exit";
 	
 	// set up frame variable
@@ -80,9 +81,9 @@ public class assembler extends JFrame implements ActionListener {
 	JMenuItem menuFileExit;
 	
 	//Input File
-	File inputFile;
+	File inputFile, outputFile;
 	
-	
+	String memoryContents [];
 	
 	public assembler()
 	{
@@ -110,12 +111,6 @@ public class assembler extends JFrame implements ActionListener {
         
         
         contentPane.add(titlePanel, BorderLayout.NORTH);
-        
-//      titleLabel = new JLabel();
-//      titleLabel = new JLabel(TITLE, JLabel.CENTER);
-//		titleLabel.setBounds(ONE, ONE, PANEL_WIDTH, TITLE_PANEL_HEIGHT);
-		
-//		contentPane.add(titleLabel, BorderLayout.NORTH);
         
         assemblyTextArea = new JTextArea();
         assemblyTextArea.setColumns(42);
@@ -152,17 +147,14 @@ public class assembler extends JFrame implements ActionListener {
 		// Create the menu items
 		menuFileOpen = new JMenuItem(OPEN);
 		menuFileCreate = new JMenuItem(CREATEMIF);
-		menuFileSaveAs = new JMenuItem(SAVE_MIF_AS);
 		menuFileExit = new JMenuItem(EXIT);
 		
 		menuFileOpen.addActionListener(this);
 		menuFileCreate.addActionListener(this);
-		menuFileSaveAs.addActionListener(this);
 		menuFileExit.addActionListener(this);
 		
 		menuFile.add(menuFileOpen);
 		menuFile.add(menuFileCreate);
-		menuFile.add(menuFileSaveAs);
 		menuFile.add(menuFileExit);
 		
 		menuBar.add(menuFile);
@@ -192,10 +184,7 @@ public class assembler extends JFrame implements ActionListener {
 			}
 			else if (eventName.equals(CREATEMIF))
 			{
-				
-			}
-			else if (eventName.equals(SAVE_MIF_AS))
-			{
+				createMifFile();
 				
 			}
 			else if (eventName.equals(EXIT))
@@ -221,6 +210,47 @@ public class assembler extends JFrame implements ActionListener {
 	    {
 	    	inputFile = fileChooser.getSelectedFile();
 	    }
+	}
+	
+	/**
+	 * Function: createMifFile()
+	 * - this function allows the user to specify an out MIF file
+	 */
+	private void createMifFile()
+	{
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setDialogTitle("Specify an output .mif file");
+		
+		int status = fileChooser.showSaveDialog(null);
+		
+		if (status == JFileChooser.APPROVE_OPTION)
+		{
+			outputFile = fileChooser.getSelectedFile();
+		}
+		
+		Assembler oAssembler = new Assembler(inputFile);
+		
+		oAssembler.parseAssemblyFile();
+		
+		memoryContents =  oAssembler.getMemoryFileContents();
+		int length = memoryContents.length;
+		
+		try{
+	    // Create file 
+	    FileWriter fstream = new FileWriter(outputFile);
+	        BufferedWriter out = new BufferedWriter(fstream);
+        for (int i = 0; i < length; i++)
+		{
+			out.write(memoryContents[i]);
+			out.newLine();
+		}
+	    //Close the output stream
+	    out.close();
+	    }catch (Exception e){//Catch exception if any
+	      System.err.println("Error: " + e.getMessage());
+	    }
+
+		
 	}
 
 	public static void main( String args[] )
