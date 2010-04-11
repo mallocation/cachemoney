@@ -9,40 +9,28 @@ package GUI;
 
 
 import java.io.*;
-import java.util.*;
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
 
 import Utilities.Assembler;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.lang.*;
 
 public class assembler extends JFrame implements ActionListener {
 
 	// Set up integer constants used throughout the frame
 	private static final int     FRAME_WIDTH  		 = 1000;
 	private static final int     FRAME_HEIGHT 		 = 700	;
-	private static final int     FRAME_X      		 = 10;
-	private static final int     FRAME_Y	   		 = 10;
 	private static final int     PANEL_WIDTH  		 = 790;
-	private static final int     PANEL_HEIGHT       = 500;
 	private static final int     TITLE_PANEL_HEIGHT = 25;
 	private static final int     ONE				 = 1;
-	private static final int[][] LIST_DIMENSIONS	 = { { 6, 26, 362, 237 },
-	 												 { 6, 15, 350, 15 },
-	 												 { 6, 31, 350, 200 }
-														};
-	private static final int[]   STAT_DIMENSIONS    = { 371, 26, 150, 200 };
+	
 	
     private static final int FRAME_X_ORIGIN = 10;
 
     private static final int FRAME_Y_ORIGIN = 10;
 	
 	// Title constant string
-	private static final String TITLE = "Assembler";
 	
 	// Set up string constants for the file menu
 	private static final String FILE	 = "File";
@@ -184,7 +172,16 @@ public class assembler extends JFrame implements ActionListener {
 			}
 			else if (eventName.equals(CREATEMIF))
 			{
+				//create the .mif file
 				createMifFile();
+				
+				//output the contents of the newly created .mif file to the mif text area
+				try {
+					// What to do with the file, e.g. display it in a TextArea
+					mifTextArea.read( new FileReader( outputFile.getAbsolutePath() ), null );
+		        } catch (IOException ex) {
+		          System.out.println("problem accessing file"+inputFile.getAbsolutePath());
+		        }
 				
 			}
 			else if (eventName.equals(EXIT))
