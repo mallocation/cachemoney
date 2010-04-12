@@ -68,6 +68,9 @@ public class Assembler {
 		}
 	}
 	
+	/**
+	 * This function parses the assembly file and resolves instructions and symbolic references.
+	 */
 	public void parseAssemblyFile() {
 		alSymbolicReferences = new ArrayList<SymbolicReference>();
 		alInstructions = new ArrayList<IInstruction>();
@@ -95,8 +98,8 @@ public class Assembler {
 			}
 			
 			if (AssemblyParser.isSymbolicReference(sAssemblyLine)) {
-				oReference = AssemblyParser.getSymbolicReference(sAssemblyLine, bDataSectionHit);
-				oReference.setAddress(nAddress);
+				oReference = getSymbolicReference(sAssemblyLine, bDataSectionHit);
+				oReference.setBaseAddress(nAddress);
 				if (oReference.getElementCount() > 1) {
 					nAddress += oReference.getElementCount() - 1;
 				}
@@ -107,6 +110,9 @@ public class Assembler {
 		}		
 	}
 	
+	/**
+	 * This function does one pass through the assembly file, parsing assembly instructions.
+	 */
 	private void parseInstructions() {
 		int i = 0;
 		int nAddress = 0;		
@@ -126,6 +132,13 @@ public class Assembler {
 		}		
 	}
 	
+	/**
+	 * Use this function to obtain an instruction from a line in the assembly file
+	 * @param sLine Line of assembly i.e. <code>add $1, $2, $3</code>
+	 * @param nLineAddress Address of the current line
+	 * @return <code>IInstruction</code> if the line represents an instruction,
+	 * 		   <code>null</code> if the line does not contain an instruction.
+	 */
 	private IInstruction getInstructionFromLine(String sLine, int nLineAddress) {
 		String sInstruction = AssemblyParser.getAssembly(sLine);
 		IInstruction oReturnInstruction = InstructionFactory.createInstruction(AssemblyParser.getInstructionNameFromLine(sInstruction));
@@ -136,6 +149,12 @@ public class Assembler {
 		return oReturnInstruction;
 	}
 	
+	/**
+	 * Use this method to specify the properties of an instruction.
+	 * @param sInstruction Assembly instruction from line i.e. <code>add $1, $2, $3</code>
+	 * @param oInstruction Instruction to set.
+	 * @param nCurrentInstructionAddress  Address of current line.
+	 */
 	private void setInstructionProperties(String sInstruction, IInstruction oInstruction, int nCurrentInstructionAddress) {
 		String[] arInstructionProps = AssemblyParser.getInstructionPropertiesFromLine(sInstruction);
 		if (arInstructionProps == null)
@@ -156,10 +175,10 @@ public class Assembler {
 			if (InstructionFactory.InstructionAccessesMemory(oInstruction)) {
 				String addressReference = arInstructionProps[1].replaceAll(".*[(]+", "").replaceAll("[)]+.*", "").trim();
 				
-				if (getSymbolicReference(addressReference) != null) {
+				if (findReferenceByName(addressReference) != null) {
 					//we are dealing with reference to an address
 					regSource = 0;
-					immValue = getSymbolicReference(addressReference).getAddress();
+					immValue = findReferenceByName(addressReference).getBaseAddress();
 				} else {
 					addressReference = addressReference.replaceAll("\\$", "").trim();
 					regSource = Integer.parseInt(addressReference);
@@ -168,7 +187,7 @@ public class Assembler {
 				
 			} else if (InstructionFactory.IsBranchInstruction(oInstruction)) {
 				regSource = Integer.parseInt(arInstructionProps[1].replaceAll("\\$", "").trim());
-				immValue = getSymbolicReference(arInstructionProps[2]).getAddress() - nCurrentInstructionAddress;				
+				immValue = findReferenceByName(arInstructionProps[2]).getBaseAddress() - nCurrentInstructionAddress;				
 				
 				((IImmediateInstruction) oInstruction).setSourceRegister(regSource);
 				((IImmediateInstruction) oInstruction).setDestRegister(regDest);
@@ -182,41 +201,101 @@ public class Assembler {
 			((IImmediateInstruction) oInstruction).setImmediateValue(immValue);
 			((IImmediateInstruction) oInstruction).setDestRegister(regDest);			
 		} else if (oInstruction instanceof IJumpInstruction) {
-			((IJumpInstruction) oInstruction).setAddress(getSymbolicReference(arInstructionProps[0]).getAddress());
+			((IJumpInstruction) oInstruction).setAddress(findReferenceByName(arInstructionProps[0]).getBaseAddress());
 		}
 		
 	}
+	/**
+	 * Use this method to retrieve a symbolic reference from a line.
+	 * @param sLine
+	 * @param bIsDataSection
+	 * @return
+	 */
+	private SymbolicReference getSymbolicReference(String sLine, boolean bIsDataSection) {
+		String[] arSplit = sLine.split(":");
+		String[] arData;
+		SymbolicReference oReference = null;	
+		AssemblyParser.trimArrayContents(arSplit);	
+		if (bIsDataSection) {
+			arData = arSplit[1].split(" ");
+			AssemblyParser.trimArrayContents(arData);		
+			if (arData[0].equalsIgnoreCase(".integer")) {
+				oReference = new SymbolicReference(arSplit[0], Integer.parseInt(arData[1]));
+			} else if (arData[0].equalsIgnoreCase(".array")) {
+				String arStringValues[] = arData[1].split(",");
+				AssemblyParser.trimArrayContents(arStringValues);
+				int[] arValues = new int[arStringValues.length];
+				for (int i=0; i<arStringValues.length; i++) {
+					arValues[i] = Integer.parseInt(arStringValues[i]);
+				}
+				oReference = new SymbolicReference(arSplit[0], arValues);			
+			}
+		} else {
+			oReference = new SymbolicReference(arSplit[0]);
+		}		
+		return oReference;		
+	}
 	
+	/**
+	 * Get a symbolic reference by name.
+	 * @param ReferenceName Name of the symbolic reference in assembly.
+	 * @return The reference object if found, otherwise null.
+	 */
+	private SymbolicReference findReferenceByName(String ReferenceName) {
+		for (int i=0; i<alSymbolicReferences.size(); i++) {
+			if (alSymbolicReferences.get(i).getReferenceName().equalsIgnoreCase(ReferenceName))
+				return alSymbolicReferences.get(i);
+		}
+		return null;
+	}
+	
+	/**
+	 * Call this function to retrieve the contents of the memory file.
+	 * The lines of the file are returned as a string array.
+	 * @return String array containing memory file lines.
+	 */
 	public String[] getMemoryFileContents() {
 		ArrayList<String> alMemoryContents = new ArrayList<String>();
 		String[] arContents = null;
+		
+		printMemoryHeaderToList(alMemoryContents);
+		
 		for (int i=0; i<alInstructions.size(); i++) {
 			IInstruction oInstruction = alInstructions.get(i);
-			alMemoryContents.add(Integer.toHexString(oInstruction.getInstructionAddress()) + " : " + oInstruction.getEncodedInstruction());
+			alMemoryContents.add(Integer.toHexString(oInstruction.getInstructionAddress()).toUpperCase() + " : " + oInstruction.getEncodedInstruction() + ";");
 		}
 		for (int i=0; i<alSymbolicReferences.size(); i++) {
 			SymbolicReference oReference = alSymbolicReferences.get(i);
-			int address = oReference.getAddress();
+			int address = oReference.getBaseAddress();
 			String[] arEncodings = oReference.getEncodedReference();
 			if (arEncodings != null) {
 				for (int j=0; j<arEncodings.length; j++) {					
-					alMemoryContents.add(Integer.toHexString(address + j) + " : " + arEncodings[j]);
+					alMemoryContents.add(Integer.toHexString(address + j).toUpperCase() + " : " + arEncodings[j] + ";");
 				}
 			}
 		}
+		printMemoryFooterToList(alMemoryContents);
+		
 		arContents = new String[alMemoryContents.size()];
 		alMemoryContents.toArray(arContents);
 		
 		return arContents;
 	}
 	
-	private SymbolicReference getSymbolicReference(String RefName) {
-		for (int i=0; i<alSymbolicReferences.size(); i++) {
-			if (alSymbolicReferences.get(i).getReferenceName().equalsIgnoreCase(RefName)) {
-				return alSymbolicReferences.get(i);
-			}
-		}
-		return null;
+	/**
+	 * Append the memory file header to an array list.
+	 * @param alMemoryFile Array list of memory contents.
+	 */
+	private void printMemoryHeaderToList(ArrayList<String> alMemoryFile) {
+		alMemoryFile.add("-- Cache Money MIF File.");
+		alMemoryFile.add("WIDTH = 32;");
+		alMemoryFile.add("DEPTH = 131072;");
+		alMemoryFile.add("ADDRESS_RADIX = HEX;");
+		alMemoryFile.add("DATA_RADIX = BIN;");
+		alMemoryFile.add("CONTENT BEGIN");
 	}
 	
+	private void printMemoryFooterToList(ArrayList<String> alMemoryFile) {
+		alMemoryFile.add("END;");
+	}
 }

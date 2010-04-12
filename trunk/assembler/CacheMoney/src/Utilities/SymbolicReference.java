@@ -2,8 +2,8 @@ package Utilities;
 
 public class SymbolicReference {
 	
-	private String SymbolicReference;
-	private int Address;
+	private String symbolicReference;
+	private int baseAddress;
 	private eRefType oRefType;
 	private int[] arValues;
 	
@@ -11,11 +11,9 @@ public class SymbolicReference {
 	 * Use this constructor to create a symbolic reference that is just
 	 * used to reference a memory address.
 	 * @param SymbolicReference
-	 * @param Address
 	 */
-	SymbolicReference(String SymbolicReference, int Address) {
-		this.SymbolicReference = SymbolicReference;
-		this.Address = Address;
+	SymbolicReference(String SymbolicReference) {
+		this.symbolicReference = SymbolicReference;
 		this.oRefType = eRefType.ADDRESS;
 		this.arValues = null;
 	}
@@ -27,9 +25,8 @@ public class SymbolicReference {
 	 * @param Address Address of the integer in memory.
 	 * @param Value Integer value.
 	 */
-	SymbolicReference(String SymbolicReference, int Address, int Value) {
-		this.SymbolicReference = SymbolicReference;
-		this.Address = Address;
+	SymbolicReference(String SymbolicReference, int Value) {
+		this.symbolicReference = SymbolicReference;
 		this.oRefType = eRefType.INTEGER;
 		this.arValues = new int[1];
 		this.arValues[0] = Value;
@@ -42,9 +39,8 @@ public class SymbolicReference {
 	 * @param Address Base address of the array in memory.
 	 * @param Values Array of integer values.
 	 */
-	SymbolicReference(String SymbolicReference, int Address, int[] Values) {
-		this.SymbolicReference = SymbolicReference;
-		this.Address = Address;
+	SymbolicReference(String SymbolicReference, int[] Values) {
+		this.symbolicReference = SymbolicReference;
 		this.oRefType = eRefType.ARRAY;
 		this.arValues = new int[Values.length];
 		for (int i=0; i<Values.length; i++) {
@@ -61,12 +57,20 @@ public class SymbolicReference {
 		return oRefType != eRefType.ADDRESS;
 	}
 	
-	public void setAddress(int Address) {
-		this.Address = Address;
+	/**
+	 * Set the base address of the symbolic reference.
+	 * @param Address
+	 */
+	public void setBaseAddress(int Address) {
+		this.baseAddress = Address;
 	}
 	
-	public int getAddress() {
-		return this.Address;
+	/**
+	 * Get the base address of the symbolic reference.
+	 * @return Base address of the symbolic reference.
+	 */
+	public int getBaseAddress() {
+		return this.baseAddress;
 	}
 	
 	/**
@@ -74,12 +78,12 @@ public class SymbolicReference {
 	 * @return Reference Name
 	 */
 	public String getReferenceName() {
-		return this.SymbolicReference;
+		return this.symbolicReference;
 	}
 	
 	/**
 	 * This method returns the symbolic reference encoded for the .mif file.
-	 * Format - address : value
+	 * Format = address : value
 	 * @return
 	 */
 	public String[] getEncodedReference() {
@@ -88,7 +92,7 @@ public class SymbolicReference {
 		} else {
 			String[] arEncodedValues = new String[this.arValues.length];
 			if (this.oRefType == eRefType.INTEGER) {
-				arEncodedValues[1] = Conversion.IntegerTo32BitString(this.arValues[0]);
+				arEncodedValues[0] = Conversion.IntegerTo32BitString(this.arValues[0]);
 			} else {				
 				for (int i=0; i<this.arValues.length; i++) {
 					arEncodedValues[i] = Conversion.IntegerTo32BitString(this.arValues[i]);
