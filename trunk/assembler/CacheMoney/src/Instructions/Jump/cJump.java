@@ -32,7 +32,9 @@ public class cJump implements IInstruction, IJumpInstruction {
 	@Override
 	public String getEncodedInstruction() {
 		String sOpCode, sAddress;
+		//Convert Op Code
 		sOpCode = Conversion.IntegerToBinaryString(this.getOpCode(), 3);
+		//Convert Address
 		sAddress = Conversion.IntegerToBinaryString(this.getAddress(), 29);		
 		return sOpCode + sAddress;
 	}

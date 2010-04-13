@@ -41,7 +41,9 @@ public abstract class ArithmeticInstruction implements IInstruction, IArithmetic
 	@Override
 	public String getEncodedInstruction() {
 		String sOpCode, sDestReg, sSrcReg1, sSrcReg2;
+		//Convert Op Code
 		sOpCode = Conversion.IntegerToBinaryString(this.getOpCode(), 3);
+		//Convert Destination and Source Registers
 		sDestReg = Conversion.IntegerToBinaryString(this.getDestRegister(), 5);
 		sSrcReg1 = Conversion.IntegerToBinaryString(this.getSourceRegister1(), 5);
 		sSrcReg2 = Conversion.IntegerToBinaryString(this.getSourceRegister2(), 5);

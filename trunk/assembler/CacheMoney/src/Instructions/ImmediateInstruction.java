@@ -41,9 +41,12 @@ public abstract class ImmediateInstruction implements IInstruction, IImmediateIn
 	@Override
 	public String getEncodedInstruction() {
 		String sOpCode, sDestReg, sSrcReg1, sImmValue;
+		//Convert Op Code
 		sOpCode = Conversion.IntegerToBinaryString(this.getOpCode(), 3);
+		//Set the Destination and Source Registers
 		sDestReg = Conversion.IntegerToBinaryString(this.getDestRegister(), 5);
 		sSrcReg1 = Conversion.IntegerToBinaryString(this.getSourceRegister(), 5);
+		//Set the immediate value
 		sImmValue = Conversion.IntegerToBinaryString(this.getImmediateValue(), 19);
 		return sOpCode + sDestReg + sSrcReg1 + sImmValue;
 	}
