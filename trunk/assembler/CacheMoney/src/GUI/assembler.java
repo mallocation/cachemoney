@@ -24,14 +24,9 @@ public class assembler extends JFrame implements ActionListener {
 	private static final int     PANEL_WIDTH  		 = 790;
 	private static final int     TITLE_PANEL_HEIGHT = 25;
 	private static final int     ONE				 = 1;
-	
-	
-    private static final int FRAME_X_ORIGIN = 10;
-
+	private static final int FRAME_X_ORIGIN = 10;
     private static final int FRAME_Y_ORIGIN = 10;
-	
-	// Title constant string
-	
+		
 	// Set up string constants for the file menu
 	private static final String FILE	 = "File";
 	private static final String OPEN 	 = "Open .asm File";
@@ -56,19 +51,15 @@ public class assembler extends JFrame implements ActionListener {
 	JTextArea assemblyTextArea;
 	JTextArea mifTextArea;
 	
-	JScrollPane	assemblyScrollPane;
-	
+	// JMenu items
 	JMenuBar menuBar;
-	
 	JMenu menuFile;
-	
-	// menu items
 	JMenuItem menuFileOpen;
 	JMenuItem menuFileCreate;
 	JMenuItem menuFileSaveAs;
 	JMenuItem menuFileExit;
 	
-	//Input File
+	//Input and Output Files
 	File inputFile, outputFile;
 	
 	String memoryContents [];
@@ -83,9 +74,12 @@ public class assembler extends JFrame implements ActionListener {
         setTitle     ("Assembler");
         setLocation  (FRAME_X_ORIGIN, FRAME_Y_ORIGIN);
         
+        // create the menu
         this.createMenu();
         
         contentPane = getContentPane( );
+        
+        //set the layout
         contentPane.setLayout(new BorderLayout());
         
         titlePanel = new JPanel();
@@ -104,7 +98,7 @@ public class assembler extends JFrame implements ActionListener {
         assemblyTextArea.setColumns(42);
         assemblyTextArea.setEditable(false);
         
-        JScrollPane asmScrollText= new JScrollPane(assemblyTextArea);
+        JScrollPane asmScrollText = new JScrollPane(assemblyTextArea);
         asmScrollText.setSize(200, 135);
         asmScrollText.setBorder(BorderFactory.createLineBorder(Color.black));
         contentPane.add(asmScrollText, BorderLayout.WEST);
@@ -123,7 +117,10 @@ public class assembler extends JFrame implements ActionListener {
 	} //end constructor
 	
 	
-
+	/**
+	 * This method creates the menu bar for the GUI
+	 * @return
+	 */
 	private void createMenu()
 	{
 		// create the main menu bar
@@ -151,7 +148,11 @@ public class assembler extends JFrame implements ActionListener {
 	} // end create menu
 	
 	
-	
+	/**
+	 * This method handles the menu actions
+	 * @param event
+	 * @return
+	 */
 	public void actionPerformed( ActionEvent event )
 	{
 		// Make sure the event was done through the menu
@@ -195,6 +196,7 @@ public class assembler extends JFrame implements ActionListener {
 	/**
 	 * Function: loadAsmFile
 	 * - this function loads in the .asm file specified by the user
+	 * @return
 	 */
 	private void loadAsmFile()
 	{
@@ -212,6 +214,7 @@ public class assembler extends JFrame implements ActionListener {
 	/**
 	 * Function: createMifFile()
 	 * - this function allows the user to specify an out MIF file
+	 * @return
 	 */
 	private void createMifFile()
 	{
