@@ -13,21 +13,78 @@
 	<table width="500">
 	<tr>
 		<td>
-		<h2>Assembler</h2>
-		<br>
-		Our assembler was written in Java. From the beginning, the assembler was broken
-		up into two parts, the GUI, and the actual instruction parsing. 
-		<br>
-		<br>
-		1. The GUI
-		Our GUI contains two panels: One to display the contents of the .asm input file,
-		and one to display the contents of our output which is the generated mif file. 
-		When the user enters the .asm file, it is displayed on the .asm panel. When the user
-		chooses to generate the .mif file, the user is prompted for a location to save.
+			<h2>Assembler</h2>
+			<br>
+			Our assembler was written in Java. From the beginning, the assembler was broken
+			up into two parts, the GUI, and the actual instruction parsing. 
+			<br>
+			<br>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding-left:50px;">
+			1. The GUI
+			<table>
+				<tr>
+					<td style="padding-left:25px;">
+						Our GUI contains two panels: One to display the contents of the .asm input file,
+						and one to display the contents of our output which is the generated mif file. 
+						When the user enters the .asm file, it is displayed on the .asm panel. When the user
+						chooses to generate the .mif file, the user is prompted for a location to save.
+						Once the user specifies a save file, the text of the generated .mif file is displayed
+						on the .mif textarea. 
+						<br><br>
+						<img alt="GUI Screenshot" src="images/gui.png">
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding-left:50px;">
+			2. Instruction Parsing + Instruction and data layout
+			<table>
+				<tr>
+					<td style="padding-left:25px;">
+						The instruction parsing of the assembler works such that first all comments, denoted
+						by text following a pound symbol, are removed from the code. The .mif file starts
+						out with the initialization lines which define the width and depth our code. The width
+						is the same as the number of bits of our instruction (32 bits) and the depth is (512*2^13)/32
+						 = 131072 bits!
+						<br>
+						<br>
+						The .asm file is to be organized so that instructions come first, then the data which is stored
+						in symbolic references. There are two types of symbolic references as identified by our assembler,
+						".array" which consist of several values delimited by commas and ".integer" which consists of
+						a single integer value. In the case of matrix multiplication, the user will first specify the program
+						that will perform the matrix multiplication computations, followed by the size n of the n by n 
+						matricies (a ".integer" symbolic reference), followed by each matrix in ".array" form. The matricies
+						should be entered row by row, left to right. In the symbolic references this can be done by the following
+						 example:
+						<pre>.size .integer 3<br>.matrix1 .array 1,2,3,4,5,6,7,8,9<br>.matrix2 .array 3,6,5,4,7,8,9,4,1</pre>
+						<img src="images/matricies.jpg"><br>
+						In order to access the address of the instructions, we have modified the addi instruction so that if
+						a user specifies a symbolic reference location to add to a register, the value that will go in the 
+						register will be the address of the symbolic reference. For example, the following instruction:
+						<pre>addi $29, $0, matrix1	#Load the base address of the first matrix</pre>
+						would translate to the following byte code:
+						<pre>1 : 00111101000000000000000000011011;</pre>
+						Where the last 19-bits represent the immediate field. In this case, the last bits represent the address
+						of matrix1 which is 11011 (binary) -> 1B (hex). Line 1B is as follows in the .mif output file:
+						<pre>1B : 00000000000000000000000000000001;</pre>
+						
+						
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			
 		</td>
 	</tr>
 	</table>
-	<img alt="GUI Screenshot" src="images/gui.png">
 </div>
 
 </body>
