@@ -195,7 +195,11 @@ public class Assembler {
 			} else {
 				//immediate arithmetic instruction....
 				regSource = Integer.parseInt(arInstructionProps[1].replaceAll("\\$", "").trim());
-				immValue = Integer.parseInt(arInstructionProps[2]);
+				if (findReferenceByName(arInstructionProps[2]) != null) {
+					immValue = findReferenceByName(arInstructionProps[2]).getBaseAddress();
+				} else {
+					immValue = Integer.parseInt(arInstructionProps[2]);
+				}
 			}
 			((IImmediateInstruction) oInstruction).setSourceRegister(regSource);
 			((IImmediateInstruction) oInstruction).setImmediateValue(immValue);

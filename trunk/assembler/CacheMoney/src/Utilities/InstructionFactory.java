@@ -11,7 +11,7 @@ import Interfaces.IInstructionConstants;
  */
 public class InstructionFactory implements IInstructionConstants {
 
-	public static IInstruction createInstruction(String sInstructionName) {//, String sInstructionContents) {
+	public static IInstruction createInstruction(String sInstructionName) {
 		return getInstructionByName(sInstructionName);
 	}
 	
@@ -21,8 +21,7 @@ public class InstructionFactory implements IInstructionConstants {
 			if (arInstructions[i].getInstructionName().equalsIgnoreCase(sAsmName)) {
 				oInstruction = arInstructions[i];
 			}
-		}
-		
+		}		
 		if (oInstruction == ADD) return new Add();		
 		else if (oInstruction == ADDI) return new AddImmediate();
 		else if (oInstruction == BEQ) return new BranchEqual();
