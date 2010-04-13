@@ -59,8 +59,9 @@ public class AssemblyParser {
 	 * 		   <code>false</code> if the line does not contain a symbolic reference.
 	 */
 	public static boolean isSymbolicReference(String sLine) {
-		String[] arSplit = sLine.split(":");
-		return arSplit.length > 1;
+		return sLine.contains(":");
+		//String[] arSplit = sLine.split(":");
+		//return arSplit.length > 1;
 	}
 	
 	/**
@@ -70,10 +71,13 @@ public class AssemblyParser {
 	 * @return The assembly contents.
 	 */
 	public static String getAssembly(String sLine) {
-		String[] arSplit = sLine.split(":");
-		if (sLine.contains(":")) {
-			return arSplit[1].trim();
+		if (isSymbolicReference(sLine)) {
+			sLine = stripReference(sLine);
 		}
+//		String[] arSplit = sLine.split(":");
+//		if (sLine.contains(":")) {
+//			return arSplit[1].trim();
+//		}
 		return sLine.trim();
 	}
 	
