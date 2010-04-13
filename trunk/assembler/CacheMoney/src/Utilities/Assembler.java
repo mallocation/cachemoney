@@ -109,8 +109,9 @@ public class Assembler {
 				}
 				alSymbolicReferences.add(oReference);
 			}
-			
-			nAddress++;
+			if (!AssemblyParser.getAssembly(sAssemblyLine).equalsIgnoreCase("")) {
+				nAddress++;
+			}
 		}		
 	}
 	

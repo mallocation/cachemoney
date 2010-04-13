@@ -60,8 +60,6 @@ public class AssemblyParser {
 	 */
 	public static boolean isSymbolicReference(String sLine) {
 		return sLine.contains(":");
-		//String[] arSplit = sLine.split(":");
-		//return arSplit.length > 1;
 	}
 	
 	/**
@@ -74,10 +72,6 @@ public class AssemblyParser {
 		if (isSymbolicReference(sLine)) {
 			sLine = stripReference(sLine);
 		}
-//		String[] arSplit = sLine.split(":");
-//		if (sLine.contains(":")) {
-//			return arSplit[1].trim();
-//		}
 		return sLine.trim();
 	}
 	
