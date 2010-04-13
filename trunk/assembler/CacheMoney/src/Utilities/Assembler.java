@@ -10,6 +10,10 @@ import Interfaces.IImmediateInstruction;
 import Interfaces.IInstruction;
 import Interfaces.IJumpInstruction;
 
+/**
+ * This class performs all necessary operations on an assembly file, such as parsing, resolving symbolic
+ * addresses, and resolving instructions.
+ */
 public class Assembler {
 	
 	/**
@@ -183,8 +187,7 @@ public class Assembler {
 					addressReference = addressReference.replaceAll("\\$", "").trim();
 					regSource = Integer.parseInt(addressReference);
 					immValue = 0;
-				}				
-				
+				}
 			} else if (InstructionFactory.IsBranchInstruction(oInstruction)) {
 				regSource = Integer.parseInt(arInstructionProps[1].replaceAll("\\$", "").trim());
 				immValue = findReferenceByName(arInstructionProps[2]).getBaseAddress() - nCurrentInstructionAddress;				
@@ -299,6 +302,10 @@ public class Assembler {
 		alMemoryFile.add("CONTENT BEGIN");
 	}
 	
+	/**
+	 * Append the memory file footer to an array list.
+	 * @param alMemoryFile Array list of memory contents.
+	 */
 	private void printMemoryFooterToList(ArrayList<String> alMemoryFile) {
 		alMemoryFile.add("END;");
 	}

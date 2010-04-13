@@ -1,6 +1,8 @@
 package Instructions.Arithmetic;
 
-
+/**
+ * This class represents a 'nop' instruction.
+ */
 public class NoOperation extends Add {
 	
 	@Override

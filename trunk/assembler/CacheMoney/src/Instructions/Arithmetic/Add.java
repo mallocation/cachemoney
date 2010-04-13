@@ -2,6 +2,9 @@ package Instructions.Arithmetic;
 
 import Instructions.ArithmeticInstruction;
 
+/**
+ * This class represents an 'add' instruction.
+ */
 public class Add extends ArithmeticInstruction {
 
 	@Override

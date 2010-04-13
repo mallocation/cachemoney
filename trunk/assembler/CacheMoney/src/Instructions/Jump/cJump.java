@@ -4,9 +4,19 @@ import Interfaces.IInstruction;
 import Interfaces.IJumpInstruction;
 import Utilities.Conversion;
 
+/**
+ * This class is a template for Jump instructions, and also represents the 'j' instruction.
+ */
 public class cJump implements IInstruction, IJumpInstruction {
 	
+	/**
+	 * Instruction address
+	 */
 	private int _address;
+	
+	/**
+	 * Address in memory to move program execution to.
+	 */
 	private int _jmpAddress;
 	
 	@Override

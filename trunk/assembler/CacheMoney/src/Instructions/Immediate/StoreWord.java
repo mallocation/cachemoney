@@ -2,6 +2,9 @@ package Instructions.Immediate;
 
 import Instructions.ImmediateInstruction;
 
+/**
+ * This class represents a 'sw' instruction.
+ */
 public class StoreWord extends ImmediateInstruction {
 
 	@Override

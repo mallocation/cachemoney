@@ -2,7 +2,6 @@ package Utilities;
 
 /**
  * This class is used primarily for parsing through an assembly file.
- * @author Cache Money
  */
 public class AssemblyParser {
 	

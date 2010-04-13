@@ -2,6 +2,9 @@ package Instructions.Arithmetic;
 
 import Instructions.ArithmeticInstruction;
 
+/**
+ * This class represents a 'mult' instruction.
+ */
 public class Multiply extends ArithmeticInstruction {
 
 	@Override

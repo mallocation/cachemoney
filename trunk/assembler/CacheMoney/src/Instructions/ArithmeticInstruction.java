@@ -3,11 +3,29 @@ import Interfaces.IInstruction;
 import Interfaces.IArithmeticInstruction;
 import Utilities.Conversion;
 
+/**
+ * This class is a base class for all Arithmetic Instructions.
+ */
 public abstract class ArithmeticInstruction implements IInstruction, IArithmeticInstruction {
 	
+	/**
+	 * 1st source register
+	 */
 	protected int _srcReg1;
+	
+	/**
+	 * 2nd source register
+	 */
 	protected int _srcReg2;
+	
+	/**
+	 * Destination register
+	 */
 	protected int _destReg;
+	
+	/**
+	 * Instruction address
+	 */
 	protected int _address;
 	
 	@Override

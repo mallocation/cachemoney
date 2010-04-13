@@ -3,11 +3,29 @@ import Interfaces.IImmediateInstruction;
 import Interfaces.IInstruction;
 import Utilities.Conversion;
 
+/**
+ * This class serves as a base class for Immediate instructions.
+ */
 public abstract class ImmediateInstruction implements IInstruction, IImmediateInstruction {
 	
+	/**
+	 * Source register
+	 */
 	protected int _srcReg;
+	
+	/**
+	 * Destination register
+	 */
 	protected int _destReg;
+	
+	/**
+	 * Immediate value
+	 */
 	protected int _immediateValue;
+	
+	/**
+	 * Instruction address
+	 */
 	protected int _address;
 	
 	@Override

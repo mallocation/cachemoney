@@ -1,11 +1,27 @@
 package Interfaces;
 
+/**
+ * This interface lays out a template for all Arithmetic instructions.
+ * Any instruction that is to be of type 'Arithmetic' must implement this interface.
+ */
 public interface IArithmeticInstruction {
 	
+	/**
+	 * Set the 1st source register.
+	 * @param nRegister The register number.
+	 */
 	public void setSourceRegister1(int nRegister);
 	
+	/**
+	 * Set the 2nd source register.
+	 * @param nRegister The register number.
+	 */
 	public void setSourceRegister2(int nRegister);
 	
+	/**
+	 * Set the destination register.
+	 * @param nRegister The register number.
+	 */
 	public void setDestRegister(int nRegister);
 	
 	/**

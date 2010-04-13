@@ -1,5 +1,8 @@
 package Utilities;
 
+/**
+ * This class is a platform for performing any necessary conversions for the memory file.
+ */
 public class Conversion {
 	
 	/**
@@ -11,6 +14,12 @@ public class Conversion {
 		return IntegerToBinaryString(value, 32);
 	}
 	
+	/**
+	 * Convert an integer to a binary string.
+	 * @param value Integer value to convert.
+	 * @param length Length of binary string.
+	 * @return Integer encoded as binary string.
+	 */
 	public static String IntegerToBinaryString(int value, int length) {
 		if (value < 0)
 			return Integer.toBinaryString(value).substring(32-length);

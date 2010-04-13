@@ -1,9 +1,13 @@
 package Interfaces;
 
+/**
+ * This interface creates a template for all assembly instructions.
+ * ALL instructions used within the assembler must implement this interface.
+ */
 public interface IInstruction {
 	
 	/**
-	 * Set the address of the instruction in memory.	
+	 * Set the address of the instruction in memory.
 	 * @param address
 	 */
 	public void setInstructionAddress(int address);

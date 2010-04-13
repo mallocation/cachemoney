@@ -2,9 +2,27 @@ package Utilities;
 
 public class SymbolicReference {
 	
+	/**
+	 * Name of the symbolic reference.
+	 */
 	private String symbolicReference;
+	
+	/**
+	 * Base address of reference.
+	 */
 	private int baseAddress;
+	
+	/**
+	 * Reference type, from eRefType enumeration.
+	 */
 	private eRefType oRefType;
+	
+	/**
+	 * Array of values that the symbolic reference represents.
+	 * If the reference is of type ADDRESS, then this will be null.
+	 * If the reference is of type INTEGER, this will be an array of size 1.
+	 * Otherwise, this will be an array of values.
+	 */
 	private int[] arValues;
 	
 	/**
@@ -118,6 +136,12 @@ public class SymbolicReference {
 		}
 	}
 	
+	/**
+	 * Enumeration for SymbolicReference types.
+	 * ADDRESS represents an address corresponding to a section in the instructions.
+	 * INTEGER represents an integer value in memory.
+	 * ARRAY represents multiple integers stored sequentially in memory.
+	 */
 	private enum eRefType {
 		ADDRESS,
 		INTEGER,
