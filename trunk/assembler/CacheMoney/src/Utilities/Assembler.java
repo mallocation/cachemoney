@@ -13,6 +13,11 @@ import Interfaces.IJumpInstruction;
 /**
  * This class performs all necessary operations on an assembly file, such as parsing, resolving symbolic
  * addresses, and resolving instructions.
+ * To use this class to convert an assembly file to a MIF file:
+ * 1. Create an instance of this class with your assembly (.asm) file
+ * 2. Call the parseAssemblyFile method
+ * 3. Get the contents of the MIF file by calling getMemoryFileContents()
+ *    This will return a string array, each array index contains a line of the MIF file.
  */
 public class Assembler {
 	
@@ -101,12 +106,15 @@ public class Assembler {
 				nAddress--;
 			}
 			
+			//If the line contains a symbolic reference, then parse it and set the address
 			if (AssemblyParser.isSymbolicReference(sAssemblyLine)) {
 				oReference = getSymbolicReference(sAssemblyLine, bDataSectionHit);
 				oReference.setBaseAddress(nAddress);
+				//Increment until the next usable address.
 				if (oReference.getElementCount() > 1) {
 					nAddress += oReference.getElementCount() - 1;
 				}
+				//Add the reference to the list
 				alSymbolicReferences.add(oReference);
 			}
 			if (!AssemblyParser.getAssembly(sAssemblyLine).equalsIgnoreCase("")) {
@@ -124,8 +132,11 @@ public class Assembler {
 		while (i < alFileLines.size()) {
 			String sLine = alFileLines.get(i);			
 			if (!(sLine == sDataSectionHeader)) {
-				IInstruction oLineInstruction = getInstructionFromLine(sLine, nAddress);
+				//Create an instruction from the line in the file
+				IInstruction oLineInstruction = getInstructionFromLine(sLine, nAddress);				
+				//If the line does not contain an instruction, then oLineInstruction will be null
 				if (oLineInstruction != null) {
+					//Set the instruction address, and add to the list of instructions
 					oLineInstruction.setInstructionAddress(nAddress);
 					alInstructions.add(oLineInstruction);					
 					nAddress++;
@@ -146,8 +157,7 @@ public class Assembler {
 	 */
 	private IInstruction getInstructionFromLine(String sLine, int nLineAddress) {
 		String sInstruction = AssemblyParser.getAssembly(sLine);
-		IInstruction oReturnInstruction = InstructionFactory.createInstruction(AssemblyParser.getInstructionNameFromLine(sInstruction));
-		
+		IInstruction oReturnInstruction = InstructionFactory.createInstruction(AssemblyParser.getInstructionNameFromLine(sInstruction));		
 		if (oReturnInstruction != null) {
 			setInstructionProperties(sInstruction, oReturnInstruction, nLineAddress);			
 		}		
@@ -161,54 +171,86 @@ public class Assembler {
 	 * @param nCurrentInstructionAddress  Address of current line.
 	 */
 	private void setInstructionProperties(String sInstruction, IInstruction oInstruction, int nCurrentInstructionAddress) {
+		//Get the instruction operands from the line
 		String[] arInstructionProps = AssemblyParser.getInstructionPropertiesFromLine(sInstruction);
+		
+		//If there are no instruction properties, then there is nothing to set (i.e. 'nop')
 		if (arInstructionProps == null)
 			return;
+		
+		//Otherwise, determine the type of instruction, and set the necessary properties
+		//--------------Arithmetic Instructions		
 		if (oInstruction instanceof IArithmeticInstruction) {
 			int regSource1, regSource2, regDest;
+			
+			//Parse the necessary registers
 			regSource1 = Integer.parseInt(arInstructionProps[1].replaceAll("\\$", "").trim());
 			regSource2 = Integer.parseInt(arInstructionProps[2].replaceAll("\\$", "").trim());
 			regDest = Integer.parseInt(arInstructionProps[0].replaceAll("\\$", "").trim());
 			
+			//Set the necessary registers			
 			((IArithmeticInstruction) oInstruction).setSourceRegister1(regSource1);
 			((IArithmeticInstruction) oInstruction).setSourceRegister2(regSource2);
 			((IArithmeticInstruction) oInstruction).setDestRegister(regDest);
+			
+		//--------------Immediate Instructions
 		} else if (oInstruction instanceof IImmediateInstruction) {
+			
 			int regSource, regDest, immValue;
+			//Get the destination register
 			regDest = Integer.parseInt(arInstructionProps[0].replaceAll("\\$", "").trim());
 			
+			//If the instruction addresses memory, it needs to be treated differently
 			if (InstructionFactory.InstructionAccessesMemory(oInstruction)) {
 				String addressReference = arInstructionProps[1].replaceAll(".*[(]+", "").replaceAll("[)]+.*", "").trim();
 				
+				//First, see if the address is a symbolic reference
 				if (findReferenceByName(addressReference) != null) {
 					//we are dealing with reference to an address
 					regSource = 0;
 					immValue = findReferenceByName(addressReference).getBaseAddress();
 				} else {
+					//we are dealing with an address from another register
 					addressReference = addressReference.replaceAll("\\$", "").trim();
 					regSource = Integer.parseInt(addressReference);
 					immValue = 0;
 				}
-			} else if (InstructionFactory.IsBranchInstruction(oInstruction)) {
-				regSource = Integer.parseInt(arInstructionProps[1].replaceAll("\\$", "").trim());
-				immValue = findReferenceByName(arInstructionProps[2]).getBaseAddress() - nCurrentInstructionAddress;				
 				
-				((IImmediateInstruction) oInstruction).setSourceRegister(regSource);
-				((IImmediateInstruction) oInstruction).setDestRegister(regDest);
-				((IImmediateInstruction) oInstruction).setImmediateValue(immValue);				
-			} else {
-				//immediate arithmetic instruction....
+			//If the instruction is a branch instruction, it needs to resolve PC-relative addresses.
+			} else if (InstructionFactory.IsBranchInstruction(oInstruction)) {
+				
+				//Get the source register to compare the dest. register
 				regSource = Integer.parseInt(arInstructionProps[1].replaceAll("\\$", "").trim());
+				
+				//Get the PC-relative address
+				immValue = findReferenceByName(arInstructionProps[2]).getBaseAddress() - nCurrentInstructionAddress;				
+			
+				
+			//We have just a normal immediate instruction
+			} else {
+
+				//Get the source register
+				regSource = Integer.parseInt(arInstructionProps[1].replaceAll("\\$", "").trim());
+				
+				//First, look and see if the immediate value is a symbolic reference.
+				//This gives us the ability to load a base address into a register using
+				//an instruction such as addi $2, $0, symbRef
 				if (findReferenceByName(arInstructionProps[2]) != null) {
+					//Make the immediate value the base address of the reference in memory
 					immValue = findReferenceByName(arInstructionProps[2]).getBaseAddress();
 				} else {
+					//The immediate value is strictly an immediate value.
 					immValue = Integer.parseInt(arInstructionProps[2]);
 				}
 			}
+			//Set the instruction properties
 			((IImmediateInstruction) oInstruction).setSourceRegister(regSource);
 			((IImmediateInstruction) oInstruction).setImmediateValue(immValue);
-			((IImmediateInstruction) oInstruction).setDestRegister(regDest);			
+			((IImmediateInstruction) oInstruction).setDestRegister(regDest);
+			
+		//--------------Jump Instructions
 		} else if (oInstruction instanceof IJumpInstruction) {
+			//Set the address to move program execution to
 			((IJumpInstruction) oInstruction).setAddress(findReferenceByName(arInstructionProps[0]).getBaseAddress());
 		}
 		
@@ -223,29 +265,36 @@ public class Assembler {
 		String[] arSplit = sLine.split(":");
 		String[] arData;
 		SymbolicReference oReference = null;	
-		AssemblyParser.trimArrayContents(arSplit);	
+		AssemblyParser.trimArrayContents(arSplit);
+		
+		//If bIsDataSection, we are dealing with an integer or array
 		if (bIsDataSection) {
 			arData = arSplit[1].split(" ");
-			AssemblyParser.trimArrayContents(arData);		
+			AssemblyParser.trimArrayContents(arData);
+			
 			if (arData[0].equalsIgnoreCase(".integer")) {
+				//The reference was to an integer in memory, so get the integer it is representing
 				oReference = new SymbolicReference(arSplit[0], Integer.parseInt(arData[1]));
 			} else if (arData[0].equalsIgnoreCase(".array")) {
+				//The reference was to an integer array in memory, so get the array values.
 				String arStringValues[] = arData[1].split(",");
 				AssemblyParser.trimArrayContents(arStringValues);
 				int[] arValues = new int[arStringValues.length];
 				for (int i=0; i<arStringValues.length; i++) {
-					arValues[i] = Integer.parseInt(arStringValues[i]);
+					arValues[i] = Integer.parseInt(arStringValues[i].trim());
 				}
+				//Create a new reference pointing to an array
 				oReference = new SymbolicReference(arSplit[0], arValues);			
 			}
 		} else {
+			//This reference is simply a reference to a spot in the instruction section.
 			oReference = new SymbolicReference(arSplit[0]);
 		}		
 		return oReference;		
 	}
 	
 	/**
-	 * Get a symbolic reference by name.
+	 * Search for a reference within the assembly file by name
 	 * @param ReferenceName Name of the symbolic reference in assembly.
 	 * @return The reference object if found, otherwise null.
 	 */
@@ -266,27 +315,34 @@ public class Assembler {
 		ArrayList<String> alMemoryContents = new ArrayList<String>();
 		String[] arContents = null;
 		
+		//Print the memory header to the array list
 		printMemoryHeaderToList(alMemoryContents);
 		
+		//First, add all instructions to the array list.
 		for (int i=0; i<alInstructions.size(); i++) {
 			IInstruction oInstruction = alInstructions.get(i);
 			alMemoryContents.add(Integer.toHexString(oInstruction.getInstructionAddress()).toUpperCase() + " : " + oInstruction.getEncodedInstruction() + ";");
 		}
+		
+		//Next, add all of the symbolic references that are data types
 		for (int i=0; i<alSymbolicReferences.size(); i++) {
 			SymbolicReference oReference = alSymbolicReferences.get(i);
-			int address = oReference.getBaseAddress();
-			String[] arEncodings = oReference.getEncodedReference();
-			if (arEncodings != null) {
+			if (oReference.isDataType()) {
+				int address = oReference.getBaseAddress();
+				//Array of encoded values, whether it is an array of 1 value, or an array of multiple values
+				String[] arEncodings = oReference.getEncodedReference();
 				for (int j=0; j<arEncodings.length; j++) {					
-					alMemoryContents.add(Integer.toHexString(address + j).toUpperCase() + " : " + arEncodings[j] + ";");
+						alMemoryContents.add(Integer.toHexString(address + j).toUpperCase() + " : " + arEncodings[j] + ";");
 				}
 			}
 		}
+		
+		//print the memory footer to the array list
 		printMemoryFooterToList(alMemoryContents);
 		
+		//Convert the array list to a String array, and return it
 		arContents = new String[alMemoryContents.size()];
-		alMemoryContents.toArray(arContents);
-		
+		alMemoryContents.toArray(arContents);		
 		return arContents;
 	}
 	

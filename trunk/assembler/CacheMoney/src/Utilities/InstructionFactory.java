@@ -61,6 +61,6 @@ public class InstructionFactory implements IInstructionConstants {
 	 * @return <code>true</code> if the instruction is a branch instruction, <code> false</code> otherwise
 	 */
 	public static boolean IsBranchInstruction(IInstruction oInstruction) {
-		return oInstruction.getInstructionName() == BEQ.getInstructionName() || oInstruction.getEncodedInstruction() == BNEQ.getInstructionName();
+		return oInstruction.getInstructionName() == BEQ.getInstructionName() || oInstruction.getInstructionName() == BNEQ.getInstructionName();
 	}
 }
