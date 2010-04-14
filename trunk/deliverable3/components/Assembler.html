@@ -14,7 +14,7 @@
 	<tr>
 		<td>
 			<h2>Assembler</h2>
-			<a href="Assembler.zip">Assembler.zip</a> [1570 KB]
+			<a href="Assembler.zip">Assembler.zip</a> [713 KB]
 			<br>
 			<br>
 			1.) <a href="#Contents">Contents of Assembler.zip</a><br>
@@ -24,7 +24,9 @@
 				b.) <a href="#Parsing">Instruction Parsing</a><br>
 			</div>
 			3.) <a href="#Compile">How to compile on CSE</a><br>
-			4.) <a href="#Program">Matrix Multiplication Program</a><br>
+			4.) <a href="#Demonstration">Demonstration Program</a><br>
+			5.) <a href="#Program">Matrix Multiplication Program</a><br>
+			6.) <a href="http://cse.unl.edu/~cjohnson/assembler_javadoc/">JavaDoc comments for Assembler Program</a><br>
 			<br>
 		</td>
 	</tr>
@@ -35,8 +37,7 @@
 			/design/<br>
 			<div style="padding-left:25px;">
 				The design folder consists of a few preliminary GUI pictures, assemblergui.jpg, and 
-				matricesinasm.jpg as well as the UML diagram of our finished assembler design,
-				AssemblerUML.vsd.
+				matricesinasm.jpg.  These were used in the 'brainstorming' stage.
 			</div>
 			/src/<br>
 			<div style="padding-left:25px;">
@@ -44,10 +45,22 @@
 				up into several folders: One for the GUI (Graphical User Interface) code, one for 
 				instruction code, one for interfaces, and one for Utilities. 
 			</div>
-			multwreg.asm<br>
+			CacheMoney_ExampleASM.asm<br>
 			<div style="padding-left:25px;">
-				This is our input file, the matrix multiplication program, which runs the square
+				This is a sample assembly file to demonstrate our instruction set.
+			</div>
+			CacheMoney_ExampleMIF.txt<br>
+			<div style="padding-left:25px;">
+				This was the MIF file generated from our demonstration assembly.
+			</div>
+			CacheMoney_MatrixMultiplyASM_PRELIMINARY.asm<br>
+			<div style="padding-left:25px;">
+				This is our matrix multiplication program, which runs the square
 				matrix multiplication algorithm on the data set provided at the end of the file.
+			</div>
+			CacheMoney_MatrixMultiply_PRELIMINARYMIF.txt<br>
+			<div style="padding-left:25px;">
+				This is the MIF file generated from the matrix multiplication program.
 			</div>
 		</div>
 		</td>
@@ -77,7 +90,7 @@
 						<img alt="GUI Screenshot" src="images/gui.png">
 						<br>
 						It is possible that our GUI will throw exceptions if an incorrect type of input
-						file is provided but it is important to note that the scope of the assembler is to handle
+						file is provided, but it is important to note that the scope of the assembler is to handle
 						a .asm file that is designed to be assembled by the Cache_Money assembler and the output
 						is designed to work on the Cache_Money processor, using only the Cache_Money instruction set.
 						<br>
@@ -93,6 +106,41 @@
 				<tr>
 					<td style="padding-left:25px;" align=justify>
 						The instruction parsing of the assembler works such that first all comments, denoted
+						by text following a pound symbol, are removed from the code.
+						<br><br>
+						Once the comments are removed from the lines, the parsing can begin. First, the assembler begins
+						by making one pass through the file, only to resolve symbolic references and their addresses.
+						Symbolic references may include:
+						<ul>
+							<li>References corresponding to a specific instruction (address) in code.<br>
+								i.e. symbolicAddress: add $1, $2, $3</li>
+							<li>References corresponding to values in the .data section. - <i>These will be covered in a later section</i><br>
+								i.e. numberOne: .integer 1
+						</ul><br>
+						Symbolic addresses are determined first when parsing an assembly file because certain instructions (lw, sw, addi) will need
+						to be able to use these, and must know the address associated with the specific symbol.
+						<br><br>
+						Once the symbolic references are parsed, the instructions are next.  The assembler then makes another pass
+						through the assembly file, generating instructions from the assembly code.
+						<br><br>
+						Finally, once the parsing of the assembly file is finished, the MIF (memory initializtion file can be produced).
+						The MIF file must first begin with several header lines.
+						<ul>
+							<li>WIDTH - The width of the word at each address in memory.</li>
+							<li>DEPTH - The number of addressable words in memory.</li>
+							<li>ADDRESS_RADIX - The radix of the addresses in memory.</li>
+							<li>DATA_RADIX - The radix of the values in memory</li>
+						</ul>
+						<br>
+						For our MIF file, we have chosen to set WIDTH = 32 bits.  This is necessary because our instruction
+						width is 32 bits, and all data values in memory are also 32 bits.  Since we have 512 KB of available
+						SRAM space, we calculated that 131,072 32-bit words could reside within the SRAM.  Therefore, we have
+						set our DEPTH = 131072.
+					
+						
+						<br><br>
+						<!--
+						The instruction parsing of the assembler works such that first all comments, denoted
 						by text following a pound symbol, are removed from the code. The .mif file starts
 						out with the initialization lines which define the width and depth our code. The width
 						is the same as the number of bits of our instruction (32 bits) and the depth is (512*2^13)/32
@@ -105,25 +153,44 @@
 						addresses are determined first because certain instructions (lw, sw, and addi) will need
 						to know where from to fetch/place values in memory.
 						<br>
+						<br>-->
+						The .asm file is to be organized so that instructions come first, and the data section second, which is specified 
+						by the '.data' header.  This structureis absolutely necessary for the assembler to create the correct MIF file.
+						
 						<br>
-						The .asm file is to be organized so that instructions come first, then the data which is stored
-						in symbolic references. There are two types of symbolic references as identified by our assembler,
+						<h4>The Data Section</h4>
+						Two specific data types can be stored in the data section.
+						<ul>
+							<li>Integers - specified by '.integer', which contain a single integer value.</li>
+							<li>Arrays of Integers - specified by '.array', consisting of multiple values, separated by commas.</li>
+						</ul>
+						Data Types are in fact another type of symbolic reference, and can be instanciated as such:<br>
+						numberOne: .integer 1<br>
+						arrayOfValues: .array 3,4,2342,-12128,2343,2,1,12,4214<br>
+						
+						
+						<!--There are two types of symbolic references as identified by our assembler,
 						".array" which consist of several values delimited by commas and ".integer" which consists of
-						a single integer value. In the case of matrix multiplication, the user will first specify the assembly code
+						a single integer value.-->
+						
+						<h4>Example Usage of Symbolic References and Data Types</h4>
+						In the case of matrix multiplication, the user will first specify the assembly code
 						that will perform the matrix multiplication computations, followed by the data section. The data section is
-						specified by a line that reads ".data" followed by the data itself which consists of: .size  section which
-						specifies n for two n by n matricies (a ".integer" symbolic reference), followed by each matrix in ".array"
-						 form. The matricies should be entered row by row, left to right. In the symbolic references this can be
-						 done by the following example:
-						<pre>add $3, $0, $1<br>...<br>.data #specifies the beginning of the data section<br>size: .integer 3<br>matrix1: .array 1,2,3,4,5,6,7,8,9<br>matrix2: .array 3,6,5,4,7,8,9,4,1<br>matrix3: .integer 0</pre>
+						specified by a line that reads ".data" followed by the data itself.<br>
+						The data section could consist of several variables.  First, the 'size' variable (an integer), would denote the dimension of the matrices, since
+						we will be dealing only with square matrices in this project.  This would denote 'n' for an 'n' x 'n' matrix.
+						Next, the matrices would be specified, using variables 'matrix1' and 'matrix2' (both arrays).  This will define each matrix sequentially in
+						memory, row by row, left to right.<br>
+						An example of these variables is shown here<br>
+						<pre>add $3, $0, $1<br>#...<br>#...<br>.data #specifies the beginning of the data section<br>size: .integer 3<br>matrix1: .array 1,2,3,4,5,6,7,8,9<br>matrix2: .array 3,6,5,4,7,8,9,4,1<br>matrix3: .integer 0</pre>
 						<img src="images/matricies.jpg"><br>
 						(Note here that having matrix3 after matrix2 simply lets us know where to store the
 						 computed values as we are performing the matrix multiplication)<br><br>
-						In order to access the address of the instructions, we have modified the addi instruction so that if
+						In order to access the base address of a variable/symbolic reference, we have modified the 'addi' instruction so that if
 						a user specifies a symbolic reference location to add to a register, the value that will go in the 
-						register will be the address of the symbolic reference. For example, the following instruction:
+						immediate field will be the address of the symbolic reference. For example, the following instruction:
 						<pre>addi $29, $0, matrix1	#Load the base address of the first matrix</pre>
-						would translate to the following byte code:
+						would add the address of 'matrix1' in memory to register $0, and would translate to the following byte code:
 						<pre>1 : 00111101000000000000000000011011;</pre>
 						Where the last 19-bits represent the immediate field. In this case, the last bits represent the address
 						of matrix1 which is 11011 (binary) -> 1B (hex). Line 1B is as follows in the .mif output file:
@@ -139,8 +206,93 @@
 		<td>
 			<a name="Compile"></a><h5>Compilation on CSE &nbsp;<a href="#Top">(Back to top)</a></h5>
 			<div style="padding-left:25px;" align=justify>
-			To compile our source code on CSE, one must follow these steps:
+			<ol>
+				<li>place "src" folder in any location on CSE server.</li>
+				<li>navigate to the "src" folder.  The following subdirectories should be present: GUI, Instructions, Interfaces, and Utilities</li>
+				<li>To compile type the following command: javac GUI/assembler.java</li>
+			</ol><br>
+			Please note : The compiled program will not run on the CSE environment, as our assembler is a GUI program.
+			If you wish to operate the assembler, please run in a Windows/X11 environment.
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a name="Demonstration"></a><h5>Demonstration Program &nbsp;<a href="#Top">(Back to top)</a></h5>
+			<div style="padding-left:25px;" align=justify>
+				The demonstration program is designed to demonstrate the abilities of our assembler.  In the
+				assembly file below, symbolic references are used to both address a specific point in code, or to
+				reference a value in memory, such as an integer.
+				Please refer to the Cache Money wiki for our instruction formats.<br />
+				<a href="CacheMoney_ExampleASM.asm">Example Assembly File</a><br />
+				<pre>
+########################################################
+#	CacheMoney_ExampleASM.asm
+#	Deliverable 3
+########################################################
+# 	This is an assembly file written to demonstrate
+#	the abilities of the Cache Money assembler.
+########################################################
+	
+# 	Instruction section always comes first within a file.
+		
+#	Demonstrate creating symbolic references to access within code.
+main:	add $29, $2, $17	#Demonstrates an 'ADD' instruction, $29 = $2 + $17
+		
+	addi $14, $7, 1024	#Demonstrates an 'ADDI' instruction, $14 = $7 + 1024
+				
+	mult $1, $9, $0		#Demonstrates a 'MULT instruction, $1 = $9 * $0
+		
+	nop			#Demonstrates the use of 'No Operation' - This will be translated to
+				#	add $0, $0, $0
 
+load_number1:							
+	lw $2, number1		#Demonstrates a 'LW' instruction, $2 = 1
+		
+	sw $2, number5		#Demonstrates a 'SW' instruction, memory @ number5 = $2
+		
+	beq $2, $1, main	#Demonstrates a 'BEQ' instruction, if $2 == $1, go to main
+		
+	bneq $2, $1, load_number1	#Demonstrates a 'BNEQ' instruction, if $2 != $1, go to load_number1
+		
+exit:	jmp exit			#Demonstrates a 'JMP' instruction, Move program execution to exit.							
+		
+	#This header signifies the beginning of the 'DATA' section
+	.data
+
+number1: .integer 1
+number5: .integer 5
+				</pre>
+				
+				<br /><a href="CacheMoney_ExampleMIF.txt">Generated MIF File</a><br />
+				<pre>
+-- Cache Money MIF File.
+WIDTH = 32;
+DEPTH = 131072;
+ADDRESS_RADIX = HEX;
+DATA_RADIX = BIN;
+CONTENT BEGIN
+0 : 00011101000101000100000000000000;
+1 : 00101110001110000000010000000000;
+2 : 01000001010010000000000000000000;
+3 : 00000000000000000000000000000000;
+4 : 01100010000000000000000000001001;
+5 : 10000010000000000000000000001010;
+6 : 10100010000011111111111111111010;
+7 : 11000010000011111111111111111101;
+8 : 11100000000000000000000000001000;
+9 : 00000000000000000000000000000001;
+A : 00000000000000000000000000000101;
+END;
+				</pre>
+
+				
+		
+		
+
+				
+				
+				
 			</div>
 		</td>
 	</tr>
@@ -152,7 +304,14 @@
 				algorithm. The program contains 3 nested loops that perform the matrix multiplication 
 				computation. After it computes a value, it stores it into the resultant matrix, in
 				memory. From there we will be able to use those values to find the sum of the diagonal,
-				which will be computed then displayed on the lcd.
+				which will be computed then displayed on the lcd.<br />
+				Shown below is our PRELIMINARY matrix multiplication program, written in our assembly language.
+				This matrix multiplication program has not been tested, but demonstrates the abilities of our
+				assembler.
+				
+				<br />
+				<a href="CacheMoney_MatrixMultiplyASM_PRELIMINARY.asm">Matrix Multiplication Program</a><br />
+				<a href="CacheMoney_MatrixMultiply_PRELIMINARYMIF.txt">Generated MIF File</a><br />
 			</div>
 		</td>
 	</tr>
