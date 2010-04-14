@@ -14,7 +14,7 @@ public interface IInstructionConstants {
 	/**
 	 * ADD Instruction
 	 */
-	public static final Add ADD = new Add();
+	public static final IInstruction ADD = new Add();
 	
 	/**
 	 * MULT Instruction
