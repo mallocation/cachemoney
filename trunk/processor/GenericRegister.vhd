@@ -7,11 +7,11 @@ entity GenericRegister is
 		DATA_WIDTH : natural := 32
 	);
 	port (
-			D		:		IN	STD_LOGIC_VECTOR(31 DOWNTO 0);
+			D		:		IN	STD_LOGIC_VECTOR((DATA_WIDTH-1) DOWNTO 0);
 			Clock	:		IN	STD_LOGIC;
 			Enable	:		IN	STD_LOGIC;
 			Reset	:		IN	STD_LOGIC;
-			Q		:		OUT	STD_LOGIC_VECTOR(31 DOWNTO 0));
+			Q		:		OUT	STD_LOGIC_VECTOR((DATA_WIDTH-1) DOWNTO 0));
 end GenericRegister;
 
 architecture Behavior of GenericRegister is
