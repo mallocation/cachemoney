@@ -111,4 +111,4 @@ set_global_assignment -name VHDL_FILE ForwardingUnit.vhd
 set_global_assignment -name VECTOR_WAVEFORM_FILE ForwardingUnit_WaveForm.vwf
 set_global_assignment -name VHDL_FILE BranchPredictor.vhd
 set_global_assignment -name VHDL_FILE WriteBack_Stage.vhd
-set_global_assignment -name VHDL_FILE Register.vhd
+set_global_assignment -name VHDL_FILE GenericRegister.vhd
