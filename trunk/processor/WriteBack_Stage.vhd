@@ -44,7 +44,7 @@ architecture Behavior of WriteBack_Stage is
 	signal datafromalu_reg		:	std_logic_vector(31 downto 0);
 	
 	-- Output of DestRegist
-	signal writeregister_reg		:	std_logic_vector(4 downto 0);	
+	signal writeregister_reg	:	std_logic_vector(4 downto 0);	
 begin
 
 	-- Register for WB from control unit
