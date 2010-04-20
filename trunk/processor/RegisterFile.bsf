@@ -20,7 +20,7 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 280 176)
+	(rect 16 16 304 176)
 	(text "RegisterFile" (rect 5 0 71 14)(font "Arial" (font_size 8)))
 	(text "inst" (rect 8 144 25 156)(font "Arial" ))
 	(port
@@ -73,20 +73,27 @@ applicable agreement for further details.
 		(line (pt 0 128)(pt 16 128)(line_width 3))
 	)
 	(port
-		(pt 264 32)
+		(pt 288 32)
 		(output)
 		(text "ReadReg_1[31..0]" (rect 0 0 101 14)(font "Arial" (font_size 8)))
-		(text "ReadReg_1[31..0]" (rect 142 27 243 41)(font "Arial" (font_size 8)))
-		(line (pt 264 32)(pt 248 32)(line_width 3))
+		(text "ReadReg_1[31..0]" (rect 166 27 267 41)(font "Arial" (font_size 8)))
+		(line (pt 288 32)(pt 272 32)(line_width 3))
 	)
 	(port
-		(pt 264 48)
+		(pt 288 48)
 		(output)
 		(text "ReadReg_2[31..0]" (rect 0 0 101 14)(font "Arial" (font_size 8)))
-		(text "ReadReg_2[31..0]" (rect 142 43 243 57)(font "Arial" (font_size 8)))
-		(line (pt 264 48)(pt 248 48)(line_width 3))
+		(text "ReadReg_2[31..0]" (rect 166 43 267 57)(font "Arial" (font_size 8)))
+		(line (pt 288 48)(pt 272 48)(line_width 3))
+	)
+	(port
+		(pt 288 64)
+		(output)
+		(text "REG31_TO_LCD[31..0]" (rect 0 0 128 14)(font "Arial" (font_size 8)))
+		(text "REG31_TO_LCD[31..0]" (rect 139 59 267 73)(font "Arial" (font_size 8)))
+		(line (pt 288 64)(pt 272 64)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 248 144)(line_width 1))
+		(rectangle (rect 16 16 272 144)(line_width 1))
 	)
 )
