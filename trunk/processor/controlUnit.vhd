@@ -1,10 +1,13 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
 entity controlUnit is
 PORT (
 	opCode	:	in STD_LOGIC_VECTOR(2 downto 0);
 	WBControl	:	out STD_LOGIC_VECTOR(1 downto 0);
 	MEMControl	:	out STD_LOGIC;
 	PCMuxControl	:	out STD_LOGIC_VECTOR(1 downto 0);
-	Reg2MuxSel	:	out STD_LOGIC;
+	Reg2MuxSel	:	out STD_LOGIC
 	
 );
 end controlUnit;
@@ -56,5 +59,6 @@ begin
 				Reg2MuxSel <= '0';
 			when others =>
 				null;
+		end case;
 	end process;
 end behavioral;
