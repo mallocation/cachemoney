@@ -123,3 +123,4 @@ set_global_assignment -name VHDL_FILE WriteBack_Stage.vhd
 set_global_assignment -name VHDL_FILE GenericRegister.vhd
 set_global_assignment -name BDF_FILE Memory_Stage.bdf
 set_global_assignment -name VHDL_FILE controlUnit.vhd
+set_global_assignment -name BDF_FILE CacheMoney.bdf
