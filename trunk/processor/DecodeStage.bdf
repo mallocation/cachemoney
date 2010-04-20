@@ -606,29 +606,6 @@ applicable agreement for further details.
 	(pt 800 408)
 )
 (connector
-	(pt 448 400)
-	(pt 448 392)
-	(bus)
-)
-(connector
-	(pt 456 400)
-	(pt 448 400)
-	(bus)
-)
-(connector
-	(pt 448 392)
-	(pt 416 392)
-	(bus)
-)
-(connector
-	(pt 448 320)
-	(pt 448 392)
-)
-(connector
-	(pt 448 400)
-	(pt 448 448)
-)
-(connector
 	(text "enable" (rect 378 416 409 428)(font "Arial" ))
 	(pt 368 432)
 	(pt 440 432)
@@ -636,15 +613,6 @@ applicable agreement for further details.
 (connector
 	(pt 440 432)
 	(pt 456 432)
-)
-(connector
-	(text "reset" (rect 378 432 402 444)(font "Arial" ))
-	(pt 368 448)
-	(pt 448 448)
-)
-(connector
-	(pt 448 448)
-	(pt 456 448)
 )
 (connector
 	(text "reset" (rect 818 408 842 420)(font "Arial" ))
@@ -828,8 +796,34 @@ applicable agreement for further details.
 	(pt 1360 376)
 	(bus)
 )
+(connector
+	(pt 424 392)
+	(pt 424 400)
+	(bus)
+)
+(connector
+	(pt 416 392)
+	(pt 424 392)
+	(bus)
+)
+(connector
+	(pt 424 400)
+	(pt 456 400)
+	(bus)
+)
+(connector
+	(pt 448 320)
+	(pt 448 448)
+)
+(connector
+	(text "reset" (rect 378 432 402 444)(font "Arial" ))
+	(pt 368 448)
+	(pt 448 448)
+)
+(connector
+	(pt 448 448)
+	(pt 456 448)
+)
 (junction (pt 432 416))
-(junction (pt 448 400))
-(junction (pt 448 392))
 (junction (pt 440 432))
 (junction (pt 448 448))
