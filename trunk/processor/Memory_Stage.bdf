@@ -55,7 +55,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 16 -400 208 -384)
+	(rect 16 -456 208 -440)
 	(text "INPUT" (rect 157 0 185 10)(font "Arial" (font_size 6)))
 	(text "MemoryStage_Enable" (rect 5 0 112 12)(font "Arial" ))
 	(pt 192 8)
@@ -103,7 +103,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 0 -312 184 -296)
+	(rect 16 -312 200 -296)
 	(text "INPUT" (rect 149 0 177 10)(font "Arial" (font_size 6)))
 	(text "WBControlLine[1..0]" (rect 5 0 104 12)(font "Arial" ))
 	(pt 184 8)
@@ -116,6 +116,22 @@ applicable agreement for further details.
 		(line (pt 133 12)(pt 137 8)(line_width 1))
 	)
 	(text "VCC" (rect 152 7 172 17)(font "Arial" (font_size 6)))
+)
+(pin
+	(input)
+	(rect 16 520 272 536)
+	(text "INPUT" (rect 221 0 249 10)(font "Arial" (font_size 6)))
+	(text "DestRegister_FromEXStage[4..0]" (rect 5 0 169 12)(font "Arial" ))
+	(pt 256 8)
+	(drawing
+		(line (pt 180 12)(pt 205 12)(line_width 1))
+		(line (pt 180 4)(pt 205 4)(line_width 1))
+		(line (pt 209 8)(pt 256 8)(line_width 1))
+		(line (pt 180 12)(pt 180 4)(line_width 1))
+		(line (pt 205 4)(pt 209 8)(line_width 1))
+		(line (pt 205 12)(pt 209 8)(line_width 1))
+	)
+	(text "VCC" (rect 224 7 244 17)(font "Arial" (font_size 6)))
 )
 (pin
 	(output)
@@ -154,6 +170,22 @@ applicable agreement for further details.
 	(rect 1008 -320 1205 -304)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "DataFromALU[31..0]" (rect 90 0 192 12)(font "Arial" ))
+	(pt 0 8)
+	(drawing
+		(line (pt 0 8)(pt 52 8)(line_width 1))
+		(line (pt 52 4)(pt 78 4)(line_width 1))
+		(line (pt 52 12)(pt 78 12)(line_width 1))
+		(line (pt 52 12)(pt 52 4)(line_width 1))
+		(line (pt 78 4)(pt 82 8)(line_width 1))
+		(line (pt 82 8)(pt 78 12)(line_width 1))
+		(line (pt 78 12)(pt 82 8)(line_width 1))
+	)
+)
+(pin
+	(output)
+	(rect 872 520 1121 536)
+	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
+	(text "DestRegister_ToWBStage[4..0]" (rect 90 0 244 12)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 0 8)(pt 52 8)(line_width 1))
@@ -373,6 +405,72 @@ applicable agreement for further details.
 	)
 	(annotation_block (parameter)(rect 704 -176 880 -144))
 )
+(symbol
+	(rect 472 496 704 624)
+	(text "GenericRegister" (rect 5 0 84 12)(font "Arial" ))
+	(text "RegDest" (rect 8 112 51 124)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "D[data_width-1..0]" (rect 0 0 89 12)(font "Arial" ))
+		(text "D[data_width-1..0]" (rect 21 27 110 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32)(line_width 3))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "Clock" (rect 0 0 28 12)(font "Arial" ))
+		(text "Clock" (rect 21 43 49 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48)(line_width 1))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "Enable" (rect 0 0 33 12)(font "Arial" ))
+		(text "Enable" (rect 21 59 54 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64)(line_width 1))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "Reset" (rect 0 0 29 12)(font "Arial" ))
+		(text "Reset" (rect 21 75 50 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 1))
+	)
+	(port
+		(pt 232 32)
+		(output)
+		(text "Q[data_width-1..0]" (rect 0 0 89 12)(font "Arial" ))
+		(text "Q[data_width-1..0]" (rect 122 27 211 39)(font "Arial" ))
+		(line (pt 232 32)(pt 216 32)(line_width 3))
+	)
+	(parameter
+		"DATA_WIDTH"
+		"5"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(drawing
+		(rectangle (rect 16 16 216 112)(line_width 1))
+	)
+	(annotation_block (parameter)(rect 704 464 880 496))
+)
+(symbol
+	(rect 424 592 456 624)
+	(text "GND" (rect 8 16 29 26)(font "Arial" (font_size 6)))
+	(text "inst5" (rect 3 21 26 33)(font "Arial" )(invisible))
+	(port
+		(pt 16 0)
+		(output)
+		(text "1" (rect 18 0 23 12)(font "Courier New" (bold))(invisible))
+		(text "1" (rect 18 0 23 12)(font "Courier New" (bold))(invisible))
+		(line (pt 16 8)(pt 16 0)(line_width 1))
+	)
+	(drawing
+		(line (pt 8 8)(pt 16 16)(line_width 1))
+		(line (pt 16 16)(pt 24 8)(line_width 1))
+		(line (pt 8 8)(pt 24 8)(line_width 1))
+	)
+)
 (connector
 	(text "clock_50" (rect 384 -112 427 -100)(font "Arial" ))
 	(pt 472 -96)
@@ -465,5 +563,33 @@ applicable agreement for further details.
 	(text "WBControlLine[1..0]" (rect 384 112 483 124)(font "Arial" ))
 	(pt 472 128)
 	(pt 376 128)
+	(bus)
+)
+(connector
+	(pt 472 528)
+	(pt 272 528)
+	(bus)
+)
+(connector
+	(text "clock_50" (rect 320 528 363 540)(font "Arial" ))
+	(pt 472 544)
+	(pt 312 544)
+)
+(connector
+	(text "MemoryStage_Enable" (rect 320 544 427 556)(font "Arial" ))
+	(pt 312 560)
+	(pt 472 560)
+)
+(connector
+	(pt 440 592)
+	(pt 440 576)
+)
+(connector
+	(pt 440 576)
+	(pt 472 576)
+)
+(connector
+	(pt 872 528)
+	(pt 704 528)
 	(bus)
 )
