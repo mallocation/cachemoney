@@ -31,8 +31,7 @@ use ieee.std_logic_1164.all;
 entity LCD_Display is
 	port
 	(
-		--data		:	in		std_logic_vector(31 downto 0);
-		data		:	in 	std_logic_vector(15 downto 0);
+		data		:	in	std_logic_vector(31 downto 0);
 		clock_50	:	in	bit;
 		lcd_on		:	out	std_logic;
 		lcd_e		:	out	std_logic;
@@ -47,7 +46,6 @@ architecture BEHAVIOR of LCD_Display is
 	type CONTROLLER_STATE is (FUNCTION_SET, DISPLAY_OFF, DISPLAY_CLEAR, DISPLAY_ON, MODE_SET, WRITE_0, WRITE_X, 
 							  WRITE_I7, WRITE_I6, WRITE_I5, WRITE_I4, WRITE_I3, WRITE_I2, WRITE_I1, WRITE_I0,
 							  HOLD, LATCH_INFO);
-							  --WRITE_CHARACTER, HOLD, LATCH_INFO);
 	signal state, next_state	:	CONTROLLER_STATE;
 	signal current_display : std_logic_vector(31 downto 0);	
 	signal clock_20khz	:	bit;
@@ -213,9 +211,8 @@ begin
 					state <= next_state;					
 				when HOLD =>
 					state <= HOLD;
-					--TODO : Change this if statement for 32 bit operation
-					if not (current_display = X"0000" & data) then
-						current_display <= X"0000" & data;
+					if not (current_display = data) then
+						current_display <= data;
 						state <= FUNCTION_SET;
 					end if;
 				when OTHERS =>
