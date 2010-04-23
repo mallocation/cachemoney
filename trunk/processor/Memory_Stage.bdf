@@ -135,7 +135,7 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 1008 -384 1265 -368)
+	(rect 1008 -400 1265 -384)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "WBControlLine_ToWBStage[1..0]" (rect 90 0 252 12)(font "Arial" ))
 	(pt 0 8)
@@ -151,7 +151,7 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 1008 -352 1224 -336)
+	(rect 1008 -368 1224 -352)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "DataFromMemory[31..0]" (rect 90 0 211 12)(font "Arial" ))
 	(pt 0 8)
@@ -167,7 +167,7 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 1008 -320 1205 -304)
+	(rect 1008 -336 1205 -320)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "DataFromALU[31..0]" (rect 90 0 192 12)(font "Arial" ))
 	(pt 0 8)
@@ -471,6 +471,72 @@ applicable agreement for further details.
 		(line (pt 8 8)(pt 24 8)(line_width 1))
 	)
 )
+(symbol
+	(rect 472 -360 704 -232)
+	(text "GenericRegister" (rect 5 0 84 12)(font "Arial" ))
+	(text "ALUOutputFromEXStage" (rect 8 112 129 124)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "D[data_width-1..0]" (rect 0 0 89 12)(font "Arial" ))
+		(text "D[data_width-1..0]" (rect 21 27 110 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32)(line_width 3))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "Clock" (rect 0 0 28 12)(font "Arial" ))
+		(text "Clock" (rect 21 43 49 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48)(line_width 1))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "Enable" (rect 0 0 33 12)(font "Arial" ))
+		(text "Enable" (rect 21 59 54 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64)(line_width 1))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "Reset" (rect 0 0 29 12)(font "Arial" ))
+		(text "Reset" (rect 21 75 50 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 1))
+	)
+	(port
+		(pt 232 32)
+		(output)
+		(text "Q[data_width-1..0]" (rect 0 0 89 12)(font "Arial" ))
+		(text "Q[data_width-1..0]" (rect 122 27 211 39)(font "Arial" ))
+		(line (pt 232 32)(pt 216 32)(line_width 3))
+	)
+	(parameter
+		"DATA_WIDTH"
+		"32"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(drawing
+		(rectangle (rect 16 16 216 112)(line_width 1))
+	)
+	(annotation_block (parameter)(rect 704 -392 880 -360))
+)
+(symbol
+	(rect 424 -256 456 -224)
+	(text "GND" (rect 8 16 29 26)(font "Arial" (font_size 6)))
+	(text "inst2" (rect 3 21 26 33)(font "Arial" )(invisible))
+	(port
+		(pt 16 0)
+		(output)
+		(text "1" (rect 18 0 23 12)(font "Courier New" (bold))(invisible))
+		(text "1" (rect 18 0 23 12)(font "Courier New" (bold))(invisible))
+		(line (pt 16 8)(pt 16 0)(line_width 1))
+	)
+	(drawing
+		(line (pt 8 8)(pt 16 16)(line_width 1))
+		(line (pt 16 16)(pt 24 8)(line_width 1))
+		(line (pt 8 8)(pt 24 8)(line_width 1))
+	)
+)
 (connector
 	(text "clock_50" (rect 384 -112 427 -100)(font "Arial" ))
 	(pt 472 -96)
@@ -512,12 +578,6 @@ applicable agreement for further details.
 	(text "MEMControlLine" (rect 320 304 399 316)(font "Arial" ))
 	(pt 312 320)
 	(pt 472 320)
-)
-(connector
-	(text "EXStage_ALUResult[31..0]" (rect 888 -328 1020 -316)(font "Arial" ))
-	(pt 1008 -312)
-	(pt 880 -312)
-	(bus)
 )
 (connector
 	(text "DataFromMemory[31..0]" (rect 696 288 817 300)(font "Arial" ))
@@ -591,5 +651,35 @@ applicable agreement for further details.
 (connector
 	(pt 872 528)
 	(pt 704 528)
+	(bus)
+)
+(connector
+	(text "EXStage_ALUResult[31..0]" (rect 336 -344 468 -332)(font "Arial" ))
+	(pt 472 -328)
+	(pt 328 -328)
+	(bus)
+)
+(connector
+	(text "clock_50" (rect 384 -328 427 -316)(font "Arial" ))
+	(pt 472 -312)
+	(pt 376 -312)
+)
+(connector
+	(text "MemoryStage_Enable" (rect 384 -312 491 -300)(font "Arial" ))
+	(pt 472 -296)
+	(pt 376 -296)
+)
+(connector
+	(pt 472 -280)
+	(pt 440 -280)
+)
+(connector
+	(pt 440 -280)
+	(pt 440 -256)
+)
+(connector
+	(text "<<__$DEF_ALIAS1124>>" (rect 888 -344 1011 -332)(font "Arial" )(invisible))
+	(pt 704 -328)
+	(pt 1008 -328)
 	(bus)
 )
