@@ -33,27 +33,27 @@
 --applicable agreement for further details.
 
 
---lpm_constant CBX_AUTO_BLACKBOX="ALL" ENABLE_RUNTIME_MOD="NO" LPM_CVALUE=00000004 LPM_WIDTH=32 result
+--lpm_constant CBX_AUTO_BLACKBOX="ALL" ENABLE_RUNTIME_MOD="NO" LPM_CVALUE=00000001 LPM_WIDTH=32 result
 --VERSION_BEGIN 9.0SP2 cbx_lpm_constant 2008:10:27:14:59:22:SJ cbx_mgl 2009:02:26:16:06:21:SJ  VERSION_END
 
 --synthesis_resources = 
  LIBRARY ieee;
  USE ieee.std_logic_1164.all;
 
- ENTITY  constantfour_lpm_constant_v09 IS 
+ ENTITY  constantfour_lpm_constant_s09 IS 
 	 PORT 
 	 ( 
 		 result	:	OUT  STD_LOGIC_VECTOR (31 DOWNTO 0)
 	 ); 
- END constantfour_lpm_constant_v09;
+ END constantfour_lpm_constant_s09;
 
- ARCHITECTURE RTL OF constantfour_lpm_constant_v09 IS
+ ARCHITECTURE RTL OF constantfour_lpm_constant_s09 IS
 
  BEGIN
 
-	result <= "00000000000000000000000000000100";
+	result <= "00000000000000000000000000000001";
 
- END RTL; --constantfour_lpm_constant_v09
+ END RTL; --constantfour_lpm_constant_s09
 --VALID FILE
 
 
@@ -74,7 +74,7 @@ ARCHITECTURE RTL OF constantfour IS
 
 
 
-	COMPONENT constantfour_lpm_constant_v09
+	COMPONENT constantfour_lpm_constant_s09
 	PORT (
 			result	: OUT STD_LOGIC_VECTOR (31 DOWNTO 0)
 	);
@@ -83,7 +83,7 @@ ARCHITECTURE RTL OF constantfour IS
 BEGIN
 	result    <= sub_wire0(31 DOWNTO 0);
 
-	constantfour_lpm_constant_v09_component : constantfour_lpm_constant_v09
+	constantfour_lpm_constant_s09_component : constantfour_lpm_constant_s09
 	PORT MAP (
 		result => sub_wire0
 	);
@@ -100,9 +100,9 @@ END RTL;
 -- Retrieval info: PRIVATE: JTAG_ID STRING "NONE"
 -- Retrieval info: PRIVATE: Radix NUMERIC "10"
 -- Retrieval info: PRIVATE: SYNTH_WRAPPER_GEN_POSTFIX STRING "0"
--- Retrieval info: PRIVATE: Value NUMERIC "4"
+-- Retrieval info: PRIVATE: Value NUMERIC "1"
 -- Retrieval info: PRIVATE: nBit NUMERIC "32"
--- Retrieval info: CONSTANT: LPM_CVALUE NUMERIC "4"
+-- Retrieval info: CONSTANT: LPM_CVALUE NUMERIC "1"
 -- Retrieval info: CONSTANT: LPM_HINT STRING "ENABLE_RUNTIME_MOD=NO"
 -- Retrieval info: CONSTANT: LPM_TYPE STRING "LPM_CONSTANT"
 -- Retrieval info: CONSTANT: LPM_WIDTH NUMERIC "32"
