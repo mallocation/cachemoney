@@ -4,6 +4,10 @@ use ieee.std_logic_1164.all;
 entity ForwardingUnit is
 	port
 	(
+--		RegWrite_FromMEMStage 	:	in std_logic;
+--		RegWrite_FromWBStage	:	in std_logic;
+--		RegDest_FromMEMStage	:	in std_logic_vector(4 downto 0);
+--		RegDest_FromWBStage		:	in std_logic_vector(4 downto 0);
 		ExMemRegWrite : in std_logic;
 		MemWbRegWrite : in std_logic;
 		ExMemRd	:	in	std_logic_vector(4 downto 0);

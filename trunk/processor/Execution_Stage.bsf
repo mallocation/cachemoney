@@ -40,8 +40,8 @@ applicable agreement for further details.
 	(port
 		(pt 0 64)
 		(input)
-		(text "Reset" (rect 0 0 33 14)(font "Arial" (font_size 8)))
-		(text "Reset" (rect 21 59 54 73)(font "Arial" (font_size 8)))
+		(text "FlushEXStage" (rect 0 0 79 14)(font "Arial" (font_size 8)))
+		(text "FlushEXStage" (rect 21 59 100 73)(font "Arial" (font_size 8)))
 		(line (pt 0 64)(pt 16 64)(line_width 1))
 	)
 	(port

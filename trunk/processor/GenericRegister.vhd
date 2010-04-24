@@ -16,12 +16,14 @@ end GenericRegister;
 
 architecture Behavior of GenericRegister is
 begin
-	process (Reset, Clock)
+	process (Clock)
 	begin
-		if Reset = '1' then
-			Q <= (OTHERS => '0');
-		elsif Clock'EVENT and Clock = '1' and Enable= '1' then
-			Q <= D;
+		if Clock'EVENT and Clock='1' then
+			if Reset = '1' then
+				Q <= (OTHERS => '0');
+			elsif Enable='1' then
+				Q <= D;
+			end if;
 		end if;
 	end process;
 end Behavior;

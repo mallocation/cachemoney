@@ -20,7 +20,7 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 296 176)
+	(rect 16 16 304 176)
 	(text "InstructionFetch_Stage" (rect 5 0 135 14)(font "Arial" (font_size 8)))
 	(text "inst" (rect 8 144 25 156)(font "Arial" ))
 	(port
@@ -66,13 +66,20 @@ applicable agreement for further details.
 		(line (pt 0 112)(pt 16 112)(line_width 3))
 	)
 	(port
-		(pt 280 32)
+		(pt 288 32)
+		(output)
+		(text "PC_From_IF[31..0]" (rect 0 0 102 14)(font "Arial" (font_size 8)))
+		(text "PC_From_IF[31..0]" (rect 165 27 267 41)(font "Arial" (font_size 8)))
+		(line (pt 288 32)(pt 272 32)(line_width 3))
+	)
+	(port
+		(pt 288 48)
 		(output)
 		(text "Instruction[31..0]" (rect 0 0 94 14)(font "Arial" (font_size 8)))
-		(text "Instruction[31..0]" (rect 165 27 259 41)(font "Arial" (font_size 8)))
-		(line (pt 280 32)(pt 264 32)(line_width 3))
+		(text "Instruction[31..0]" (rect 173 43 267 57)(font "Arial" (font_size 8)))
+		(line (pt 288 48)(pt 272 48)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 264 144)(line_width 1))
+		(rectangle (rect 16 16 272 144)(line_width 1))
 	)
 )

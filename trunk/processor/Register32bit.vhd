@@ -22,12 +22,14 @@ END Register32bit;
 
 ARCHITECTURE Behavior OF Register32bit IS
 BEGIN
-	PROCESS (Reset, Clock)
-	BEGIN	
-		IF Reset = '1' THEN
-			Q <= (OTHERS => '0');
-		ELSIF Clock'EVENT and Clock = '1' and Enable= '1' THEN
-			Q <= D;
-		END IF;
-	END PROCESS;
+	process (Clock)
+	begin
+		if Clock'EVENT and Clock='1' then
+			if Reset = '1' then
+				Q <= (OTHERS => '0');
+			elsif Enable='1' then
+				Q <= D;
+			end if;
+		end if;
+	end process;
 END Behavior;
