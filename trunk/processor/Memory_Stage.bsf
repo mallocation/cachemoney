@@ -33,9 +33,9 @@ applicable agreement for further details.
 	(port
 		(pt 0 48)
 		(input)
-		(text "MEMControlLine" (rect 0 0 89 14)(font "Arial" (font_size 8)))
-		(text "MEMControlLine" (rect 21 43 110 57)(font "Arial" (font_size 8)))
-		(line (pt 0 48)(pt 16 48)(line_width 1))
+		(text "MEMControlLine[1..0]" (rect 0 0 118 14)(font "Arial" (font_size 8)))
+		(text "MEMControlLine[1..0]" (rect 21 43 139 57)(font "Arial" (font_size 8)))
+		(line (pt 0 48)(pt 16 48)(line_width 3))
 	)
 	(port
 		(pt 0 64)

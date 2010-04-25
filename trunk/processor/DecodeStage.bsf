@@ -101,6 +101,13 @@ applicable agreement for further details.
 		(line (pt 0 192)(pt 16 192)(line_width 3))
 	)
 	(port
+		(pt 0 208)
+		(input)
+		(text "MemRead_From_EX" (rect 0 0 113 14)(font "Arial" (font_size 8)))
+		(text "MemRead_From_EX" (rect 21 203 134 217)(font "Arial" (font_size 8)))
+		(line (pt 0 208)(pt 16 208)(line_width 1))
+	)
+	(port
 		(pt 376 32)
 		(output)
 		(text "EnableIFStage" (rect 0 0 80 14)(font "Arial" (font_size 8)))
@@ -124,9 +131,9 @@ applicable agreement for further details.
 	(port
 		(pt 376 80)
 		(output)
-		(text "MEMControl_ToEX" (rect 0 0 102 14)(font "Arial" (font_size 8)))
-		(text "MEMControl_ToEX" (rect 253 75 355 89)(font "Arial" (font_size 8)))
-		(line (pt 376 80)(pt 360 80)(line_width 1))
+		(text "MEMControl_ToEX[1..0]" (rect 0 0 130 14)(font "Arial" (font_size 8)))
+		(text "MEMControl_ToEX[1..0]" (rect 225 75 355 89)(font "Arial" (font_size 8)))
+		(line (pt 376 80)(pt 360 80)(line_width 3))
 	)
 	(port
 		(pt 376 96)

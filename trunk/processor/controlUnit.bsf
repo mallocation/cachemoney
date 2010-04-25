@@ -47,9 +47,9 @@ applicable agreement for further details.
 	(port
 		(pt 224 48)
 		(output)
-		(text "MEMControl" (rect 0 0 59 12)(font "Arial" ))
-		(text "MEMControl" (rect 144 43 203 55)(font "Arial" ))
-		(line (pt 224 48)(pt 208 48)(line_width 1))
+		(text "MEMControl[1..0]" (rect 0 0 84 12)(font "Arial" ))
+		(text "MEMControl[1..0]" (rect 119 43 203 55)(font "Arial" ))
+		(line (pt 224 48)(pt 208 48)(line_width 3))
 	)
 	(port
 		(pt 224 64)

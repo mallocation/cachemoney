@@ -10,6 +10,7 @@ entity HazardDetectionUnit is
 		MEMRd_WBWr_From_MEM	:	in 	std_logic;
 		RegDestFromWBStage	:	in	std_logic_vector(4 downto 0);
 		WBWr_From_WB		:	in 	std_logic;
+		MemReadFromEXStage  :   in std_logic;
 		FlushIDStage	:	out std_logic;
 		EnableIDStage	:	out std_logic;
 		EnableIFStage	:	out std_logic;
@@ -26,29 +27,38 @@ begin
 	InstructionRD <= Instruction(28 downto 24);
 	InstructionRS <= Instruction(23 downto 19);
 	
-	process(opcode, InstructionRD, InstructionRS, RegDestFromEXStage, RegDestFromMEMStage, RegDestFromWBStage)
+	process(opcode, InstructionRD, InstructionRS, RegDestFromEXStage, RegDestFromMEMStage, RegDestFromWBStage, MemReadFromEXStage, MEMRd_WBWr_From_EX,MEMRd_WBWr_From_MEM,WBWr_From_WB)
 	begin
-		if opcode = "101" or opcode = "110" then -- Branch on equal, branch on not equal
-			EnableIDStage <= '0';	-- don't allow writing to the decode stage
-
-			if (((InstructionRD = RegDestFromEXStage or InstructionRS = RegDestFromEXStage) and MemRD_WBWr_From_EX = '1') or
-				((InstructionRD = RegDestFromMEMStage or InstructionRS = RegDestFromMEMStage) and MemRD_WBWr_From_MEM = '1') or 
-				((InstructionRD = RegDestFromWBStage or InstructionRS = RegDestFromWBStage) and WBWr_From_WB = '1')) then
-				--wait for other instructions to complete
-				FlushIDStage <= '0';
-				EnableIFStage <= '0';
-				FlushEXStage <= '1';
-			else
-				--analyze the branch, flush the ID stage, and re-enable the IF stage
-				FlushIDStage <= '1';
-				EnableIFStage <= '1';
-				FlushEXStage <= '0';
-			end if;
-		else
-			EnableIDStage <= '1';
+		
+		if MemReadFromEXStage = '1' then
+			--flush ex stage, stall IF and ID stages
+			FlushExStage <= '1';
 			FlushIDStage <= '0';
-			EnableIFStage <= '1';
-			FlushExStage <= '0';	
+			EnableIDStage <= '0';
+			EnableIFStage <= '0';
+		else
+			if opcode = "101" or opcode = "110" then -- Branch on equal, branch on not equal
+				EnableIDStage <= '0';	-- don't allow writing to the decode stage
+
+				if (((InstructionRD = RegDestFromEXStage or InstructionRS = RegDestFromEXStage) and MemRD_WBWr_From_EX = '1') or
+					((InstructionRD = RegDestFromMEMStage or InstructionRS = RegDestFromMEMStage) and MemRD_WBWr_From_MEM = '1') or 
+					((InstructionRD = RegDestFromWBStage or InstructionRS = RegDestFromWBStage) and WBWr_From_WB = '1')) then
+					--wait for other instructions to complete
+					FlushIDStage <= '0';
+					EnableIFStage <= '0';
+					FlushEXStage <= '1';
+				else
+					--analyze the branch, flush the ID stage, and re-enable the IF stage
+					FlushIDStage <= '1';
+					EnableIFStage <= '1';
+					FlushEXStage <= '0';
+				end if;
+			else
+				EnableIDStage <= '1';
+				FlushIDStage <= '0';
+				EnableIFStage <= '1';
+				FlushExStage <= '0';	
+			end if;
 		end if;
 	end process;
 end behavior;

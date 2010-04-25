@@ -39,22 +39,6 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 16 -336 184 -320)
-	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
-	(text "MEMControlLine" (rect 5 0 84 12)(font "Arial" ))
-	(pt 168 8)
-	(drawing
-		(line (pt 92 12)(pt 117 12)(line_width 1))
-		(line (pt 92 4)(pt 117 4)(line_width 1))
-		(line (pt 121 8)(pt 168 8)(line_width 1))
-		(line (pt 92 12)(pt 92 4)(line_width 1))
-		(line (pt 117 4)(pt 121 8)(line_width 1))
-		(line (pt 117 12)(pt 121 8)(line_width 1))
-	)
-	(text "VCC" (rect 136 7 156 17)(font "Arial" (font_size 6)))
-)
-(pin
-	(input)
 	(rect 16 -456 208 -440)
 	(text "INPUT" (rect 157 0 185 10)(font "Arial" (font_size 6)))
 	(text "MemoryStage_Enable" (rect 5 0 112 12)(font "Arial" ))
@@ -132,6 +116,22 @@ applicable agreement for further details.
 		(line (pt 205 12)(pt 209 8)(line_width 1))
 	)
 	(text "VCC" (rect 224 7 244 17)(font "Arial" (font_size 6)))
+)
+(pin
+	(input)
+	(rect -8 -336 184 -320)
+	(text "INPUT" (rect 157 0 185 10)(font "Arial" (font_size 6)))
+	(text "MEMControlLine[1..0]" (rect 5 0 110 12)(font "Arial" ))
+	(pt 192 8)
+	(drawing
+		(line (pt 116 12)(pt 141 12)(line_width 1))
+		(line (pt 116 4)(pt 141 4)(line_width 1))
+		(line (pt 145 8)(pt 192 8)(line_width 1))
+		(line (pt 116 12)(pt 116 4)(line_width 1))
+		(line (pt 141 4)(pt 145 8)(line_width 1))
+		(line (pt 141 12)(pt 145 8)(line_width 1))
+	)
+	(text "VCC" (rect 160 7 180 17)(font "Arial" (font_size 6)))
 )
 (pin
 	(output)
@@ -279,55 +279,6 @@ applicable agreement for further details.
 		(line (pt 16 16)(pt 24 8)(line_width 1))
 		(line (pt 8 8)(pt 24 8)(line_width 1))
 	)
-)
-(symbol
-	(rect 472 -144 704 -16)
-	(text "GenericRegister" (rect 5 0 84 12)(font "Arial" ))
-	(text "MEMControlLineRegister" (rect 8 112 128 124)(font "Arial" ))
-	(port
-		(pt 0 32)
-		(input)
-		(text "D[data_width-1..0]" (rect 0 0 89 12)(font "Arial" ))
-		(text "D[data_width-1..0]" (rect 21 27 110 39)(font "Arial" ))
-		(line (pt 0 32)(pt 16 32)(line_width 3))
-	)
-	(port
-		(pt 0 48)
-		(input)
-		(text "Clock" (rect 0 0 28 12)(font "Arial" ))
-		(text "Clock" (rect 21 43 49 55)(font "Arial" ))
-		(line (pt 0 48)(pt 16 48)(line_width 1))
-	)
-	(port
-		(pt 0 64)
-		(input)
-		(text "Enable" (rect 0 0 33 12)(font "Arial" ))
-		(text "Enable" (rect 21 59 54 71)(font "Arial" ))
-		(line (pt 0 64)(pt 16 64)(line_width 1))
-	)
-	(port
-		(pt 0 80)
-		(input)
-		(text "Reset" (rect 0 0 29 12)(font "Arial" ))
-		(text "Reset" (rect 21 75 50 87)(font "Arial" ))
-		(line (pt 0 80)(pt 16 80)(line_width 1))
-	)
-	(port
-		(pt 232 32)
-		(output)
-		(text "Q[data_width-1..0]" (rect 0 0 89 12)(font "Arial" ))
-		(text "Q[data_width-1..0]" (rect 122 27 211 39)(font "Arial" ))
-		(line (pt 232 32)(pt 216 32)(line_width 3))
-	)
-	(parameter
-		"DATA_WIDTH"
-		"1"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
-	(drawing
-		(rectangle (rect 16 16 216 112)(line_width 1))
-	)
-	(annotation_block (parameter)(rect 704 -176 880 -144))
 )
 (symbol
 	(rect 472 496 704 624)
@@ -537,6 +488,55 @@ applicable agreement for further details.
 		(line (pt 80 112)(pt 80 36)(line_width 1))
 	)
 )
+(symbol
+	(rect 472 -144 704 -16)
+	(text "GenericRegister" (rect 5 0 84 12)(font "Arial" ))
+	(text "MEMControlLineRegister" (rect 8 112 128 124)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "D[data_width-1..0]" (rect 0 0 89 12)(font "Arial" ))
+		(text "D[data_width-1..0]" (rect 21 27 110 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32)(line_width 3))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "Clock" (rect 0 0 28 12)(font "Arial" ))
+		(text "Clock" (rect 21 43 49 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48)(line_width 1))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "Enable" (rect 0 0 33 12)(font "Arial" ))
+		(text "Enable" (rect 21 59 54 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64)(line_width 1))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "Reset" (rect 0 0 29 12)(font "Arial" ))
+		(text "Reset" (rect 21 75 50 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 1))
+	)
+	(port
+		(pt 232 32)
+		(output)
+		(text "Q[data_width-1..0]" (rect 0 0 89 12)(font "Arial" ))
+		(text "Q[data_width-1..0]" (rect 122 27 211 39)(font "Arial" ))
+		(line (pt 232 32)(pt 216 32)(line_width 3))
+	)
+	(parameter
+		"DATA_WIDTH"
+		"2"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(drawing
+		(rectangle (rect 16 16 216 112)(line_width 1))
+	)
+	(annotation_block (parameter)(rect 704 -176 880 -144))
+)
 (connector
 	(text "clock_50" (rect 384 -112 427 -100)(font "Arial" ))
 	(pt 472 -96)
@@ -548,7 +548,7 @@ applicable agreement for further details.
 	(pt 376 144)
 )
 (connector
-	(text "MemoryStage_Enable" (rect 384 -96 491 -84)(font "Arial" ))
+	(text "MemoryStage_Enable" (rect 368 -96 475 -84)(font "Arial" ))
 	(pt 472 -80)
 	(pt 376 -80)
 )
@@ -556,12 +556,6 @@ applicable agreement for further details.
 	(text "MemoryStage_Enable" (rect 384 144 491 156)(font "Arial" ))
 	(pt 472 160)
 	(pt 376 160)
-)
-(connector
-	(text "Memory_WriteEnable" (rect 712 -128 817 -116)(font "Arial" ))
-	(pt 704 -112)
-	(pt 824 -112)
-	(bus)
 )
 (connector
 	(text "EXStage_ALUResult[6..0]" (rect 320 320 446 332)(font "Arial" ))
@@ -573,11 +567,6 @@ applicable agreement for further details.
 	(text "clock_50" (rect 320 368 363 380)(font "Arial" ))
 	(pt 472 384)
 	(pt 312 384)
-)
-(connector
-	(text "MEMControlLine" (rect 320 304 399 316)(font "Arial" ))
-	(pt 312 320)
-	(pt 472 320)
 )
 (connector
 	(text "DataFromMemory[31..0]" (rect 696 288 817 300)(font "Arial" ))
@@ -611,12 +600,6 @@ applicable agreement for further details.
 	(text "MemoryDataToWrite[31..0]" (rect 320 288 453 300)(font "Arial" ))
 	(pt 472 304)
 	(pt 312 304)
-	(bus)
-)
-(connector
-	(text "MEMControlLine" (rect 384 -128 463 -116)(font "Arial" ))
-	(pt 472 -112)
-	(pt 376 -112)
 	(bus)
 )
 (connector
@@ -683,3 +666,22 @@ applicable agreement for further details.
 	(pt 1008 -328)
 	(bus)
 )
+(connector
+	(text "MEMControlLine[1..0]" (rect 360 -128 465 -116)(font "Arial" ))
+	(pt 472 -112)
+	(pt 376 -112)
+	(bus)
+)
+(connector
+	(text "MemControl[1..0]" (rect 712 -128 796 -116)(font "Arial" ))
+	(pt 704 -112)
+	(pt 848 -112)
+	(bus)
+)
+(connector
+	(text "MEMControlLine[1]" (rect 320 304 412 316)(font "Arial" ))
+	(pt 312 320)
+	(pt 472 320)
+)
+(text "MemControlLine[1] = MemWriteEnable" (rect -32 -392 179 -378)(font "Arial" (font_size 8)))
+(text "MemControlLine[0] = MemRead" (rect -32 -376 141 -362)(font "Arial" (font_size 8)))
