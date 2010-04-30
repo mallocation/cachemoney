@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 
 entity HazardDetectionUnit is
 	port (
-		Instruction		:	in	std_logic_vector(31 downto 0);
+		Instruction			:	in	std_logic_vector(31 downto 0);
 		RegDestFromEXStage	:	in std_logic_vector(4 downto 0);
 		MEMRd_WBWr_From_EX	:	in std_logic;
 		RegDestFromMEMStage	:	in 	std_logic_vector(4 downto 0);
@@ -11,29 +11,30 @@ entity HazardDetectionUnit is
 		RegDestFromWBStage	:	in	std_logic_vector(4 downto 0);
 		WBWr_From_WB		:	in 	std_logic;
 		MemReadFromEXStage  :   in std_logic;
-		FlushIDStage	:	out std_logic;
-		EnableIDStage	:	out std_logic;
-		EnableIFStage	:	out std_logic;
-		FlushEXStage	:	out std_logic
-	);
+		FlushIDStage		:	out std_logic;
+		EnableIDStage		:	out std_logic;
+		EnableIFStage		:	out std_logic;
+		FlushEXStage		:	out std_logic
+	);	
 end HazardDetectionUnit;
 
 architecture behavior of HazardDetectionUnit is
 	signal opcode	:	std_logic_vector(2 downto 0);
 	signal InstructionRD	:	std_logic_vector(4 downto 0);
 	signal InstructionRS	:	std_logic_vector(4 downto 0);
+	signal InstructionRT    :   std_logic_vector(4 downto 0);
 begin
 	opcode <= Instruction(31 downto 29);
 	InstructionRD <= Instruction(28 downto 24);
 	InstructionRS <= Instruction(23 downto 19);
+	InstructionRT <= Instruction(18 downto 14);
 	
-	process(opcode, InstructionRD, InstructionRS, RegDestFromEXStage, RegDestFromMEMStage, RegDestFromWBStage, MemReadFromEXStage, MEMRd_WBWr_From_EX,MEMRd_WBWr_From_MEM,WBWr_From_WB)
+	process(opcode, InstructionRD, InstructionRS, InstructionRT, RegDestFromEXStage, RegDestFromMEMStage, RegDestFromWBStage, MemReadFromEXStage, MEMRd_WBWr_From_EX,MEMRd_WBWr_From_MEM,WBWr_From_WB)
 	begin
 		
-		if MemReadFromEXStage = '1' then
+		if MemReadFromEXStage = '1' and ((RegDestFromEXStage = InstructionRS) or (RegDestFromEXStage = InstructionRT)) then
 			--flush ex stage, stall IF and ID stages
-			FlushExStage <= '1';
-			FlushIDStage <= '0';
+			FlushEXStage <= '1';
 			EnableIDStage <= '0';
 			EnableIFStage <= '0';
 		else
