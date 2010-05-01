@@ -54,7 +54,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect -744 -376 -576 -360)
+	(rect -728 -376 -560 -360)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ALUControl" (rect 5 0 61 12)(font "Arial" ))
 	(pt 168 8)
@@ -70,7 +70,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect -752 -224 -584 -208)
+	(rect -728 -224 -560 -208)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "R1[31..0]" (rect 5 0 51 12)(font "Arial" ))
 	(pt 168 8)
@@ -86,7 +86,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect -752 -80 -584 -64)
+	(rect -728 -80 -560 -64)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "R2[31..0]" (rect 5 0 51 12)(font "Arial" ))
 	(pt 168 8)
@@ -102,7 +102,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect -752 72 -584 88)
+	(rect -728 72 -560 88)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "Immediate[31..0]" (rect 5 0 88 12)(font "Arial" ))
 	(pt 168 8)
@@ -118,7 +118,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect -752 240 -584 256)
+	(rect -728 240 -560 256)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ALUSrcBMux" (rect 5 0 69 12)(font "Arial" ))
 	(pt 168 8)
@@ -134,7 +134,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect -752 680 -584 696)
+	(rect -728 680 -560 696)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "RTReg[4..0]" (rect 5 0 65 12)(font "Arial" ))
 	(pt 168 8)
@@ -150,7 +150,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect -752 824 -584 840)
+	(rect -728 824 -560 840)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "RDReg[4..0]" (rect 5 0 67 12)(font "Arial" ))
 	(pt 168 8)
@@ -182,7 +182,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect -768 -520 -576 -504)
+	(rect -752 -520 -560 -504)
 	(text "INPUT" (rect 157 0 185 10)(font "Arial" (font_size 6)))
 	(text "WBControlLine[1..0]" (rect 5 0 104 12)(font "Arial" ))
 	(pt 192 8)
@@ -1147,285 +1147,14 @@ applicable agreement for further details.
 	(pt -544 -720)
 )
 (connector
+	(text "Clock" (rect -312 -656 -284 -644)(font "Arial" ))
+	(pt -320 -640)
 	(pt -208 -640)
-	(pt -288 -640)
-)
-(connector
-	(pt -208 -496)
-	(pt -288 -496)
-)
-(connector
-	(pt -288 -496)
-	(pt -288 -640)
-)
-(connector
-	(pt -208 -352)
-	(pt -288 -352)
-)
-(connector
-	(pt -288 -352)
-	(pt -288 -496)
-)
-(connector
-	(pt -208 -200)
-	(pt -288 -200)
-)
-(connector
-	(pt -208 -56)
-	(pt -288 -56)
-)
-(connector
-	(pt -288 -56)
-	(pt -288 -200)
-)
-(connector
-	(pt -208 96)
-	(pt -288 96)
-)
-(connector
-	(pt -288 96)
-	(pt -288 -56)
-)
-(connector
-	(pt -208 264)
-	(pt -288 264)
-)
-(connector
-	(pt -288 -200)
-	(pt -288 -280)
-)
-(connector
-	(pt -288 -280)
-	(pt -288 -352)
-)
-(connector
-	(text "Clock" (rect -392 -296 -364 -284)(font "Arial" ))
-	(pt -400 -280)
-	(pt -288 -280)
-)
-(connector
-	(pt -208 -624)
-	(pt -392 -624)
-)
-(connector
-	(pt -392 280)
-	(pt -208 280)
-)
-(connector
-	(pt -208 112)
-	(pt -392 112)
-)
-(connector
-	(pt -208 -40)
-	(pt -392 -40)
-)
-(connector
-	(pt -392 -40)
-	(pt -392 112)
-)
-(connector
-	(pt -208 -184)
-	(pt -392 -184)
-)
-(connector
-	(pt -392 -184)
-	(pt -392 -40)
-)
-(connector
-	(pt -208 -336)
-	(pt -392 -336)
-)
-(connector
-	(pt -208 -480)
-	(pt -392 -480)
-)
-(connector
-	(pt -392 -624)
-	(pt -392 -480)
-)
-(connector
-	(pt -392 -480)
-	(pt -392 -336)
-)
-(connector
-	(pt -392 -336)
-	(pt -392 -232)
-)
-(connector
-	(pt -392 -232)
-	(pt -392 -184)
-)
-(connector
-	(text "Enable" (rect -504 -248 -471 -236)(font "Arial" ))
-	(pt -512 -232)
-	(pt -392 -232)
-)
-(connector
-	(pt -208 -608)
-	(pt -552 -608)
-)
-(connector
-	(pt -552 296)
-	(pt -208 296)
-)
-(connector
-	(pt -208 128)
-	(pt -552 128)
-)
-(connector
-	(pt -208 -24)
-	(pt -552 -24)
-)
-(connector
-	(pt -552 -24)
-	(pt -552 128)
-)
-(connector
-	(pt -208 -168)
-	(pt -552 -168)
-)
-(connector
-	(pt -208 -320)
-	(pt -552 -320)
-)
-(connector
-	(pt -552 -320)
-	(pt -552 -168)
-)
-(connector
-	(pt -208 -464)
-	(pt -552 -464)
-)
-(connector
-	(pt -552 -608)
-	(pt -552 -464)
-)
-(connector
-	(pt -552 -464)
-	(pt -552 -320)
-)
-(connector
-	(pt -552 -168)
-	(pt -552 -136)
-)
-(connector
-	(pt -552 -136)
-	(pt -552 -24)
-)
-(connector
-	(text "Reset" (rect -696 -152 -667 -140)(font "Arial" ))
-	(pt -704 -136)
-	(pt -552 -136)
-)
-(connector
-	(pt -288 96)
-	(pt -288 264)
-)
-(connector
-	(pt -208 704)
-	(pt -288 704)
-)
-(connector
-	(pt -208 848)
-	(pt -288 848)
-)
-(connector
-	(pt -208 1008)
-	(pt -288 1008)
-)
-(connector
-	(pt -288 704)
-	(pt -288 848)
-)
-(connector
-	(pt -288 848)
-	(pt -288 1008)
-)
-(connector
-	(pt -392 112)
-	(pt -392 280)
-)
-(connector
-	(pt -208 720)
-	(pt -392 720)
-)
-(connector
-	(pt -208 864)
-	(pt -392 864)
-)
-(connector
-	(pt -208 1024)
-	(pt -392 1024)
-)
-(connector
-	(pt -392 720)
-	(pt -392 864)
-)
-(connector
-	(pt -392 864)
-	(pt -392 1024)
-)
-(connector
-	(pt -552 128)
-	(pt -552 296)
-)
-(connector
-	(pt -208 736)
-	(pt -552 736)
-)
-(connector
-	(pt -208 880)
-	(pt -552 880)
-)
-(connector
-	(pt -208 1040)
-	(pt -552 1040)
-)
-(connector
-	(pt -552 736)
-	(pt -552 880)
-)
-(connector
-	(pt -552 880)
-	(pt -552 1040)
-)
-(connector
-	(pt -584 -216)
-	(pt -208 -216)
-	(bus)
-)
-(connector
-	(pt -584 -72)
-	(pt -208 -72)
-	(bus)
-)
-(connector
-	(pt -584 80)
-	(pt -208 80)
-	(bus)
-)
-(connector
-	(pt -584 248)
-	(pt -208 248)
-)
-(connector
-	(pt -584 688)
-	(pt -208 688)
-	(bus)
-)
-(connector
-	(pt -584 832)
-	(pt -208 832)
-	(bus)
 )
 (connector
 	(pt -584 992)
 	(pt -208 992)
 	(bus)
-)
-(connector
-	(pt -576 -368)
-	(pt -208 -368)
 )
 (connector
 	(pt 232 -656)
@@ -1473,11 +1202,6 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt -576 -512)
-	(pt -208 -512)
-	(bus)
-)
-(connector
 	(pt 256 -96)
 	(pt 256 152)
 	(bus)
@@ -1496,18 +1220,6 @@ applicable agreement for further details.
 	(pt 752 152)
 	(pt 256 152)
 	(bus)
-)
-(connector
-	(pt -392 280)
-	(pt -392 720)
-)
-(connector
-	(pt -288 264)
-	(pt -288 704)
-)
-(connector
-	(pt -552 296)
-	(pt -552 736)
 )
 (connector
 	(pt 232 -96)
@@ -1640,33 +1352,189 @@ applicable agreement for further details.
 	(pt 832 -48)
 	(pt 928 -48)
 )
-(junction (pt -288 -496))
-(junction (pt -288 -352))
-(junction (pt -288 -200))
-(junction (pt -288 -56))
-(junction (pt -288 96))
-(junction (pt -288 -280))
-(junction (pt -392 112))
-(junction (pt -392 -40))
-(junction (pt -392 -184))
-(junction (pt -392 -336))
-(junction (pt -392 -480))
-(junction (pt -392 -232))
-(junction (pt -552 128))
-(junction (pt -552 -24))
-(junction (pt -552 -168))
-(junction (pt -552 -320))
-(junction (pt -552 -464))
-(junction (pt -552 -136))
-(junction (pt -288 264))
-(junction (pt -288 704))
-(junction (pt -288 848))
-(junction (pt -392 280))
-(junction (pt -392 720))
-(junction (pt -392 864))
-(junction (pt -552 296))
-(junction (pt -552 736))
-(junction (pt -552 880))
+(connector
+	(text "Clock" (rect -312 -512 -284 -500)(font "Arial" ))
+	(pt -320 -496)
+	(pt -208 -496)
+)
+(connector
+	(text "Clock" (rect -312 -368 -284 -356)(font "Arial" ))
+	(pt -320 -352)
+	(pt -208 -352)
+)
+(connector
+	(text "Clock" (rect -312 -216 -284 -204)(font "Arial" ))
+	(pt -320 -200)
+	(pt -208 -200)
+)
+(connector
+	(text "Clock" (rect -312 -72 -284 -60)(font "Arial" ))
+	(pt -320 -56)
+	(pt -208 -56)
+)
+(connector
+	(text "Clock" (rect -312 80 -284 92)(font "Arial" ))
+	(pt -320 96)
+	(pt -208 96)
+)
+(connector
+	(text "Clock" (rect -312 248 -284 260)(font "Arial" ))
+	(pt -320 264)
+	(pt -208 264)
+)
+(connector
+	(text "Clock" (rect -312 688 -284 700)(font "Arial" ))
+	(pt -320 704)
+	(pt -208 704)
+)
+(connector
+	(text "Clock" (rect -312 832 -284 844)(font "Arial" ))
+	(pt -320 848)
+	(pt -208 848)
+)
+(connector
+	(text "Clock" (rect -312 992 -284 1004)(font "Arial" ))
+	(pt -320 1008)
+	(pt -208 1008)
+)
+(connector
+	(text "Enable" (rect -312 -352 -279 -340)(font "Arial" ))
+	(pt -320 -336)
+	(pt -208 -336)
+)
+(connector
+	(text "Enable" (rect -312 -496 -279 -484)(font "Arial" ))
+	(pt -320 -480)
+	(pt -208 -480)
+)
+(connector
+	(text "Enable" (rect -312 -200 -279 -188)(font "Arial" ))
+	(pt -320 -184)
+	(pt -208 -184)
+)
+(connector
+	(text "Enable" (rect -312 -56 -279 -44)(font "Arial" ))
+	(pt -320 -40)
+	(pt -208 -40)
+)
+(connector
+	(text "Enable" (rect -312 96 -279 108)(font "Arial" ))
+	(pt -320 112)
+	(pt -208 112)
+)
+(connector
+	(text "Enable" (rect -312 264 -279 276)(font "Arial" ))
+	(pt -320 280)
+	(pt -208 280)
+)
+(connector
+	(text "Enable" (rect -312 704 -279 716)(font "Arial" ))
+	(pt -320 720)
+	(pt -208 720)
+)
+(connector
+	(text "Enable" (rect -312 848 -279 860)(font "Arial" ))
+	(pt -320 864)
+	(pt -208 864)
+)
+(connector
+	(text "Enable" (rect -312 1008 -279 1020)(font "Arial" ))
+	(pt -320 1024)
+	(pt -208 1024)
+)
+(connector
+	(text "Reset" (rect -312 -480 -283 -468)(font "Arial" ))
+	(pt -320 -464)
+	(pt -208 -464)
+)
+(connector
+	(text "Reset" (rect -312 -336 -283 -324)(font "Arial" ))
+	(pt -320 -320)
+	(pt -208 -320)
+)
+(connector
+	(text "Reset" (rect -312 -184 -283 -172)(font "Arial" ))
+	(pt -320 -168)
+	(pt -208 -168)
+)
+(connector
+	(text "Reset" (rect -312 -40 -283 -28)(font "Arial" ))
+	(pt -320 -24)
+	(pt -208 -24)
+)
+(connector
+	(text "Reset" (rect -312 112 -283 124)(font "Arial" ))
+	(pt -320 128)
+	(pt -208 128)
+)
+(connector
+	(text "Reset" (rect -312 280 -283 292)(font "Arial" ))
+	(pt -320 296)
+	(pt -208 296)
+)
+(connector
+	(text "Reset" (rect -312 720 -283 732)(font "Arial" ))
+	(pt -320 736)
+	(pt -208 736)
+)
+(connector
+	(text "Reset" (rect -312 864 -283 876)(font "Arial" ))
+	(pt -320 880)
+	(pt -208 880)
+)
+(connector
+	(text "Reset" (rect -312 1024 -283 1036)(font "Arial" ))
+	(pt -320 1040)
+	(pt -208 1040)
+)
+(connector
+	(text "Reset" (rect -312 -624 -283 -612)(font "Arial" ))
+	(pt -320 -608)
+	(pt -208 -608)
+)
+(connector
+	(text "Enable" (rect -312 -640 -279 -628)(font "Arial" ))
+	(pt -320 -624)
+	(pt -208 -624)
+)
+(connector
+	(pt -208 -512)
+	(pt -560 -512)
+	(bus)
+)
+(connector
+	(pt -208 -368)
+	(pt -560 -368)
+)
+(connector
+	(pt -208 -216)
+	(pt -560 -216)
+	(bus)
+)
+(connector
+	(pt -208 -72)
+	(pt -560 -72)
+	(bus)
+)
+(connector
+	(pt -208 80)
+	(pt -560 80)
+	(bus)
+)
+(connector
+	(pt -208 248)
+	(pt -560 248)
+)
+(connector
+	(pt -208 688)
+	(pt -560 688)
+	(bus)
+)
+(connector
+	(pt -208 832)
+	(pt -560 832)
+	(bus)
+)
 (junction (pt 312 -192))
 (junction (pt 280 -64))
 (junction (pt 256 -96))
