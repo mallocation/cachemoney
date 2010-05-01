@@ -1,6 +1,7 @@
 #register 8 holds teh value
 
 lw $1, dimension #load the dimension
+nop
 addi $2, $0, matrix1 #load base of matrix1
 addi $3, $0, matrix2 #load base of matrix2
 addi $10, $0, matrix3 #load base of matrix3
@@ -8,6 +9,7 @@ addi $10, $0, matrix3 #load base of matrix3
 loop:
 beq $6, $1, loopthrough
 lw $4, $2 #load value at base of matrix1 into r4
+nop
 lw $5, $3 #load value at base of matrix2 into r5
 nop
 mult $7, $4, $5
@@ -18,7 +20,7 @@ addi $6, $6, 1
 addi $10, $10, 1  #loop incrementations used as nops
 jmp loop
 
-        addi $10, $0, matrix3 #load the base of matrix3
+loopthrough: addi $10, $0, matrix3 #load the base of matrix3
 loop2:	beq $11, $1, showresults
 	lw $12, $10
 	nop
