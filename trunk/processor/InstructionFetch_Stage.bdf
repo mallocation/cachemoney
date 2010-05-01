@@ -572,11 +572,11 @@ applicable agreement for further details.
 	(pt 416 368)
 )
 (connector
+	(pt 680 264)
+	(pt 680 272)
+)
+(connector
 	(text "clock_50" (rect 504 248 547 260)(font "Arial" ))
 	(pt 680 264)
 	(pt 496 264)
-)
-(connector
-	(pt 680 264)
-	(pt 680 272)
 )

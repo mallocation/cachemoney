@@ -413,6 +413,55 @@ applicable agreement for further details.
 	)
 )
 (symbol
+	(rect 472 -144 704 -16)
+	(text "GenericRegister" (rect 5 0 84 12)(font "Arial" ))
+	(text "MEMControlLineRegister" (rect 8 112 128 124)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "D[data_width-1..0]" (rect 0 0 89 12)(font "Arial" ))
+		(text "D[data_width-1..0]" (rect 21 27 110 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32)(line_width 3))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "Clock" (rect 0 0 28 12)(font "Arial" ))
+		(text "Clock" (rect 21 43 49 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48)(line_width 1))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "Enable" (rect 0 0 33 12)(font "Arial" ))
+		(text "Enable" (rect 21 59 54 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64)(line_width 1))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "Reset" (rect 0 0 29 12)(font "Arial" ))
+		(text "Reset" (rect 21 75 50 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 1))
+	)
+	(port
+		(pt 232 32)
+		(output)
+		(text "Q[data_width-1..0]" (rect 0 0 89 12)(font "Arial" ))
+		(text "Q[data_width-1..0]" (rect 122 27 211 39)(font "Arial" ))
+		(line (pt 232 32)(pt 216 32)(line_width 3))
+	)
+	(parameter
+		"DATA_WIDTH"
+		"2"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(drawing
+		(rectangle (rect 16 16 216 112)(line_width 1))
+	)
+	(annotation_block (parameter)(rect 704 -176 880 -144))
+)
+(symbol
 	(rect 472 272 688 408)
 	(text "DataMemory" (rect 71 1 158 17)(font "Arial" (font_size 10)))
 	(text "inst1" (rect 8 120 31 132)(font "Arial" ))
@@ -487,55 +536,6 @@ applicable agreement for further details.
 		(line (pt 96 64)(pt 104 64)(line_width 3))
 		(line (pt 80 112)(pt 80 36)(line_width 1))
 	)
-)
-(symbol
-	(rect 472 -144 704 -16)
-	(text "GenericRegister" (rect 5 0 84 12)(font "Arial" ))
-	(text "MEMControlLineRegister" (rect 8 112 128 124)(font "Arial" ))
-	(port
-		(pt 0 32)
-		(input)
-		(text "D[data_width-1..0]" (rect 0 0 89 12)(font "Arial" ))
-		(text "D[data_width-1..0]" (rect 21 27 110 39)(font "Arial" ))
-		(line (pt 0 32)(pt 16 32)(line_width 3))
-	)
-	(port
-		(pt 0 48)
-		(input)
-		(text "Clock" (rect 0 0 28 12)(font "Arial" ))
-		(text "Clock" (rect 21 43 49 55)(font "Arial" ))
-		(line (pt 0 48)(pt 16 48)(line_width 1))
-	)
-	(port
-		(pt 0 64)
-		(input)
-		(text "Enable" (rect 0 0 33 12)(font "Arial" ))
-		(text "Enable" (rect 21 59 54 71)(font "Arial" ))
-		(line (pt 0 64)(pt 16 64)(line_width 1))
-	)
-	(port
-		(pt 0 80)
-		(input)
-		(text "Reset" (rect 0 0 29 12)(font "Arial" ))
-		(text "Reset" (rect 21 75 50 87)(font "Arial" ))
-		(line (pt 0 80)(pt 16 80)(line_width 1))
-	)
-	(port
-		(pt 232 32)
-		(output)
-		(text "Q[data_width-1..0]" (rect 0 0 89 12)(font "Arial" ))
-		(text "Q[data_width-1..0]" (rect 122 27 211 39)(font "Arial" ))
-		(line (pt 232 32)(pt 216 32)(line_width 3))
-	)
-	(parameter
-		"DATA_WIDTH"
-		"2"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
-	(drawing
-		(rectangle (rect 16 16 216 112)(line_width 1))
-	)
-	(annotation_block (parameter)(rect 704 -176 880 -144))
 )
 (connector
 	(text "clock_50" (rect 384 -112 427 -100)(font "Arial" ))

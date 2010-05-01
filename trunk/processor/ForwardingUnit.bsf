@@ -66,6 +66,13 @@ applicable agreement for further details.
 		(line (pt 0 112)(pt 16 112)(line_width 3))
 	)
 	(port
+		(pt 0 128)
+		(input)
+		(text "RegSrc_ForStoreWord[4..0]" (rect 0 0 136 12)(font "Arial" ))
+		(text "RegSrc_ForStoreWord[4..0]" (rect 21 123 157 135)(font "Arial" ))
+		(line (pt 0 128)(pt 16 128)(line_width 3))
+	)
+	(port
 		(pt 280 32)
 		(output)
 		(text "ForwardA[1..0]" (rect 0 0 71 12)(font "Arial" ))
@@ -78,6 +85,13 @@ applicable agreement for further details.
 		(text "ForwardB[1..0]" (rect 0 0 71 12)(font "Arial" ))
 		(text "ForwardB[1..0]" (rect 188 43 259 55)(font "Arial" ))
 		(line (pt 280 48)(pt 264 48)(line_width 3))
+	)
+	(port
+		(pt 280 64)
+		(output)
+		(text "ForwardC[1..0]" (rect 0 0 73 12)(font "Arial" ))
+		(text "ForwardC[1..0]" (rect 186 59 259 71)(font "Arial" ))
+		(line (pt 280 64)(pt 264 64)(line_width 3))
 	)
 	(drawing
 		(rectangle (rect 16 16 264 144)(line_width 1))
