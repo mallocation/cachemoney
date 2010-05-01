@@ -293,6 +293,22 @@ applicable agreement for further details.
 	(text "VCC" (rect 160 7 180 17)(font "Arial" (font_size 6)))
 )
 (pin
+	(input)
+	(rect -664 1192 -496 1208)
+	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
+	(text "ForwardC[1..0]" (rect 5 0 78 12)(font "Arial" ))
+	(pt 168 8)
+	(drawing
+		(line (pt 92 12)(pt 117 12)(line_width 1))
+		(line (pt 92 4)(pt 117 4)(line_width 1))
+		(line (pt 121 8)(pt 168 8)(line_width 1))
+		(line (pt 92 12)(pt 92 4)(line_width 1))
+		(line (pt 117 4)(pt 121 8)(line_width 1))
+		(line (pt 117 12)(pt 121 8)(line_width 1))
+	)
+	(text "VCC" (rect 136 7 156 17)(font "Arial" (font_size 6)))
+)
+(pin
 	(output)
 	(rect 1224 -88 1400 -72)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
@@ -310,7 +326,7 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 752 144 928 160)
+	(rect 704 160 880 176)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "R2_OUT[31..0]" (rect 90 0 164 12)(font "Arial" ))
 	(pt 0 8)
@@ -1071,6 +1087,53 @@ applicable agreement for further details.
 	)
 	(annotation_block (parameter)(rect 24 -720 200 -688))
 )
+(symbol
+	(rect 344 128 496 224)
+	(text "threeinputmux" (rect 39 78 135 94)(font "Arial" (font_size 10)))
+	(text "inst18" (rect 8 4 37 16)(font "Arial" ))
+	(port
+		(pt 0 56)
+		(input)
+		(text "data2x[31..0]" (rect 0 0 74 14)(font "Arial" (font_size 8)))
+		(text "data2x[31..0]" (rect 4 55 78 69)(font "Arial" (font_size 8)))
+		(line (pt 0 56)(pt 72 56)(line_width 3))
+	)
+	(port
+		(pt 0 40)
+		(input)
+		(text "data1x[31..0]" (rect 0 0 74 14)(font "Arial" (font_size 8)))
+		(text "data1x[31..0]" (rect 4 39 78 53)(font "Arial" (font_size 8)))
+		(line (pt 0 40)(pt 72 40)(line_width 3))
+	)
+	(port
+		(pt 0 24)
+		(input)
+		(text "data0x[31..0]" (rect 0 0 74 14)(font "Arial" (font_size 8)))
+		(text "data0x[31..0]" (rect 4 23 78 37)(font "Arial" (font_size 8)))
+		(line (pt 0 24)(pt 72 24)(line_width 3))
+	)
+	(port
+		(pt 80 0)
+		(input)
+		(text "sel[1..0]" (rect 0 0 44 14)(font "Arial" (font_size 8)))
+		(text "sel[1..0]" (rect 84 -1 128 13)(font "Arial" (font_size 8)))
+		(line (pt 80 0)(pt 80 12)(line_width 3))
+	)
+	(port
+		(pt 152 40)
+		(output)
+		(text "result[31..0]" (rect 0 0 67 14)(font "Arial" (font_size 8)))
+		(text "result[31..0]" (rect 92 39 159 53)(font "Arial" (font_size 8)))
+		(line (pt 152 40)(pt 88 40)(line_width 3))
+	)
+	(drawing
+		(line (pt 72 72)(pt 72 8)(line_width 1))
+		(line (pt 88 64)(pt 88 16)(line_width 1))
+		(line (pt 72 72)(pt 88 64)(line_width 1))
+		(line (pt 72 8)(pt 88 16)(line_width 1))
+	)
+	(flipx)
+)
 (connector
 	(pt 776 -64)
 	(pt 928 -64)
@@ -1124,11 +1187,6 @@ applicable agreement for further details.
 (connector
 	(pt 600 -128)
 	(pt 704 -128)
-	(bus)
-)
-(connector
-	(pt 704 -128)
-	(pt 704 -96)
 	(bus)
 )
 (connector
@@ -1214,11 +1272,6 @@ applicable agreement for further details.
 (connector
 	(pt 256 -96)
 	(pt 360 -96)
-	(bus)
-)
-(connector
-	(pt 752 152)
-	(pt 256 152)
 	(bus)
 )
 (connector
@@ -1533,6 +1586,49 @@ applicable agreement for further details.
 (connector
 	(pt -208 832)
 	(pt -560 832)
+	(bus)
+)
+(connector
+	(pt 256 152)
+	(pt 344 152)
+	(bus)
+)
+(connector
+	(pt 496 168)
+	(pt 704 168)
+	(bus)
+)
+(connector
+	(text "ForwardC[1..0]" (rect 510 96 583 108)(font "Arial" ))
+	(pt 424 112)
+	(pt 560 112)
+	(bus)
+)
+(connector
+	(text "MEMWBRegData[31..0]" (rect 224 152 340 164)(font "Arial" ))
+	(pt 216 168)
+	(pt 344 168)
+	(bus)
+)
+(connector
+	(text "EXMemALUData[31..0]" (rect 224 168 337 180)(font "Arial" ))
+	(pt 216 184)
+	(pt 344 184)
+	(bus)
+)
+(connector
+	(pt 704 -128)
+	(pt 704 -96)
+	(bus)
+)
+(connector
+	(pt -496 1200)
+	(pt -440 1200)
+	(bus)
+)
+(connector
+	(pt 424 128)
+	(pt 424 112)
 	(bus)
 )
 (junction (pt 312 -192))
