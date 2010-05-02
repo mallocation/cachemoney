@@ -107,7 +107,7 @@ exit: jmp exit
 
 
 	.data
-dimension: .integer 2
-matrix1: .array 1,2,3,4
-matrix2: .array 5,6,7,8
+dimension: .integer 4
+matrix1: .array 15,14,3,-7,7,8,-2,5,-13,0,4,2,1,1,2,3
+matrix2: .array 7,8,9,10,11,12,13,14,-1,-8,-10,-12,3,8,22,4
 matrix3: .integer 0
