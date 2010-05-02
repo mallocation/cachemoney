@@ -18,8 +18,9 @@ end controlUnit;
 
 architecture behavioral of controlUnit is
 begin
-	process(opCode)
+	process(opCode, comparator)
 	begin
+		Branch_Address_Mux <= '0';
 		case opCode is
 			when "000" =>			-- Add
 				WBControl <= "11";

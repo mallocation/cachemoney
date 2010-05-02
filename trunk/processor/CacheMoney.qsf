@@ -50,6 +50,26 @@ set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
 set_global_assignment -name MISC_FILE "C:/Users/cjohnson/Desktop/cachemoney/trunk/processor/CacheMoney.dpf"
 set_global_assignment -name MISC_FILE "C:/Users/cjohnson/Documents/Class Documents/Spring 10/CSE430/Project/cachemoney/trunk/processor/CacheMoney.dpf"
 set_location_assignment PIN_N2 -to clock_50
+set_global_assignment -name MISC_FILE "C:/Documents and Settings/curtis-johnson/Desktop/cachemoney/trunk/processor/CacheMoney.dpf"
+set_location_assignment PIN_L4 -to lcddisplay_on
+set_location_assignment PIN_K3 -to lcddisplay_e
+set_location_assignment PIN_K1 -to lcddisplay_rs
+set_location_assignment PIN_K4 -to lcddisplay_rw
+set_location_assignment PIN_H3 -to lcddisplay_db[7]
+set_location_assignment PIN_H4 -to lcddisplay_db[6]
+set_location_assignment PIN_J3 -to lcddisplay_db[5]
+set_location_assignment PIN_J4 -to lcddisplay_db[4]
+set_location_assignment PIN_H2 -to lcddisplay_db[3]
+set_location_assignment PIN_H1 -to lcddisplay_db[2]
+set_location_assignment PIN_J2 -to lcddisplay_db[1]
+set_location_assignment PIN_J1 -to lcddisplay_db[0]
+set_location_assignment PIN_W26 -to pin_name
+set_location_assignment PIN_AE23 -to pin_name2
+set_global_assignment -name INCREMENTAL_VECTOR_INPUT_SOURCE controlUnit_WaveForm.vwf
+set_global_assignment -name VHDL_FILE lpm_add_sub0.vhd
+set_global_assignment -name VHDL_FILE lpm_mux0.vhd
+set_global_assignment -name VHDL_FILE DataMemory.vhd
+set_global_assignment -name VHDL_FILE MUX_32bit_2.vhd
 set_global_assignment -name BSF_FILE LCD_Display.bsf
 set_global_assignment -name VHDL_FILE threeinputmux.vhd
 set_global_assignment -name VHDL_FILE twoinputmux.vhd
@@ -90,26 +110,14 @@ set_global_assignment -name VHDL_FILE GenericRegister.vhd
 set_global_assignment -name BDF_FILE Memory_Stage.bdf
 set_global_assignment -name VHDL_FILE controlUnit.vhd
 set_global_assignment -name BDF_FILE CacheMoney.bdf
-set_global_assignment -name MISC_FILE "C:/Documents and Settings/curtis-johnson/Desktop/cachemoney/trunk/processor/CacheMoney.dpf"
 set_global_assignment -name VECTOR_WAVEFORM_FILE Execution_Stage_WaveForm.vwf
 set_global_assignment -name VECTOR_WAVEFORM_FILE InstructionFetch_Stage_WaveForm.vwf
 set_global_assignment -name VECTOR_WAVEFORM_FILE DecodeStage_WaveForm.vwf
-set_location_assignment PIN_L4 -to lcddisplay_on
-set_location_assignment PIN_K3 -to lcddisplay_e
-set_location_assignment PIN_K1 -to lcddisplay_rs
-set_location_assignment PIN_K4 -to lcddisplay_rw
-set_location_assignment PIN_H3 -to lcddisplay_db[7]
-set_location_assignment PIN_H4 -to lcddisplay_db[6]
-set_location_assignment PIN_J3 -to lcddisplay_db[5]
-set_location_assignment PIN_J4 -to lcddisplay_db[4]
-set_location_assignment PIN_H2 -to lcddisplay_db[3]
-set_location_assignment PIN_H1 -to lcddisplay_db[2]
-set_location_assignment PIN_J2 -to lcddisplay_db[1]
-set_location_assignment PIN_J1 -to lcddisplay_db[0]
 set_global_assignment -name VHDL_FILE HazardDetectionUnit.vhd
 set_global_assignment -name VECTOR_WAVEFORM_FILE CacheMoney_WaveForm.vwf
 set_global_assignment -name VECTOR_WAVEFORM_FILE HazardDetectionUnit_WaveForm.vwf
-set_global_assignment -name INCREMENTAL_VECTOR_INPUT_SOURCE DecodeStage_WaveForm.vwf
+set_global_assignment -name BDF_FILE button.bdf
+set_global_assignment -name VECTOR_WAVEFORM_FILE controlUnit_WaveForm.vwf
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"

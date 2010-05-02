@@ -1589,7 +1589,7 @@ applicable agreement for further details.
 	(pt 448 448)
 )
 (connector
-	(text "MEMControl_ToEX[1..0]" (rect 727 -360 842 -348)(font "Arial" ))
+	(text "MEMControl_ToEX[1..0]" (rect 679 -360 794 -348)(font "Arial" ))
 	(pt 664 -344)
 	(pt 784 -344)
 	(bus)

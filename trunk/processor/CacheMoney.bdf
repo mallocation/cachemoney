@@ -1385,11 +1385,6 @@ applicable agreement for further details.
 	(pt 544 568)
 )
 (connector
-	(text "processor_clock" (rect 200 176 280 188)(font "Arial" ))
-	(pt 0 192)
-	(pt 392 192)
-)
-(connector
 	(text "RDFromEX[4..0]" (rect 1244 944 1325 956)(font "Arial" ))
 	(pt 1232 960)
 	(pt 1360 960)
@@ -1464,5 +1459,10 @@ applicable agreement for further details.
 	(pt 1360 944)
 	(pt 1232 944)
 	(bus)
+)
+(connector
+	(text "processor_clock" (rect 336 176 416 188)(font "Arial" ))
+	(pt 0 192)
+	(pt 528 192)
 )
 (junction (pt 2840 440))

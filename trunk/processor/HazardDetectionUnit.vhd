@@ -31,7 +31,10 @@ begin
 	
 	process(opcode, InstructionRD, InstructionRS, InstructionRT, RegDestFromEXStage, RegDestFromMEMStage, RegDestFromWBStage, MemReadFromEXStage, MEMRd_WBWr_From_EX,MEMRd_WBWr_From_MEM,WBWr_From_WB)
 	begin
-		
+		FlushIDStage <= '0';
+		EnableIDStage <= '1';
+		EnableIFStage <= '1';
+		FlushEXStage <= '0';
 		if MemReadFromEXStage = '1' and ((RegDestFromEXStage = InstructionRS) or (RegDestFromEXStage = InstructionRT)) then
 			--flush ex stage, stall IF and ID stages
 			FlushEXStage <= '1';

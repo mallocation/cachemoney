@@ -310,7 +310,7 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 1224 -88 1400 -72)
+	(rect 1352 -224 1528 -208)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "ALUData[31..0]" (rect 90 0 166 12)(font "Arial" ))
 	(pt 0 8)
@@ -421,7 +421,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 928 -112 1080 -16)
+	(rect 1056 -248 1208 -152)
 	(text "ALU32bit" (rect 5 0 49 12)(font "Arial" ))
 	(text "inst1" (rect 8 80 31 92)(font "Arial" ))
 	(port
@@ -1135,31 +1135,6 @@ applicable agreement for further details.
 	(flipx)
 )
 (connector
-	(pt 776 -64)
-	(pt 928 -64)
-	(bus)
-)
-(connector
-	(pt 808 -80)
-	(pt 928 -80)
-	(bus)
-)
-(connector
-	(pt 24 -216)
-	(pt 248 -216)
-	(bus)
-)
-(connector
-	(pt 248 -256)
-	(pt 376 -256)
-	(bus)
-)
-(connector
-	(pt 24 -72)
-	(pt 232 -72)
-	(bus)
-)
-(connector
 	(pt 24 80)
 	(pt 536 80)
 	(bus)
@@ -1172,21 +1147,6 @@ applicable agreement for further details.
 (connector
 	(pt 536 -56)
 	(pt 624 -56)
-	(bus)
-)
-(connector
-	(pt 24 248)
-	(pt 600 248)
-	(bus)
-)
-(connector
-	(pt 600 -128)
-	(pt 600 248)
-	(bus)
-)
-(connector
-	(pt 600 -128)
-	(pt 704 -128)
 	(bus)
 )
 (connector
@@ -1225,63 +1185,8 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt 1224 -80)
-	(pt 1080 -80)
-	(bus)
-)
-(connector
-	(pt 312 -240)
-	(pt 376 -240)
-	(bus)
-)
-(connector
-	(pt 360 -80)
-	(pt 312 -80)
-	(bus)
-)
-(connector
-	(pt 280 -224)
-	(pt 376 -224)
-	(bus)
-)
-(connector
-	(pt 360 -64)
-	(pt 280 -64)
-	(bus)
-)
-(connector
-	(pt 280 -40)
-	(pt 280 -64)
-	(bus)
-)
-(connector
-	(pt 280 -64)
-	(pt 280 -224)
-	(bus)
-)
-(connector
-	(pt 256 -96)
-	(pt 256 152)
-	(bus)
-)
-(connector
-	(pt 232 -96)
-	(pt 256 -96)
-	(bus)
-)
-(connector
-	(pt 256 -96)
-	(pt 360 -96)
-	(bus)
-)
-(connector
-	(pt 232 -96)
-	(pt 232 -72)
-	(bus)
-)
-(connector
-	(pt 248 -256)
-	(pt 248 -216)
+	(pt 1352 -216)
+	(pt 1208 -216)
 	(bus)
 )
 (connector
@@ -1325,12 +1230,6 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(text "ForwardA[1..0]" (rect 565 -320 636 -308)(font "Arial" ))
-	(pt 456 -304)
-	(pt 592 -304)
-	(bus)
-)
-(connector
 	(pt 440 -120)
 	(pt 440 -144)
 	(bus)
@@ -1339,16 +1238,6 @@ applicable agreement for further details.
 	(text "ForwardB[1..0]" (rect 501 -160 572 -148)(font "Arial" ))
 	(pt 440 -144)
 	(pt 576 -144)
-	(bus)
-)
-(connector
-	(pt 528 -240)
-	(pt 808 -240)
-	(bus)
-)
-(connector
-	(pt 808 -240)
-	(pt 808 -80)
 	(bus)
 )
 (connector
@@ -1367,43 +1256,9 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt 312 -240)
-	(pt 312 -192)
-	(bus)
-)
-(connector
-	(pt 312 -192)
-	(pt 312 -80)
-	(bus)
-)
-(connector
-	(text "MEMWBRegData[31..0]" (rect 133 -208 249 -196)(font "Arial" ))
-	(pt 120 -192)
-	(pt 312 -192)
-	(bus)
-)
-(connector
-	(text "EXMemALUData[31..0]" (rect 137 -56 250 -44)(font "Arial" ))
-	(pt 120 -40)
-	(pt 280 -40)
-	(bus)
-)
-(connector
 	(pt -560 -656)
 	(pt -208 -656)
 	(bus)
-)
-(connector
-	(pt 24 -368)
-	(pt 832 -368)
-)
-(connector
-	(pt 832 -368)
-	(pt 832 -48)
-)
-(connector
-	(pt 832 -48)
-	(pt 928 -48)
 )
 (connector
 	(text "Clock" (rect -312 -512 -284 -500)(font "Arial" ))
@@ -1589,11 +1444,6 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt 256 152)
-	(pt 344 152)
-	(bus)
-)
-(connector
 	(pt 496 168)
 	(pt 704 168)
 	(bus)
@@ -1631,9 +1481,112 @@ applicable agreement for further details.
 	(pt 424 112)
 	(bus)
 )
-(junction (pt 312 -192))
-(junction (pt 280 -64))
-(junction (pt 256 -96))
+(connector
+	(text "Register2Data[31..0]" (rect 228 136 330 148)(font "Arial" ))
+	(pt 216 152)
+	(pt 344 152)
+	(bus)
+)
+(connector
+	(text "Register2Data[31..0]" (rect 36 -88 138 -76)(font "Arial" ))
+	(pt 24 -72)
+	(pt 152 -72)
+	(bus)
+)
+(connector
+	(text "Register2Data[31..0]" (rect 244 -112 346 -100)(font "Arial" ))
+	(pt 232 -96)
+	(pt 360 -96)
+	(bus)
+)
+(connector
+	(text "EXMemALUData[31..0]" (rect 233 -80 346 -68)(font "Arial" ))
+	(pt 232 -64)
+	(pt 360 -64)
+	(bus)
+)
+(connector
+	(text "MEMWBRegData[31..0]" (rect 240 -96 356 -84)(font "Arial" ))
+	(pt 232 -80)
+	(pt 360 -80)
+	(bus)
+)
+(connector
+	(text "ForwardA[1..0]" (rect 501 -320 572 -308)(font "Arial" ))
+	(pt 568 -304)
+	(pt 456 -304)
+	(bus)
+)
+(connector
+	(text "Register1Data[31..0]" (rect 32 -232 134 -220)(font "Arial" ))
+	(pt 24 -216)
+	(pt 152 -216)
+	(bus)
+)
+(connector
+	(text "MEMWBRegData[31..0]" (rect 245 -256 361 -244)(font "Arial" ))
+	(pt 376 -240)
+	(pt 232 -240)
+	(bus)
+)
+(connector
+	(text "Register1Data[31..0]" (rect 248 -272 350 -260)(font "Arial" ))
+	(pt 232 -256)
+	(pt 376 -256)
+	(bus)
+)
+(connector
+	(text "EXMemALUData[31..0]" (rect 249 -240 362 -228)(font "Arial" ))
+	(pt 232 -224)
+	(pt 376 -224)
+	(bus)
+)
+(connector
+	(text "ALUOperandA[31..0]" (rect 536 -256 637 -244)(font "Arial" ))
+	(pt 672 -240)
+	(pt 528 -240)
+	(bus)
+)
+(connector
+	(text "ALUOperandB[31..0]" (rect 784 -80 885 -68)(font "Arial" ))
+	(pt 776 -64)
+	(pt 896 -64)
+	(bus)
+)
+(connector
+	(text "ALUOperandA[31..0]" (rect 920 -232 1021 -220)(font "Arial" ))
+	(pt 1056 -216)
+	(pt 912 -216)
+	(bus)
+)
+(connector
+	(text "ALUOperandB[31..0]" (rect 920 -216 1021 -204)(font "Arial" ))
+	(pt 912 -200)
+	(pt 1056 -200)
+	(bus)
+)
+(connector
+	(text "ALUOperation" (rect 52 -384 120 -372)(font "Arial" ))
+	(pt 176 -368)
+	(pt 24 -368)
+)
+(connector
+	(text "ALUOperation" (rect 924 -200 992 -188)(font "Arial" ))
+	(pt 912 -184)
+	(pt 1056 -184)
+)
+(connector
+	(text "ALUSourceBControl" (rect 64 232 161 244)(font "Arial" ))
+	(pt 152 248)
+	(pt 24 248)
+	(bus)
+)
+(connector
+	(text "ALUSourceBControl" (rect 744 -144 841 -132)(font "Arial" ))
+	(pt 832 -128)
+	(pt 704 -128)
+	(bus)
+)
 (text "Write Back Control Register" (rect -360 -560 -205 -546)(font "Arial" (font_size 8)))
 (text "ALU Control Register" (rect -352 -400 -233 -386)(font "Arial" (font_size 8)))
 (text "ALU Src B Mux" (rect -304 200 -217 214)(font "Arial" (font_size 8)))
