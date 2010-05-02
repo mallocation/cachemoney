@@ -30,7 +30,7 @@ addi $3, $0, matrix3	#Load the base address of the third matrix
 #$7 - address of matrix 2 copied into 3rd loop
 
 addi $25, $0, 0	#Reset the iterator for the 1st loop
-loop1: beq $25, $30, performSum
+loop1: beq $25, $30, initSum
 	#
 	# Loop1 does nothing more than incrementing
 	# the address of matrix 1 by dimension, and 
@@ -85,11 +85,22 @@ loop1: beq $25, $30, performSum
 	addi $25, $25, 1		#Increment the iterator for loop1
 	jmp loop1				#Jump back to loop1
 
-
-performSum:
+initSum:
 addi $27, $0, matrix3
-addi $27, $27, 0
-lw $31, $27
+addi $28, $0, 0
+addi $1, $0, 0
+performSum: beq $1, $30, showDiagonalSum
+	lw $29, $27
+	nop
+	add $28, $28, $29
+	add $27, $27, $30
+	addi $27, $27, 1
+	addi $1, $1, 1
+	jmp performSum
+
+
+showDiagonalSum:
+add $31, $28, $0
 nop
 exit: jmp exit
 
