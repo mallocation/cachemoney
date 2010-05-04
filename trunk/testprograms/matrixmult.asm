@@ -101,7 +101,6 @@ performSum: beq $1, $30, showDiagonalSum
 
 showDiagonalSum:
 add $31, $28, $0
-nop
 exit: jmp exit
 
 
