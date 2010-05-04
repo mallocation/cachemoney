@@ -351,9 +351,9 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 760 160 976 296)
+	(rect 760 160 976 312)
 	(text "DataMemory" (rect 71 1 158 17)(font "Arial" (font_size 10)))
-	(text "inst1" (rect 8 120 31 132)(font "Arial" ))
+	(text "inst1" (rect 8 136 31 148)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -371,8 +371,8 @@ applicable agreement for further details.
 	(port
 		(pt 0 64)
 		(input)
-		(text "address[6..0]" (rect 0 0 75 14)(font "Arial" (font_size 8)))
-		(text "address[6..0]" (rect 4 51 79 65)(font "Arial" (font_size 8)))
+		(text "address[7..0]" (rect 0 0 75 14)(font "Arial" (font_size 8)))
+		(text "address[7..0]" (rect 4 51 79 65)(font "Arial" (font_size 8)))
 		(line (pt 0 64)(pt 88 64)(line_width 3))
 	)
 	(port
@@ -383,6 +383,13 @@ applicable agreement for further details.
 		(line (pt 0 112)(pt 80 112)(line_width 1))
 	)
 	(port
+		(pt 0 128)
+		(input)
+		(text "clken" (rect 0 0 29 14)(font "Arial" (font_size 8)))
+		(text "clken" (rect 4 115 33 129)(font "Arial" (font_size 8)))
+		(line (pt 0 128)(pt 16 128)(line_width 1))
+	)
+	(port
 		(pt 216 32)
 		(output)
 		(text "q[31..0]" (rect 0 0 42 14)(font "Arial" (font_size 8)))
@@ -391,8 +398,8 @@ applicable agreement for further details.
 	)
 	(drawing
 		(text "32 bits" (rect 108 46 120 79)(font "Arial" )(vertical))
-		(text "128 words" (rect 121 39 133 88)(font "Arial" )(vertical))
-		(text "Block type: AUTO" (rect 41 116 130 128)(font "Arial" ))
+		(text "256 words" (rect 121 39 133 88)(font "Arial" )(vertical))
+		(text "Block type: AUTO" (rect 41 132 130 144)(font "Arial" ))
 		(line (pt 104 24)(pt 136 24)(line_width 1))
 		(line (pt 136 24)(pt 136 96)(line_width 1))
 		(line (pt 136 96)(pt 104 96)(line_width 1))
@@ -535,12 +542,6 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(text "Next_PC[6..0]" (rect 638 208 708 220)(font "Arial" ))
-	(pt 632 224)
-	(pt 760 224)
-	(bus)
-)
-(connector
 	(text "ProgramCounter[31..0]" (rect 704 320 816 332)(font "Arial" ))
 	(pt 696 336)
 	(pt 784 336)
@@ -564,19 +565,26 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt 680 272)
+	(text "clock_50" (rect 640 256 683 268)(font "Arial" ))
+	(pt 656 272)
 	(pt 760 272)
+)
+(connector
+	(pt 760 288)
+	(pt 416 288)
+)
+(connector
+	(pt 416 288)
+	(pt 416 328)
 )
 (connector
 	(pt 416 328)
 	(pt 416 368)
 )
 (connector
-	(pt 680 264)
-	(pt 680 272)
+	(text "Next_PC[7..0]" (rect 638 208 708 220)(font "Arial" ))
+	(pt 632 224)
+	(pt 760 224)
+	(bus)
 )
-(connector
-	(text "clock_50" (rect 504 248 547 260)(font "Arial" ))
-	(pt 680 264)
-	(pt 496 264)
-)
+(junction (pt 416 328))

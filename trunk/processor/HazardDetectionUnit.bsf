@@ -20,7 +20,7 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 288 208)
+	(rect 16 16 328 208)
 	(text "HazardDetectionUnit" (rect 5 0 106 12)(font "Arial" ))
 	(text "inst" (rect 8 176 25 188)(font "Arial" ))
 	(port
@@ -80,34 +80,20 @@ applicable agreement for further details.
 		(line (pt 0 144)(pt 16 144)(line_width 1))
 	)
 	(port
-		(pt 272 32)
+		(pt 312 32)
 		(output)
-		(text "FlushIDStage" (rect 0 0 67 12)(font "Arial" ))
-		(text "FlushIDStage" (rect 184 27 251 39)(font "Arial" ))
-		(line (pt 272 32)(pt 256 32)(line_width 1))
+		(text "HDUBranchHazards" (rect 0 0 99 12)(font "Arial" ))
+		(text "HDUBranchHazards" (rect 192 27 291 39)(font "Arial" ))
+		(line (pt 312 32)(pt 296 32)(line_width 1))
 	)
 	(port
-		(pt 272 48)
+		(pt 312 48)
 		(output)
-		(text "EnableIDStage" (rect 0 0 73 12)(font "Arial" ))
-		(text "EnableIDStage" (rect 178 43 251 55)(font "Arial" ))
-		(line (pt 272 48)(pt 256 48)(line_width 1))
-	)
-	(port
-		(pt 272 64)
-		(output)
-		(text "EnableIFStage" (rect 0 0 71 12)(font "Arial" ))
-		(text "EnableIFStage" (rect 180 59 251 71)(font "Arial" ))
-		(line (pt 272 64)(pt 256 64)(line_width 1))
-	)
-	(port
-		(pt 272 80)
-		(output)
-		(text "FlushEXStage" (rect 0 0 68 12)(font "Arial" ))
-		(text "FlushEXStage" (rect 183 75 251 87)(font "Arial" ))
-		(line (pt 272 80)(pt 256 80)(line_width 1))
+		(text "HDULoadWordHazards" (rect 0 0 114 12)(font "Arial" ))
+		(text "HDULoadWordHazards" (rect 177 43 291 55)(font "Arial" ))
+		(line (pt 312 48)(pt 296 48)(line_width 1))
 	)
 	(drawing
-		(rectangle (rect 16 16 256 176)(line_width 1))
+		(rectangle (rect 16 16 296 176)(line_width 1))
 	)
 )

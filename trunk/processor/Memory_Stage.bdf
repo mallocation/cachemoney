@@ -462,9 +462,25 @@ applicable agreement for further details.
 	(annotation_block (parameter)(rect 704 -176 880 -144))
 )
 (symbol
-	(rect 472 272 688 408)
+	(rect 384 384 400 416)
+	(text "VCC" (rect 0 5 10 25)(font "Arial" (font_size 6))(vertical))
+	(text "inst3" (rect 5 6 17 29)(font "Arial" )(vertical)(invisible))
+	(port
+		(pt 16 16)
+		(output)
+		(text "1" (rect 19 7 24 19)(font "Courier New" (bold))(invisible))
+		(text "1" (rect 7 8 19 13)(font "Courier New" (bold))(vertical)(invisible))
+		(line (pt 16 16)(pt 8 16)(line_width 1))
+	)
+	(drawing
+		(line (pt 8 24)(pt 8 8)(line_width 1))
+	)
+	(rotate90)
+)
+(symbol
+	(rect 472 272 688 424)
 	(text "DataMemory" (rect 71 1 158 17)(font "Arial" (font_size 10)))
-	(text "inst1" (rect 8 120 31 132)(font "Arial" ))
+	(text "inst1" (rect 8 136 31 148)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -482,8 +498,8 @@ applicable agreement for further details.
 	(port
 		(pt 0 64)
 		(input)
-		(text "address[6..0]" (rect 0 0 75 14)(font "Arial" (font_size 8)))
-		(text "address[6..0]" (rect 4 51 79 65)(font "Arial" (font_size 8)))
+		(text "address[7..0]" (rect 0 0 75 14)(font "Arial" (font_size 8)))
+		(text "address[7..0]" (rect 4 51 79 65)(font "Arial" (font_size 8)))
 		(line (pt 0 64)(pt 88 64)(line_width 3))
 	)
 	(port
@@ -494,6 +510,13 @@ applicable agreement for further details.
 		(line (pt 0 112)(pt 80 112)(line_width 1))
 	)
 	(port
+		(pt 0 128)
+		(input)
+		(text "clken" (rect 0 0 29 14)(font "Arial" (font_size 8)))
+		(text "clken" (rect 4 115 33 129)(font "Arial" (font_size 8)))
+		(line (pt 0 128)(pt 16 128)(line_width 1))
+	)
+	(port
 		(pt 216 32)
 		(output)
 		(text "q[31..0]" (rect 0 0 42 14)(font "Arial" (font_size 8)))
@@ -502,8 +525,8 @@ applicable agreement for further details.
 	)
 	(drawing
 		(text "32 bits" (rect 108 46 120 79)(font "Arial" )(vertical))
-		(text "128 words" (rect 121 39 133 88)(font "Arial" )(vertical))
-		(text "Block type: AUTO" (rect 41 116 130 128)(font "Arial" ))
+		(text "256 words" (rect 121 39 133 88)(font "Arial" )(vertical))
+		(text "Block type: AUTO" (rect 41 132 130 144)(font "Arial" ))
 		(line (pt 104 24)(pt 136 24)(line_width 1))
 		(line (pt 136 24)(pt 136 96)(line_width 1))
 		(line (pt 136 96)(pt 104 96)(line_width 1))
@@ -556,12 +579,6 @@ applicable agreement for further details.
 	(text "MemoryStage_Enable" (rect 384 144 491 156)(font "Arial" ))
 	(pt 472 160)
 	(pt 376 160)
-)
-(connector
-	(text "EXStage_ALUResult[6..0]" (rect 320 320 446 332)(font "Arial" ))
-	(pt 472 336)
-	(pt 312 336)
-	(bus)
 )
 (connector
 	(text "clock_50" (rect 320 368 363 380)(font "Arial" ))
@@ -682,6 +699,16 @@ applicable agreement for further details.
 	(text "MEMControlLine[1]" (rect 320 304 412 316)(font "Arial" ))
 	(pt 312 320)
 	(pt 472 320)
+)
+(connector
+	(pt 400 400)
+	(pt 472 400)
+)
+(connector
+	(text "EXStage_ALUResult[7..0]" (rect 320 320 446 332)(font "Arial" ))
+	(pt 472 336)
+	(pt 312 336)
+	(bus)
 )
 (text "MemControlLine[1] = MemWriteEnable" (rect -32 -392 179 -378)(font "Arial" (font_size 8)))
 (text "MemControlLine[0] = MemRead" (rect -32 -376 141 -362)(font "Arial" (font_size 8)))
