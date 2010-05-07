@@ -1,3 +1,15 @@
+-------------------------------------------------------------------------
+--
+-- ForwardingUnit.vhd
+-- 
+-- Author: Cache Money
+--
+-- This file represents a forwarding unit that is used for forwarding
+-- the most up-to-date register values to the execution stage in the
+-- pipeline.
+--
+-------------------------------------------------------------------------
+
 LIBRARY ieee;
 use ieee.std_logic_1164.all;
 
@@ -79,7 +91,6 @@ begin
 		--------------------------
 		if RegWrite_FromMEMStage = '1' and RegDest_FromMEMStage /= "00000" and RegDest_FromMEMStage = RegSrc_ForStoreWord then
 			ForwardC <= "10";
-		--elsif RegWrite_FromWBStage = '1' and RegDest_FromWBStage /= "00000" and RegDest_FromMEMStage /= RegSrc_ForStoreWord and RegDest_FromWBStage = RegSrc_ForStoreWord then			
 		elsif RegWrite_FromWBStage = '1' and RegDest_FromWBStage /= "00000" and RegDest_FromWBStage = RegSrc_ForStoreWord then			
 			ForwardC <= "01";
 		else

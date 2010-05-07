@@ -1,3 +1,14 @@
+-------------------------------------------------------------------------
+--
+-- WriteBack_Stage.vhd
+-- 
+-- Author: Cache Money
+--
+-- This file represents the Write Back stage used within the five stage
+-- pipeline to update register values.
+--
+-------------------------------------------------------------------------
+
 library ieee, work;
 use ieee.std_logic_1164.all;
 

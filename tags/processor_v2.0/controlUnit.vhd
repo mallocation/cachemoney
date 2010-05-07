@@ -1,3 +1,14 @@
+-------------------------------------------------------------------------
+--
+-- controlUnit.vhd
+-- 
+-- Author: Cache Money
+--
+-- This file represents the control unit for the five stage pipelined
+-- processor.  It is to be contained within the Instruction Decode stage.
+--
+-------------------------------------------------------------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 
@@ -10,9 +21,9 @@ PORT (
 	WBControl			:	out std_logic_vector(1 downto 0);
 	MEMControl			:	out std_logic_vector(1 downto 0);
 	PCMuxControl		:	out std_logic_vector(1 downto 0);
-	Reg2MuxSel			:	out STD_LOGIC;
-	ALUControl			:	out STD_LOGIC;
-	ALU_SourceBMux		:	out STD_LOGIC;
+	Reg2MuxSel			:	out std_logic;
+	ALUControl			:	out std_logic;
+	ALU_SourceBMux		:	out std_logic;
 	FlushIDStage		:	out std_logic;
 	EnableIDStage		:	out std_logic;
 	EnableIFStage		:	out std_logic;
@@ -22,15 +33,20 @@ end controlUnit;
 
 architecture behavioral of controlUnit is
 begin
+	
+	-- Process fires on opcode changes, comparator results, and hazard detection lines
 	process(opCode, comparator, HDUBranchHazards, HDULoadWordHazards)
 	begin
+	
+		--Initialize certain output lines
 		FlushIDStage <= '0';
 		EnableIDStage <= '1';
 		EnableIFStage <= '1';
 		FlushEXStage <= '0';		
 		PCMuxControl <= "00";
 		
-		if HDULoadWordHazards = '1' then --Flush the EX stage, and stall the IF and ID stages
+		if HDULoadWordHazards = '1' then 
+			--Flush the EX stage, and stall the IF and ID stages
 			EnableIFStage <= '0';
 			EnableIDStage <= '0';
 			FlushEXStage <= '1';			
@@ -41,6 +57,7 @@ begin
 		end if;
 		
 		if HDUBranchHazards = '1' then
+			--Flush the EX stage, and stall the IF and ID stages
 			EnableIFStage <= '0';
 			EnableIDStage <= '0';
 			FlushEXStage <= '1';
@@ -82,7 +99,7 @@ begin
 				WBControl <= "00";
 				MEMControl <= "00";
 				if HDUBranchHazards = '0' then
-					if comparator = '1' then
+					if comparator = '1' then --comparator output is '1' when equal
 						PCMuxControl <= "01";
 						EnableIDStage <= '0';
 						FlushIDStage <= '1';
@@ -99,7 +116,7 @@ begin
 				WBControl <= "00";
 				MEMControl <= "00";
 				if HDUBranchHazards = '0' then
-					if comparator = '0' then
+					if comparator = '0' then --comparator output is '0' when not equal
 						PCMuxControl <= "01";
 						EnableIDStage <= '0';
 						FlushIDStage <= '1';

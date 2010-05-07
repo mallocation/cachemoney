@@ -1,3 +1,18 @@
+-------------------------------------------------------------------------
+--
+-- GenericRegister.vhd
+-- 
+-- Author: Cache Money
+--
+-- This file represents a generic register that is used to hold specific
+-- values.  It is fired on each clock rise.  If Reset is high, then
+-- the register will be reset to '0'.  If Enable is high, then the value
+-- at D will be latched into the register.
+--
+-- Specify DATA_WIDTH for a custom width register.
+--
+-------------------------------------------------------------------------
+
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
 

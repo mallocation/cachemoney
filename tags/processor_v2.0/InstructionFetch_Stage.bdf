@@ -312,7 +312,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 624 104 656 136)
+	(rect 616 160 648 192)
 	(text "GND" (rect 8 6 29 16)(font "Arial" (font_size 6)))
 	(text "inst4" (rect 3 -1 26 11)(font "Arial" )(invisible))
 	(port
@@ -459,10 +459,6 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt 0 344)
-	(pt 384 344)
-)
-(connector
 	(pt 240 488)
 	(pt 240 280)
 	(bus)
@@ -496,49 +492,14 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt 640 136)
-	(pt 640 208)
-)
-(connector
-	(pt 640 208)
-	(pt 760 208)
-)
-(connector
 	(pt 976 192)
 	(pt 1152 192)
 	(bus)
 )
 (connector
-	(pt 384 344)
-	(pt 384 384)
-)
-(connector
-	(pt 384 384)
-	(pt 560 384)
-)
-(connector
-	(pt 0 328)
-	(pt 416 328)
-)
-(connector
-	(pt 416 368)
-	(pt 560 368)
-)
-(connector
-	(text "clock_50" (rect 492 336 535 348)(font "Arial" ))
-	(pt 472 352)
-	(pt 560 352)
-)
-(connector
 	(text "Next_PC[31..0]" (rect 320 216 396 228)(font "Arial" ))
 	(pt 312 232)
 	(pt 424 232)
-	(bus)
-)
-(connector
-	(text "Next_PC[31..0]" (rect 464 320 540 332)(font "Arial" ))
-	(pt 560 336)
-	(pt 456 336)
 	(bus)
 )
 (connector
@@ -565,26 +526,47 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(text "clock_50" (rect 640 256 683 268)(font "Arial" ))
-	(pt 656 272)
-	(pt 760 272)
-)
-(connector
-	(pt 760 288)
-	(pt 416 288)
-)
-(connector
-	(pt 416 288)
-	(pt 416 328)
-)
-(connector
-	(pt 416 328)
-	(pt 416 368)
-)
-(connector
 	(text "Next_PC[7..0]" (rect 638 208 708 220)(font "Arial" ))
 	(pt 632 224)
 	(pt 760 224)
 	(bus)
 )
-(junction (pt 416 328))
+(connector
+	(pt 760 208)
+	(pt 632 208)
+)
+(connector
+	(text "clock_50" (rect 640 256 683 268)(font "Arial" ))
+	(pt 632 272)
+	(pt 760 272)
+)
+(connector
+	(text "ProgramCounterEnable" (rect 640 272 753 284)(font "Arial" ))
+	(pt 632 288)
+	(pt 760 288)
+)
+(connector
+	(text "ProgramCounterEnable" (rect 440 352 553 364)(font "Arial" ))
+	(pt 432 368)
+	(pt 560 368)
+)
+(connector
+	(text "clock_50" (rect 444 336 487 348)(font "Arial" ))
+	(pt 432 352)
+	(pt 560 352)
+)
+(connector
+	(text "Next_PC[31..0]" (rect 440 320 516 332)(font "Arial" ))
+	(pt 432 336)
+	(pt 560 336)
+	(bus)
+)
+(connector
+	(pt 632 192)
+	(pt 632 208)
+)
+(connector
+	(text "ProgramCounterReset" (rect 437 368 546 380)(font "Arial" ))
+	(pt 432 384)
+	(pt 560 384)
+)

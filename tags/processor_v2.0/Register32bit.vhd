@@ -5,7 +5,7 @@
 --  The register's value can be changed to the value on the 'D' port
 --  on the rising edge of the clock if the write enable is set to high.
 --	
---	Reset is asynchronous on high.
+--	Reset is synchronous on high.
 --------------------------------------------------------------------------------------------
 
 LIBRARY ieee;

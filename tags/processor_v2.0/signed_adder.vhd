@@ -1,3 +1,18 @@
+-------------------------------------------------------------------------
+--
+-- signed_adder.vhd
+-- 
+-- Author: Cache Money
+--
+-- This file represents an adder that can perform addition on two 32-bit 
+-- numbers.  The adder will also output a '1' for overflow if overflow
+-- occurs, and a '0' if no overflow occurs.
+--
+-- Specify DATA_WIDTH to create a custom adder.
+--
+-------------------------------------------------------------------------
+
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_arith.all;

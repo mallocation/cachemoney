@@ -294,7 +294,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect -664 1192 -496 1208)
+	(rect -752 1168 -584 1184)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ForwardC[1..0]" (rect 5 0 78 12)(font "Arial" ))
 	(pt 168 8)
@@ -1190,41 +1190,6 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt 24 832)
-	(pt 752 832)
-	(bus)
-)
-(connector
-	(pt 688 992)
-	(pt 24 992)
-	(bus)
-)
-(connector
-	(pt 688 992)
-	(pt 688 880)
-	(bus)
-)
-(connector
-	(pt 688 880)
-	(pt 752 880)
-	(bus)
-)
-(connector
-	(pt 632 688)
-	(pt 24 688)
-	(bus)
-)
-(connector
-	(pt 632 688)
-	(pt 632 920)
-	(bus)
-)
-(connector
-	(pt 632 920)
-	(pt 752 920)
-	(bus)
-)
-(connector
 	(pt 456 -280)
 	(pt 456 -304)
 	(bus)
@@ -1472,11 +1437,6 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt -496 1200)
-	(pt -440 1200)
-	(bus)
-)
-(connector
 	(pt 424 128)
 	(pt 424 112)
 	(bus)
@@ -1585,6 +1545,24 @@ applicable agreement for further details.
 	(text "ALUSourceBControl" (rect 744 -144 841 -132)(font "Arial" ))
 	(pt 832 -128)
 	(pt 704 -128)
+	(bus)
+)
+(connector
+	(text "RDReg_out[4..0]" (rect 133 816 216 828)(font "Arial" ))
+	(pt 24 832)
+	(pt 200 832)
+	(bus)
+)
+(connector
+	(text "RTReg_out2[4..0]" (rect 133 672 220 684)(font "Arial" ))
+	(pt 24 688)
+	(pt 200 688)
+	(bus)
+)
+(connector
+	(text "RSReg_out1[4..0]" (rect 127 976 215 988)(font "Arial" ))
+	(pt 24 992)
+	(pt 200 992)
 	(bus)
 )
 (text "Write Back Control Register" (rect -360 -560 -205 -546)(font "Arial" (font_size 8)))

@@ -1,3 +1,23 @@
+-------------------------------------------------------------------------
+--
+-- HazardDetectionUnit.vhd
+-- 
+-- Author: Cache Money
+--
+-- This file represents the Hazard Detection Unit that is used in the
+-- Instruction Decode stage.  It detects two types of hazards.
+-- 1. Load Word Hazards
+--		If a load word is in the EX Stage, then stall the if/id stages
+--		and let the lw instruction get past the memory stage.
+-- 2. Branch Hazards
+--    	If a branch instruction is in the Instruction Decode stage, wait
+--	 	until all previous instructions that write to one of the
+--		registers involved in the branch instruction are done.
+--		This removes the need to place any forwarding logic into the 
+--		decode stage.
+--
+-------------------------------------------------------------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 
@@ -29,12 +49,17 @@ begin
 	
 	process(opcode, InstructionRD, InstructionRS, InstructionRT, RegDestFromEXStage, RegDestFromMEMStage, RegDestFromWBStage, MemReadFromEXStage, MEMRd_WBWr_From_EX, MEMRd_WBWr_From_MEM,WBWr_From_WB)
 	begin
+		
+		--Initialize Signals
 		HDUBranchHazards <= '0';
 		HDULoadWordHazards <= '0';
+		
+		--Check for Load Word hazards
 		if MemReadFromEXStage = '1' and ((RegDestFromEXStage = InstructionRS) or (RegDestFromEXStage = InstructionRT)) then
 			HDULoadWordHazards <= '1';
 		end if;
 
+		--Check for Branch Hazards
 		if opcode = "101" or opcode = "110" then -- Branch on equal, branch on not equal
 			if (((InstructionRD = RegDestFromEXStage or InstructionRS = RegDestFromEXStage) and MemRD_WBWr_From_EX = '1') or
 				((InstructionRD = RegDestFromMEMStage or InstructionRS = RegDestFromMEMStage) and MemRD_WBWr_From_MEM = '1') or 

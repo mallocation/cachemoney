@@ -1,3 +1,16 @@
+-------------------------------------------------------------------------
+--
+-- ALU32bit.vhd
+-- 
+-- Author: Cache Money
+--
+-- This file represents a 32 bit ALU performing two operations.
+-- The first operation (add) is specified by passing a '0' to the
+-- op input, and the second operation (multiply) is specified by
+-- passing a '1' to the op input.
+--
+-------------------------------------------------------------------------
+
 library ieee,work;
 use ieee.std_logic_1164.all;
 use work.all;
@@ -30,7 +43,7 @@ begin
 			overflow <= add_overflow;
 		else -- op 1 is a multiply operation
 			result <= mult_result;
-			overflow <= '0'; -- overflow isn't possible in the multipler
+			overflow <= '0'; -- overflow isn't possible in the multiplier
 		end if;
 	end process;
 end STRUCTURE;

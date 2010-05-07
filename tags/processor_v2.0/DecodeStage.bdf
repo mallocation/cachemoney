@@ -1221,11 +1221,6 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(text "write_reg_enable_from_wb" (rect 809 424 938 436)(font "Arial" ))
-	(pt 936 440)
-	(pt 776 440)
-)
-(connector
 	(text "<<__$DEF_ALIAS1421>>" (rect 826 360 949 372)(font "Arial" )(invisible))
 	(pt 904 376)
 	(pt 936 376)
@@ -1447,6 +1442,11 @@ applicable agreement for further details.
 (connector
 	(pt 448 448)
 	(pt 456 448)
+)
+(connector
+	(text "write_reg_enable_from_wb" (rect 809 424 938 436)(font "Arial" ))
+	(pt 800 440)
+	(pt 936 440)
 )
 (junction (pt 432 416))
 (junction (pt 440 432))

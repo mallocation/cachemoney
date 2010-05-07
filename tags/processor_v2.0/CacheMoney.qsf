@@ -73,9 +73,9 @@ set_global_assignment -name VHDL_FILE MUX_32bit_2.vhd
 set_global_assignment -name BSF_FILE LCD_Display.bsf
 set_global_assignment -name VHDL_FILE threeinputmux.vhd
 set_global_assignment -name VHDL_FILE twoinputmux.vhd
+set_global_assignment -name VHDL_FILE fourinputmux.vhd
 set_global_assignment -name BDF_FILE Execution_Stage.bdf
 set_global_assignment -name BDF_FILE DecodeStage.bdf
-set_global_assignment -name VHDL_FILE fourinputmux.vhd
 set_global_assignment -name VHDL_FILE constantfour.vhd
 set_global_assignment -name VHDL_FILE constantzero.vhd
 set_global_assignment -name BDF_FILE InstructionFetch_Stage.bdf
@@ -116,7 +116,6 @@ set_global_assignment -name VECTOR_WAVEFORM_FILE DecodeStage_WaveForm.vwf
 set_global_assignment -name VHDL_FILE HazardDetectionUnit.vhd
 set_global_assignment -name VECTOR_WAVEFORM_FILE CacheMoney_WaveForm.vwf
 set_global_assignment -name VECTOR_WAVEFORM_FILE HazardDetectionUnit_WaveForm.vwf
-set_global_assignment -name BDF_FILE button.bdf
 set_global_assignment -name VECTOR_WAVEFORM_FILE controlUnit_WaveForm.vwf
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top

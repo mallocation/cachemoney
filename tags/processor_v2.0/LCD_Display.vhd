@@ -1,5 +1,5 @@
 --------------------------------------------------------------------------------------------
---	Authors: Cache Money
+--	Author: Cache Money
 --	
 --
 -- 	This component will act as a controller to communicate with the lcd display on the

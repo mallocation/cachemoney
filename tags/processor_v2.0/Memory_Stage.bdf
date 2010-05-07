@@ -22,7 +22,7 @@ applicable agreement for further details.
 (header "graphic" (version "1.3"))
 (pin
 	(input)
-	(rect 16 -288 184 -272)
+	(rect 40 -288 208 -272)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "clock_50" (rect 5 0 48 12)(font "Arial" ))
 	(pt 168 8)
@@ -87,7 +87,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 16 -312 200 -296)
+	(rect 24 -312 208 -296)
 	(text "INPUT" (rect 149 0 177 10)(font "Arial" (font_size 6)))
 	(text "WBControlLine[1..0]" (rect 5 0 104 12)(font "Arial" ))
 	(pt 184 8)
@@ -119,7 +119,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect -8 -336 184 -320)
+	(rect 16 -336 208 -320)
 	(text "INPUT" (rect 157 0 185 10)(font "Arial" (font_size 6)))
 	(text "MEMControlLine[1..0]" (rect 5 0 110 12)(font "Arial" ))
 	(pt 192 8)
