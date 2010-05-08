@@ -1,3 +1,9 @@
+##########################################################
+# Cache Money
+# Matrix Multiplication / Diagonal Sum Program
+# Authors: Brett Baumert, Curtis Johnson, Jake Reisdorff
+##########################################################
+
 #Variables
 #matrix1base $1
 #matrix2base $2
